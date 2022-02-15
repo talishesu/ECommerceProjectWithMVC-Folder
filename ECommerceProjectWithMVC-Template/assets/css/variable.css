@@ -1,0 +1,10 @@
+:root {
+  /* colors */
+  --primary: #003c46;
+  --primary-light: #366771;
+  --primary-dark: #00171f;
+  --secondary: #97d5df;
+  --secondary-light: #c9ffff;
+  --secondary-dark: #66a4ad;
+  --background-color: rgb(102, 163, 173);
+}
