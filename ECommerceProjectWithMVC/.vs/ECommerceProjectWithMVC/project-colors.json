@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b88329a3-fa65-411c-9b7c-6f2ec1d52e75": {
+      "ProjectGuid": "b88329a3-fa65-411c-9b7c-6f2ec1d52e75",
+      "DisplayName": "ECommerceProjectWithMVC",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
