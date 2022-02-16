@@ -1,0 +1,38 @@
+﻿@model Size
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Sizes</h4>
+                  <p class="card-description">
+                      Create Size
+                  </p>
+                  <form class="forms-sample" method="post">
+                    <div class="form-group">
+                      <label for="exampleInputUsername1" class="required" asp-for="Name" placeholder="Name"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Name" placeholder="Name">
+                      <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" class="required" asp-for="ShortName" placeholder="ShortName">Short Name</label>
+                      <textarea  class="form-control form-control-lg" id="exampleInputEmail1" asp-for="ShortName" placeholder="ShortName"></textarea>
+                        <span asp-validation-for="ShortName" class="text-danger"></span>
+                        @if(ViewBag.Message != null){
+                            <span class="text-danger">@ViewBag.Message</span>
+                        }
+                    </div>
+                    <button type="submit" class="btn btn-success me-2">Submit</button>
+                    <a class="btn btn-light" asp-area="Admin" asp-controller="Sizes" asp-action="Index">Cancel</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+@section addjs{
+ <script src="~/assets/libraries/jquery-validate/jquery.validate.min.js"></script>
+ <script src="~/assets/libraries/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+

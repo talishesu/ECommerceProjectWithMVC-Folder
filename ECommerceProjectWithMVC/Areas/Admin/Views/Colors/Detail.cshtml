@@ -1,0 +1,24 @@
+﻿@model Color
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Colors</h4>
+                  <p class="card-description">
+                      @Model.Name Color Detail
+                  </p>
+                    <h1 class="display-4">Name: @Model.Name</h1>
+                    <h1 class="display-4">Color: @Model.ColorHexCode</h1>
+                    <h1 style="background-color:@Model.ColorHexCode" class="display-4">Color</h1>
+                    <h1 class="display-4">Created Time: @Model.CreatedTime</h1>
+                    <h1 class="display-4">Created By User Id: @Model.CreatedByUserId</h1>
+                    @if(Model.DeletedByUserId != null){
+                    <h1 class="display-4">Deleted By User Id: @Model.DeletedByUserId</h1>
+                    <h1 class="display-4">Deleted Time: @Model.DeletedTime</h1>
+                    }
+                </div>
+              </div>
+            </div>

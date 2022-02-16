@@ -1,0 +1,236 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+      <section class="mt-5 pt-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4">
+              <div
+                class="nav nav-pills faq-nav"
+                id="faq-tabs"
+                role="tablist"
+                aria-orientation="vertical"
+              >
+                <a
+                  href="#tab1"
+                  class="nav-link active"
+                  data-toggle="pill"
+                  role="tab"
+                  aria-controls="tab1"
+                  aria-selected="true"
+                >
+                  <i class="mdi mdi-help-circle"></i> Profile
+                </a>
+                <a
+                  href="#tab2"
+                  class="nav-link"
+                  data-toggle="pill"
+                  role="tab"
+                  aria-controls="tab2"
+                  aria-selected="false"
+                >
+                  <i class="mdi mdi-account"></i> Orders
+                </a>
+                <a
+                  href="#tab3"
+                  class="nav-link"
+                  data-toggle="pill"
+                  role="tab"
+                  aria-controls="tab3"
+                  aria-selected="false"
+                >
+                  <i class="mdi mdi-account-settings"></i> Comments
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="tab-content" id="faq-tab-content">
+                <div
+                  class="tab-pane show active"
+                  id="tab1"
+                  role="tabpanel"
+                  aria-labelledby="tab1"
+                >
+                  <div class="d-flex justify-content-center align-items-center">
+                    <img
+                      width="150px"
+                      style="border-radius: 50%"
+                      src="https://cdn2.vectorstock.com/i/1000x1000/20/76/man-avatar-profile-vector-21372076.jpg"
+                      alt=""
+                      srcset=""
+                    />
+                    <form action="" class="container">
+                      <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupFile01"
+                          >Profile Image</label
+                        >
+                        <input
+                          type="file"
+                          class="form-control"
+                          id="inputGroupFile01"
+                        />
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"
+                          >Name</span
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Name"
+                          aria-label="Name"
+                          aria-describedby="basic-addon1"
+                        />
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"
+                          >Email</span
+                        >
+                        <input
+                          type="email"
+                          class="form-control"
+                          placeholder="Email"
+                          aria-label="Email"
+                          aria-describedby="basic-addon1"
+                        />
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"
+                          >Password</span
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="Password"
+                          aria-label="Password"
+                          aria-describedby="basic-addon1"
+                        />
+                      </div>
+                      <div class="container">
+                        <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                        <button type="submit" class="btn btn-danger">
+                          Log Out
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane"
+                  id="tab2"
+                  role="tabpanel"
+                  aria-labelledby="tab2"
+                >
+                  <div class="container">
+                    <ol class="list-group list-group-numbered">
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center"
+                      >
+                        <p>G Pro X</p>
+                        <p>Price :99$</p>
+                        <div class="alert alert-info" role="alert">
+                          Deliverid
+                        </div>
+                      </li>
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center"
+                      >
+                        <p>G Pro X</p>
+                        <p>Price :99$</p>
+                        <div class="alert alert-danger" role="alert">Soon</div>
+                      </li>
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center"
+                      >
+                        <p>G Pro X</p>
+                        <p>Price :99$</p>
+                        <div class="alert alert-danger" role="alert">Soon</div>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane"
+                  id="tab3"
+                  role="tabpanel"
+                  aria-labelledby="tab3"
+                >
+                  <ol class="list-group list-group-numbered">
+                    <li class="list-group-item">
+                      <p>
+                        Product Url: <a href="./product-detail.html">G Pro x</a>
+                      </p>
+                      <p>Price :99$</p>
+                      <div class="alert alert-danger" role="alert">
+                        Comment: Lorem ipsum, dolor sit amet consectetur
+                        adipisicing elit. Cum voluptatum reiciendis consequuntur
+                        porro in sapiente laboriosam consectetur atque natus
+                        nam, labore minus, suscipit magni iure accusantium non,
+                        perferendis ducimus quisquam. Iure officiis veniam eum
+                        cupiditate accusantium corrupti autem quo optio ex id
+                        aliquam, mollitia, inventore cumque tenetur blanditiis!
+                        Doloremque, aliquam.
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <p>
+                        Product Url: <a href="./product-detail.html">G Pro x</a>
+                      </p>
+                      <p>Price :99$</p>
+                      <div class="alert alert-danger" role="alert">
+                        Comment: Lorem ipsum, dolor sit amet consectetur
+                        adipisicing elit. Cum voluptatum reiciendis consequuntur
+                        porro in sapiente laboriosam consectetur atque natus
+                        nam, labore minus, suscipit magni iure accusantium non,
+                        perferendis ducimus quisquam. Iure officiis veniam eum
+                        cupiditate accusantium corrupti autem quo optio ex id
+                        aliquam, mollitia, inventore cumque tenetur blanditiis!
+                        Doloremque, aliquam.
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <p>
+                        Product Url: <a href="./product-detail.html">G Pro x</a>
+                      </p>
+                      <p>Price :99$</p>
+                      <div class="alert alert-danger" role="alert">
+                        Comment: Lorem ipsum, dolor sit amet consectetur
+                        adipisicing elit. Cum voluptatum reiciendis consequuntur
+                        porro in sapiente laboriosam consectetur atque natus
+                        nam, labore minus, suscipit magni iure accusantium non,
+                        perferendis ducimus quisquam. Iure officiis veniam eum
+                        cupiditate accusantium corrupti autem quo optio ex id
+                        aliquam, mollitia, inventore cumque tenetur blanditiis!
+                        Doloremque, aliquam.
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <p>
+                        Product Url: <a href="./product-detail.html">G Pro x</a>
+                      </p>
+                      <p>Price :99$</p>
+                      <div class="alert alert-danger" role="alert">
+                        Comment: Lorem ipsum, dolor sit amet consectetur
+                        adipisicing elit. Cum voluptatum reiciendis consequuntur
+                        porro in sapiente laboriosam consectetur atque natus
+                        nam, labore minus, suscipit magni iure accusantium non,
+                        perferendis ducimus quisquam. Iure officiis veniam eum
+                        cupiditate accusantium corrupti autem quo optio ex id
+                        aliquam, mollitia, inventore cumque tenetur blanditiis!
+                        Doloremque, aliquam.
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+

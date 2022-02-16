@@ -1,37 +1,46 @@
-﻿using ECommerceProjectWithMVC.Models;
+﻿using ECommerceProjectWithMVC.Models.DataContexts;
+using ECommerceProjectWithMVC.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ECommerceProjectWithMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        readonly ShopDbContext db;
+        public HomeController(ShopDbContext db)
         {
-            _logger = logger;
+            this.db = db;
         }
-
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult ContactUs()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult ContactUs(Contact contact)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (ModelState.IsValid)
+            {
+                db.Contacts.Add(contact);
+                db.SaveChanges();
+
+                ModelState.Clear();
+
+                ViewBag.Message = "Sorgu Gonderildi.";
+                return View();
+            }
+                return View(contact);
+        }
+
+        public IActionResult About()
+        {
+            return View();
         }
     }
 }

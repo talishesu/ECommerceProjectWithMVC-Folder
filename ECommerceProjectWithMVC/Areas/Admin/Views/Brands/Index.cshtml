@@ -1,0 +1,81 @@
+﻿@model List<Brand>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+        @if (Model.Any())
+        {
+               <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Brands</h4>
+                  <p class="card-description">
+                      Brand List
+                  </p>
+                  <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Brands" asp-action="Create">Create Brand</a>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>Name</th>
+                          <th>Created Time</th>
+                          <th>Deleted Time</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach (var item in Model)
+                       {
+                           <tr>
+                              <td>@item.Id</td>
+                              <td>@item.Name</td>
+                              <td>@item.CreatedTime</td>
+                                @if (item.DeletedTime != null)
+                                {
+                                    <td><label class="badge badge-danger">Deleted @item.DeletedTime</label></td>
+                                }else{
+                                    <td><label class="badge badge-success">Active</label></td>
+
+                                }
+                              <td>
+                                    <a type="button" class="btn btn-success btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Brands" asp-action="Detail">Detail</a>
+                                        
+                                  
+                                    @if (item.DeletedTime == null)
+                                    {
+                                    <a type="button" class="btn btn-warning btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Brands" asp-action="Edit">Edit</a>
+                                        
+                                    }
+                                  
+                                    @if (item.DeletedTime == null)
+                                    {
+                                    <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Brands" asp-action="Delete">Delete</a>
+                                        
+                                    }
+                                    else{
+                                    <a type="button" class="btn btn-secondary btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Brands" asp-action="Reverse">Reverse</a>
+                                    }
+                                </td>
+                            </tr>
+                       }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              }
+    else
+        {
+            <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Brands</h4>
+                  <p class="card-description">
+                      There Is No Brand
+                  </p>
+                  <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Brands" asp-action="Create">Create Brand</a>
+                </div>
+            </div>
+        }
+</div>
+
