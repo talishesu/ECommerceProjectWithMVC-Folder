@@ -74,7 +74,6 @@ C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectW
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\ECommerceProjectWithMVC.genruntimeconfig.cache
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\ECommerceProjectWithMVC.csproj.CopyComplete
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\libman.json
-C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Views\Home\ContactUs.cshtml.g.cs
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\Humanizer.dll
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -202,3 +201,8 @@ C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectW
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sizes\Create.cshtml.g.cs
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sizes\Detail.cshtml.g.cs
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sizes\Edit.cshtml.g.cs
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Index.cshtml.g.cs
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Create.cshtml.g.cs
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Edit.cshtml.g.cs
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Detail.cshtml.g.cs

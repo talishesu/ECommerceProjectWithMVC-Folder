@@ -17,13 +17,13 @@ namespace ECommerceProjectWithMVC.Controllers
             return View();
         }
 
-        public IActionResult ContactUs()
+        public IActionResult Contact()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult ContactUs(Contact contact)
+        public IActionResult Contact(Contact contact)
         {
             if (ModelState.IsValid)
             {

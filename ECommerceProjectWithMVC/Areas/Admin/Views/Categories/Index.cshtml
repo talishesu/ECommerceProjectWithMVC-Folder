@@ -1,0 +1,129 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="col-lg-12 grid-margin stretch-card">
+        @if (Model.Any())
+        {
+               <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Categories</h4>
+                  <p class="card-description">
+                      Category List
+                  </p>
+                  <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Categories" asp-action="Create">Create Category</a>
+                  <span class="text-danger">@ViewBag.Message</span>
+                  <span class="text-danger">@TempData["Message"]</span>
+                  <div class="table-responsive">
+                    <table class="table tree">
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>Name</th>
+                          <th>Created Time</th>
+                          <th>Deleted Time</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach (var item in Model.Where(c=>c.ParentId == null))
+                       {
+                           <tr class="treegrid-@item.Id">
+                              <td>@item.Id</td>
+                              <td>@item.Name</td>
+                              <td>@item.CreatedTime</td>
+                                @if (item.DeletedTime != null)
+                                {
+                                    <td><label class="badge badge-danger">Deleted @item.DeletedTime</label></td>
+                                }else{
+                                    <td><label class="badge badge-success">Active</label></td>
+
+                                }
+                              <td>
+                                    <a type="button" class="btn btn-success btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Categories" asp-action="Detail">Detail</a>
+                                        
+                                  
+                                    @if (item.DeletedTime == null)
+                                    {
+                                    <a type="button" class="btn btn-warning btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Categories" asp-action="Edit">Edit</a>
+                                        
+                                    }
+                                  
+                                    @if (item.DeletedTime == null)
+                                    {
+                                    <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Categories" asp-action="Delete">Delete</a>
+                                        
+                                    }
+                                    else{
+                                    <a type="button" class="btn btn-secondary btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Categories" asp-action="Reverse">Reverse</a>
+                                    }
+                                </td>
+                            </tr>
+                            @foreach (var child in item.GetChildCategories())
+                               {
+                                   <tr class="treegrid-@child.Id treegrid-parent-@child.ParentId">
+                                      <td>@child.Id</td>
+                                      <td>@child.Name</td>
+                                      <td>@child.CreatedTime</td>
+                                        @if (child.DeletedTime != null)
+                                        {
+                                            <td><label class="badge badge-danger">Deleted @child.DeletedTime</label></td>
+                                        }else{
+                                            <td><label class="badge badge-success">Active</label></td>
+
+                                        }
+                                      <td>
+                                            <a type="button" class="btn btn-success btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Detail">Detail</a>
+                                        
+                                  
+                                            @if (child.DeletedTime == null)
+                                            {
+                                            <a type="button" class="btn btn-warning btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Edit">Edit</a>
+                                        
+                                            }
+                                  
+                                            @if (child.DeletedTime == null)
+                                            {
+                                            <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Delete">Delete</a>
+                                        
+                                            }
+                                            else{
+                                            <a type="button" class="btn btn-secondary btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Reverse">Reverse</a>
+                                            }
+                                        </td>
+                                    </tr>
+                               }
+                       }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              }
+    else
+        {
+            <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Categories</h4>
+                  <p class="card-description">
+                      There Is No Category
+                  </p>
+                  <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Categories" asp-action="Create">Create Category</a>
+                </div>
+            </div>
+        }
+</div>
+
+
+@section addjs{
+    <script src="~/admin-assets/libs/jquery-treegrid/js/jquery.treegrid.min.js"></script>
+    <script type="text/javascript">
+        $('.tree').treegrid();
+        $('.tree').treegrid('getRootNodes').treegrid('collapse');
+    </script>
+
+}
+
+@section addcss{
+    <link rel="stylesheet" href="~/admin-assets/libs/jquery-treegrid/css/jquery.treegrid.min.css">
+}

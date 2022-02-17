@@ -48,6 +48,28 @@
     />
     <link rel="stylesheet" href="~/assets/css/main.css" />
     @RenderSection("addcss",required:false)
+    <style>
+        ::-webkit-scrollbar-track
+        {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: var(--secondary);
+        }
+
+        ::-webkit-scrollbar
+        {
+            width: 12px;
+            background-color: var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: var(--secondary-dark);
+        }
+
+    </style>
   </head>
 
   <body class="clearfix bg-light">
@@ -103,7 +125,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Contac Us</a>
+              <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact Us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
@@ -139,12 +161,11 @@
             class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 search-form d-none d-flex"
           >
             <svg
-              class="search-close-icon"
+              class="search-close-icon bi bi-x-lg"
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-x-lg"
               viewBox="0 0 16 16"
             >
               <path
@@ -164,12 +185,11 @@
             />
           </form>
           <svg
-            class="search-icon"
+            class="search-icon bi bi-search"
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-search"
             viewBox="0 0 16 16"
           >
             <path

@@ -26,8 +26,15 @@ using ECommerceProjectWithMVC.Models.Entities;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Areas\Admin\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.AppCode.Extensions;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ccdd4d8610bc28f0389e09b8bc71624968275d95", @"/Areas/Admin/Views/Sizes/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"56bd809390ac399ad3d008c334059e7bcb7dc366", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"20a8e1551ebe3b14564ea86850e39e367fc64ab0", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Sizes_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Size>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", new global::Microsoft.AspNetCore.Html.HtmlString("button"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -85,7 +92,7 @@ using ECommerceProjectWithMVC.Models.Entities;
 #line hidden
 #nullable disable
             WriteLiteral("               <div class=\"card\">\r\n                <div class=\"card-body\">\r\n                  <h4 class=\"card-title\">Sizes</h4>\r\n                  <p class=\"card-description\">\r\n                      Size List\r\n                  </p>\r\n                  ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d958462", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d958718", async() => {
                 WriteLiteral("Create Size");
             }
             );
@@ -187,7 +194,7 @@ using ECommerceProjectWithMVC.Models.Entities;
 #line hidden
 #nullable disable
             WriteLiteral("                              <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d9513502", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d9513758", async() => {
                 WriteLiteral("Detail");
             }
             );
@@ -233,7 +240,7 @@ using ECommerceProjectWithMVC.Models.Entities;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d9516788", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d9517044", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -288,7 +295,7 @@ using ECommerceProjectWithMVC.Models.Entities;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d9520345", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d9520601", async() => {
                 WriteLiteral("Delete");
             }
             );
@@ -335,7 +342,7 @@ using ECommerceProjectWithMVC.Models.Entities;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d9523567", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d9523823", async() => {
                 WriteLiteral("Reverse");
             }
             );
@@ -404,7 +411,7 @@ using ECommerceProjectWithMVC.Models.Entities;
                       There Is No Size
                   </p>
                   ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d9527696", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccdd4d8610bc28f0389e09b8bc71624968275d9527952", async() => {
                 WriteLiteral("Create Size");
             }
             );

@@ -67,7 +67,7 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Property<int?>("DeletedByUserId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletedDate")
+                    b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -78,7 +78,12 @@ namespace ECommerceProjectWithMVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Categories");
                 });
@@ -232,6 +237,15 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.ToTable("Sizes");
                 });
 
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Category", b =>
+                {
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.Category", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("Parent");
+                });
+
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Product", b =>
                 {
                     b.HasOne("ECommerceProjectWithMVC.Models.Entities.Brand", "Brand")
@@ -249,6 +263,11 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Category", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

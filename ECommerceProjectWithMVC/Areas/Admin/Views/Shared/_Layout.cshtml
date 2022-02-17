@@ -24,10 +24,10 @@
   <link rel="shortcut icon" href="~/admin-assets/images/favicon.png" />
   @RenderSection("addcss",required:false)
   <style>
-      label.required::after{
-          content:'*';
-          color:red;
-      }
+        label.required::after{
+              content:'*';
+              color:red;
+        }
   </style>
 </head>
 <body>
@@ -401,6 +401,12 @@
             <a class="nav-link" asp-area="Admin" asp-controller="Sizes" asp-action="Index">
               <i class="mdi mdi-grid-large menu-icon"></i>
               <span class="menu-title">Sizes</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" asp-area="Admin" asp-controller="Categories" asp-action="Index">
+              <i class="mdi mdi-grid-large menu-icon"></i>
+              <span class="menu-title">Categories</span>
             </a>
           </li>
         </ul>
