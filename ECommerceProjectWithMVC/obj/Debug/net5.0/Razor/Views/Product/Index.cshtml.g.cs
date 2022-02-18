@@ -26,8 +26,15 @@ using ECommerceProjectWithMVC.Models.Entities;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.Models.DataContexts;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"005e1d02583afee00390b01ee703ecec30a34dd5", @"/Views/Product/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"56bd809390ac399ad3d008c334059e7bcb7dc366", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"51cda39b23e2f1f9845975a81c0798bd70568361", @"/Views/_ViewImports.cshtml")]
     public class Views_Product_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("#"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -147,7 +154,7 @@ using ECommerceProjectWithMVC.Models.Entities;
                   <label for=""color"">Color</label>
                   <select id=""color"" name=""color"" class=""form-control"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "005e1d02583afee00390b01ee703ecec30a34dd59430", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "005e1d02583afee00390b01ee703ecec30a34dd59675", async() => {
                 WriteLiteral("Blue");
             }
             );
@@ -161,7 +168,7 @@ using ECommerceProjectWithMVC.Models.Entities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "005e1d02583afee00390b01ee703ecec30a34dd510406", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "005e1d02583afee00390b01ee703ecec30a34dd510651", async() => {
                 WriteLiteral("Green");
             }
             );
@@ -175,7 +182,7 @@ using ECommerceProjectWithMVC.Models.Entities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "005e1d02583afee00390b01ee703ecec30a34dd511384", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "005e1d02583afee00390b01ee703ecec30a34dd511629", async() => {
                 WriteLiteral("Red");
             }
             );
@@ -189,7 +196,7 @@ using ECommerceProjectWithMVC.Models.Entities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                  </select>\r\n                </div>\r\n              </div>\r\n              <div class=\"product-count\">\r\n                <label for=\"size\">Quantity</label>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "005e1d02583afee00390b01ee703ecec30a34dd512540", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "005e1d02583afee00390b01ee703ecec30a34dd512785", async() => {
                 WriteLiteral("\r\n                  <div class=\"qtyminus\">-</div>\r\n                  <input type=\"text\" name=\"quantity\" value=\"1\" class=\"qty\">\r\n                  <div class=\"qtyplus\">+</div>\r\n                ");
             }
             );
@@ -237,7 +244,7 @@ using ECommerceProjectWithMVC.Models.Entities;
               <div class=""review-heading"">REVIEWS</div>
               <p class=""mb-20"">There are no reviews yet.</p>
               ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "005e1d02583afee00390b01ee703ecec30a34dd516066", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "005e1d02583afee00390b01ee703ecec30a34dd516311", async() => {
                 WriteLiteral(@"
                 <div class=""form-group"">
                   <label>Your rating</label>

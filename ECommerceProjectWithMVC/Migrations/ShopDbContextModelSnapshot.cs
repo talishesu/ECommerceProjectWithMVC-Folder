@@ -237,6 +237,53 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.ToTable("Sizes");
                 });
 
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Specification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CreatedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Specifications");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.SpecificationCategoryItem", b =>
+                {
+                    b.Property<int>("SpecificationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SpecificationId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SpecificationCategoryItems");
+                });
+
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Category", b =>
                 {
                     b.HasOne("ECommerceProjectWithMVC.Models.Entities.Category", "Parent")
@@ -263,6 +310,25 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.SpecificationCategoryItem", b =>
+                {
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.Specification", "Specification")
+                        .WithMany()
+                        .HasForeignKey("SpecificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Specification");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Category", b =>

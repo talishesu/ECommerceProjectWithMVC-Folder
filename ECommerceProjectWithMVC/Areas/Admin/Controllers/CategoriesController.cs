@@ -92,89 +92,88 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            
-            if (id < 1)
-            {
-                return NotFound();
-            }
+                if (id < 1)
+                {
+                    return NotFound();
+                }
 
-            var category = await db.Categories.FirstOrDefaultAsync(b => b.Id == id);
+                var category = await db.Categories.FirstOrDefaultAsync(b => b.Id == id);
 
-            var categories = db.Categories.Where(c => c.DeletedTime == null).ToList();
-            var selectList = new SelectList(categories, "Id", "Name", category.ParentId);
-            ViewBag.Categories = selectList;
+                var categories = db.Categories.Where(c => c.DeletedTime == null).ToList();
+                var selectList = new SelectList(categories, "Id", "Name", category.ParentId);
+                ViewBag.Categories = selectList;
 
-            if (category == null)
-            {
-                return NotFound();
-            }
+                if (category == null)
+                {
+                    return NotFound();
+                }
 
-            if (category.DeletedTime != null)
-            {
-                return NotFound();
-            }
+                if (category.DeletedTime != null)
+                {
+                    return NotFound();
+                }
 
-            
-
-            return View(category);
+                return View(category);
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Edit([FromRoute] int id, Category category)
         {
-            var categories = db.Categories.Where(c => c.DeletedTime == null).ToList();
-            var selectList = new SelectList(categories, "Id", "Name", category.ParentId);
-            ViewBag.Categories = selectList;
-            if (!ModelState.IsValid)
-            {
+                var categories = db.Categories
+                    .Include(c=>c.Children)
+                    .Where(c => c.DeletedTime == null).ToList();
+                var selectList = new SelectList(categories, "Id", "Name", category.ParentId);
+                ViewBag.Categories = selectList;
 
-                return View(category);
-            }
-
-            if (id != category.Id || id<1)
-            {
-                return BadRequest();
-            }
-
-            var likeCategory = await db.Categories.FirstOrDefaultAsync(b => b.Name.ToLower() == category.Name.ToLower());
-            if (likeCategory != null && likeCategory.Id != category.Id)
-            {
-                if (likeCategory.ParentId == category.ParentId)
+                if (!ModelState.IsValid)
                 {
-                    ViewBag.Message = "Bu Adda  Category Var!";
                     return View(category);
                 }
-                ViewBag.Message = "Bu Adda Category Basqa Esas Category-da Var!";
-                return View(category);
 
 
-                //ViewBag.Message = "Bu Adda Category Var!";
-                //return View(category);
+                if (id != category.Id || id < 1)
+                {
+                    return BadRequest();
+                }
+
+                var likeCategory = await db.Categories.FirstOrDefaultAsync(b => b.Name.ToLower() == category.Name.ToLower());
+                if (likeCategory != null && likeCategory.Id != category.Id)
+                {
+                    if (likeCategory.ParentId == category.ParentId)
+                    {
+                        ViewBag.Message = "Bu Adda  Category Var!";
+                        return View(category);
+                    }
+                    ViewBag.Message = "Bu Adda Category Basqa Esas Category-da Var!";
+                    return View(category);
 
 
-            }
+                    //ViewBag.Message = "Bu Adda Category Var!";
+                    //return View(category);
+
+
+                }
+
+                var b = await db.Categories.FirstOrDefaultAsync(category => category.Id == id);
+
+                if (b == null)
+                {
+                    return NotFound();
+                }
 
 
 
-            
+                b.Name = category.Name;
+                b.ParentId = category.ParentId;
+                b.Description = category.Description;
 
 
+                await db.SaveChangesAsync();
+                
 
-            var b = await db.Categories.FirstOrDefaultAsync(category => category.Id == id);
-
-
-            if(b == null)
-            {
-                return NotFound();
-            }
-
-            b.Name = category.Name;
-            b.ParentId = category.ParentId;
-            b.Description = category.Description;
-
-
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
         }
 
 

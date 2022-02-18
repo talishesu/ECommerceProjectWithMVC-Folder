@@ -1,3 +1,4 @@
+using ECommerceProjectWithMVC.AppCode.Providers;
 using ECommerceProjectWithMVC.Models.DataContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +27,10 @@ namespace ECommerceProjectWithMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(cfg =>
+            {
+                cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());
+            });
             services.AddRouting(cfg =>
             {
                 cfg.LowercaseUrls = true;

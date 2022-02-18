@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@inject ShopDbContext db
+
+@{
+    var categories = db.Categories.Where(c=>c.DeletedTime == null ).ToList();
+}
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -119,9 +124,10 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <a class="dropdown-item" href="#">Categories</a>
-                <a class="dropdown-item" href="#">Categories</a>
-                <a class="dropdown-item" href="#">Categories</a>
+                @foreach (var item in categories)
+               {
+                   <a class="dropdown-item" href="#">@item.Name</a>
+               }
               </div>
             </li>
             <li class="nav-item">
