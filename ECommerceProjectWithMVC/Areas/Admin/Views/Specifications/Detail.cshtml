@@ -1,4 +1,4 @@
-﻿@model Specification
+﻿@model SpecificationViewModel
 @{
     ViewData["Title"] = "Detail";
 }
@@ -8,16 +8,28 @@
                 <div class="card-body">
                   <h4 class="card-title">Specifications</h4>
                   <p class="card-description">
-                      @Model.Name Specification Detail
+                      @Model.Specification.Name Specification Detail
                   </p>
-                    <h1 class="display-4">Name: @Model.Name</h1>
-                    <h1 class="display-4">Description: @Model.Description</h1>
-                    <h1 class="display-4">Created Time: @Model.CreatedTime</h1>
-                    <h1 class="display-4">Created By User Id: @Model.CreatedByUserId</h1>
-                    @if(Model.DeletedByUserId != null){
-                    <h1 class="display-4">Deleted By User Id: @Model.DeletedByUserId</h1>
-                    <h1 class="display-4">Deleted Time: @Model.DeletedTime</h1>
+                    <h1 class="display-4">Name: @Model.Specification.Name</h1>
+                    <h1 class="display-4">Description: @Model.Specification.Description</h1>
+                    <h1 class="display-4">Created Time: @Model.Specification.CreatedTime</h1>
+                    <h1 class="display-4">Created By User Id: @Model.Specification.CreatedByUserId</h1>
+                    @if(Model.Specification.DeletedByUserId != null){
+                    <h1 class="display-4">Deleted By User Id: @Model.Specification.DeletedByUserId</h1>
+                    <h1 class="display-4">Deleted Time: @Model.Specification.DeletedTime</h1>
                     }
+                  @if(Model.SpecificationCategoryItems.Any()){
+                      <h4 class="card-title">Categories List</h4>
+                  <ol>
+                      @foreach (var item in Model.Categories)
+                         {
+                             @if(Model.SpecificationCategoryItems.Where(c=>c.CategoryId == item.Id).Any()){
+
+                                 <li>@item.Name</li>
+                             }
+                         }
+                  </ol>
+                  }
+                </div>
                 </div>
               </div>
-            </div>

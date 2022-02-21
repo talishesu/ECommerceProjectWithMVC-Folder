@@ -27,30 +27,62 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var vm = new SpecificationCreateViewModel();
+            vm.Categories = await db.Categories
+                .Include(c => c.Children)
+                .Where(c => c.DeletedTime == null)
+                .ToListAsync();
+
+
+            return View(vm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Specification specification)
+        public async Task<IActionResult> Create(SpecificationFormModel specificationFormModel)
         {
 
-            var likeSpecification = await db.Specifications.FirstOrDefaultAsync(b => b.Name.ToLower() == specification.Name.ToLower());
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(specificationFormModel);
+            //}
+
+            var likeSpecification = await db.Specifications.FirstOrDefaultAsync(b => b.Name.ToLower() == specificationFormModel.Specification.Name.ToLower());
             if (likeSpecification != null)
             {
                 ViewBag.Message = "Bu Adda Specification Var!";
-                return View(specification);
+                return View(specificationFormModel);
             }
 
-            if (ModelState.IsValid)
+
+
+            specificationFormModel.Specification.CreatedByUserId = 1;
+            db.Specifications.Add(specificationFormModel.Specification);
+            await db.SaveChangesAsync();
+
+
+
+            foreach (var item in specificationFormModel.SelectedCategories)
             {
-                specification.CreatedByUserId = 1;
-                db.Specifications.Add(specification);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (item.Selected == true)
+                {
+                    SpecificationCategoryItem newSCI = new SpecificationCategoryItem();
+                    newSCI.SpecificationId = specificationFormModel.Specification.Id;
+                    newSCI.CategoryId = item.Id;
+                    await db.SpecificationCategoryItems.AddAsync(newSCI);
+                    await db.SaveChangesAsync();
+                }
             }
-            return View(specification);
+
+
+
+
+
+
+
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
 
@@ -68,10 +100,19 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            var vm = new SpecificationViewModel();
 
-            
+            var specificationCategoryItems = await db.SpecificationCategoryItems.Where(c => c.SpecificationId == id).ToListAsync();
 
-            return View(specification);
+            vm.Specification = specification;
+            vm.SpecificationCategoryItems = specificationCategoryItems;
+            vm.Categories = await db.Categories
+                .Include(c => c.Children)
+                .Where(c => c.DeletedTime == null)
+                .ToListAsync();
+
+
+            return View(vm);
         }
 
         public async Task<IActionResult> Edit(int id)
