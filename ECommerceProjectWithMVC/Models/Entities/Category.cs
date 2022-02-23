@@ -18,6 +18,7 @@ namespace ECommerceProjectWithMVC.Models.Entities
         public int? ParentId { get; set; }
         public virtual  Category Parent { get; set; }
         public virtual ICollection<Category>  Children { get; set; }
+        public virtual ICollection<ProductCategoryItem> ProductItems { get; set; }
 
 
         public int? CreatedByUserId { get; set; }

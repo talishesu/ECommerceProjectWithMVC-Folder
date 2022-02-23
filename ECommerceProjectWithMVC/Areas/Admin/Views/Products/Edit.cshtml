@@ -1,0 +1,62 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Products</h4>
+                  <p class="card-description">
+                      Edit Product
+                  </p>
+                  <form class="forms-sample" method="post" enctype="multipart/form-data">
+                      <div class="form-group">
+                          <div style="width: 600px;" class="imager-container" id="viewer1" name="files">
+                            <label thumb-url='https://picsum.photos/300?v=1' image-id="1" checked="true"></label>
+                            <label thumb-url='https://picsum.photos/300?v=2' image-id="2"></label>
+                            <label thumb-url='https://picsum.photos/300?v=3' image-id="3"></label>
+                            <label thumb-url='https://picsum.photos/300?v=4' image-id="4"></label>
+                            <label thumb-url='https://picsum.photos/300?v=5' image-id="5"></label>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                      <label for="exampleInputUsername1" class="required" asp-for="Name" placeholder="Name"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Name" placeholder="Name">
+                      <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                        
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" class="required" asp-for="Description" placeholder="Description">Description</label>
+                      <textarea  class="form-control form-control-lg" id="exampleInputEmail1" asp-for="Description" placeholder="Description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                        @if(ViewBag.Message != null){
+                            <span class="text-danger">@ViewBag.Message</span>
+                        }
+                    </div>
+                    <button type="submit" class="btn btn-success me-2">Submit</button>
+                    <a class="btn btn-light" asp-area="Admin" asp-controller="Products" asp-action="Index">Cancel</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+@section addjs{
+ <script src="~/admin-assets/libs/multiple-imager-js/js/imager.js" ></script>
+ <script>
+        $('#viewer1').imgadd({
+            tnWidth: '120px',
+            tnHeight: '120px',
+            fontSize: '55px',
+            plusInnerHtml: '',
+            plusBtnClass: undefined
+        });
+    </script>
+ 
+}
+
+@section addcss{
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+ <link href="~/admin-assets/libs/multiple-imager-js/css/imager.css"  rel="stylesheet"/>
+}
+

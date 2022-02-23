@@ -1,0 +1,95 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Products</h4>
+                  <p class="card-description">
+                      Create Product
+                  </p>
+                  <form class="forms-sample" method="post" enctype="multipart/form-data">
+                      <div class="form-group">
+                        <div style="width: 600px;" class="imager-container" id="viewer1" name="files">
+                        </div>
+                        <span asp-validation-for="Files" class="text-danger"></span>
+                      </div>
+                      <div class="form-group">
+                      <label for="exampleInputUsername1" class="required" asp-for="Name" placeholder="Name"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Name" placeholder="Name">
+                      <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputUsername1" class="required" asp-for="SKU" placeholder="Stock Keep Unit"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="SKU" placeholder="Stock Keep Unit">
+                      <span asp-validation-for="SKU" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label asp-for="BrandId" class="required"  placeholder="Brand">Brand</label>
+                      <select style="width:100%" class="form-control select2"  asp-for="BrandId" asp-items="@ViewBag.BrandId">
+                          <option selected disabled value=""> - Select Brand - </option>
+                      </select>
+                      <span asp-validation-for="BrandId" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="exampleInputUsername1" class="required" asp-for="ShortDescription" placeholder="Short Description"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="ShortDescription" placeholder="Short Description">
+                      <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                    </div>
+                        
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" class="required" asp-for="Description" placeholder="Description">Description</label>
+                      <textarea  class="form-control form-control-lg" id="exampleInputEmail1" asp-for="Description" placeholder="Description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                        @if(ViewBag.Message != null){
+                            <span class="text-danger">@ViewBag.Message</span>
+                        }
+                    </div>
+                    <button type="submit" class="btn btn-success me-2">Submit</button>
+                    <a class="btn btn-light" asp-area="Admin" asp-controller="Products" asp-action="Index">Cancel</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+@section addjs{
+    <script src="~/assets/libraries/jquery-validate/jquery.validate.min.js"></script>
+ <script src="~/assets/libraries/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+ <script src="~/admin-assets/libs/select2/js/select2.full.min.js"></script>
+ <script src="~/admin-assets/libs/multiple-imager-js/js/imager.js" ></script>
+ <script>
+        $('#viewer1').imgadd({
+            tnWidth: '120px',
+            tnHeight: '120px',
+            fontSize: '55px',
+            plusInnerHtml: '',
+            plusBtnClass: undefined
+        });
+
+        $(document).ready(function() {
+            $('.select2').select2({
+                width: 'resolve'
+            });
+        });
+    </script>
+ 
+}
+
+@section addcss{
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+ <link href="~/admin-assets/libs/multiple-imager-js/css/imager.css"  rel="stylesheet"/>
+
+ <link rel="stylesheet" href="~/admin-assets/libs/select2/css/select2.min.css">
+    <style>
+         .selection .select2-selection{
+            height:60px;
+         }
+    </style>
+}
+

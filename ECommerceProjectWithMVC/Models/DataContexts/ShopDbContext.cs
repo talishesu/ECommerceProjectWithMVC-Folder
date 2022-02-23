@@ -14,9 +14,11 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
         public DbSet<Color> Colors { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<SpecificationCategoryItem> SpecificationCategoryItems { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategoryItem> ProductsCategoryItems { get; set; }
+        public DbSet<SpecificationProductItem> SpecificationProductItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +28,23 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
             modelBuilder.Entity<SpecificationCategoryItem>(e =>
             {
                 e.HasKey(k => new { k.SpecificationId, k.CategoryId });
+            });
+
+
+
+
+            modelBuilder.Entity<ProductCategoryItem>(e =>
+            {
+                e.HasKey(k => new { k.CategoryId, k.ProductId });
+            });
+
+
+
+
+
+            modelBuilder.Entity<SpecificationProductItem>(e =>
+            {
+                e.HasKey(k => new { k.SpecificationId, k.ProductId });
             });
         }
     }

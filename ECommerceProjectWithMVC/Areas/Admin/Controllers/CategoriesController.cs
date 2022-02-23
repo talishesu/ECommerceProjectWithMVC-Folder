@@ -28,9 +28,9 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var categories = db.Categories.Where(c => c.DeletedTime == null).ToList();
+            var categories = await db.Categories.Where(c => c.DeletedTime == null).ToListAsync();
             var selectList = new SelectList(categories,"Id","Name");
             ViewBag.Categories = selectList;
             return View();

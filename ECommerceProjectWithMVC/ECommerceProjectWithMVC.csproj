@@ -21,6 +21,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="wwwroot\admin-assets\libs\multiple-imager-js\img\" />
     <Folder Include="wwwroot\uploads\products\images\" />
   </ItemGroup>
 
