@@ -76,18 +76,18 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
-            var t = productFormModel.SelectedSpecifications.Where(ss => ss.Value != null);
+            var selectSpec = productFormModel.SelectedSpecifications.Where(ss => ss.Value != null);
             
 
             var specListForCategory = db.SpecificationCategoryItems.Where(spi => spi.CategoryId == productFormModel.Product.CategoryId);
 
             
 
-            foreach (var item in t)
+            foreach (var item in selectSpec)
             {
-                foreach (var item2 in specListForCategory)
+                foreach (var spec in specListForCategory)
                 {
-                    if(item2.SpecificationId != item.Id)
+                    if(spec.SpecificationId != item.Id)
                     {
                         ModelState.AddModelError("Specifications", "An unspecified specification is written for the selected category!!");
                     }
@@ -122,6 +122,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
                 return View(vm);
             }
+
+
 
             productFormModel.Product.Images = new List<ProductImages>();
 
