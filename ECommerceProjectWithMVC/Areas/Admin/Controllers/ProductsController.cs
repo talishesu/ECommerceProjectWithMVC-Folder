@@ -75,18 +75,21 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             }
 
 
-            var SCI = await db.SpecificationCategoryItems.Where(c=>c.CategoryId == productFormModel.Product.CategoryId).ToListAsync();
-            ModelState.AddModelError("Specifications", "There is no specification for the selected category!!");
 
-            var spec =  productFormModel.SelectedSpecifications.Where(ss=>ss.Value.Trim() != null).ToList();
+            var t = productFormModel.SelectedSpecifications.Where(ss => ss.Value != null);
+            
 
-            foreach (var item in spec)
+            var specListForCategory = db.SpecificationCategoryItems.Where(spi => spi.CategoryId == productFormModel.Product.CategoryId);
+
+            
+
+            foreach (var item in t)
             {
-                foreach (var item2 in SCI)
+                foreach (var item2 in specListForCategory)
                 {
-                    if(item.Id == item2.SpecificationId)
+                    if(item2.SpecificationId != item.Id)
                     {
-                        ModelState.AddModelError("Specifications", "Not Found");
+                        ModelState.AddModelError("Specifications", "An unspecified specification is written for the selected category!!");
                     }
                 }
             }
@@ -94,9 +97,30 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
+
             if (!ModelState.IsValid)
             {
-                return View(productFormModel);
+                var vm = new ProductViewModel();
+
+
+
+                var brands = await db.Brands.Where(b => b.DeletedTime == null).ToListAsync();
+                var selectList = new SelectList(brands, "Id", "Name");
+
+                vm.Brands = selectList;
+
+
+                var categories = await db.Categories
+                    .Include(c => c.Children)
+                    .Where(b => b.DeletedTime == null).ToListAsync();
+                var selectList2 = new SelectList(categories, "Id", "Name");
+
+                vm.Categories = selectList2;
+
+
+                vm.Specifications = await db.Specifications.Where(s => s.DeletedTime == null).ToListAsync();
+
+                return View(vm);
             }
 
             productFormModel.Product.Images = new List<ProductImages>();
@@ -124,7 +148,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
             db.Products.Add(productFormModel.Product);
             await db.SaveChangesAsync();
-            return RedirectToAction("Create");
+            return RedirectToAction("Index");
         }
     }
 }
