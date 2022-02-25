@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model ProductViewModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -12,45 +12,86 @@
                   </p>
                   <form class="forms-sample" method="post" enctype="multipart/form-data">
                       <div class="form-group">
-                        <div style="width: 600px;" class="imager-container" id="viewer1" name="files">
+                        <div style="width: 600px;" class="imager-container" id="viewer1" name="Product.Files">
                         </div>
-                        <span asp-validation-for="Files" class="text-danger"></span>
+                        <span asp-validation-for="Product.Files" class="text-danger"></span>
                       </div>
                       <div class="form-group">
-                      <label for="exampleInputUsername1" class="required" asp-for="Name" placeholder="Name"></label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Name" placeholder="Name">
-                      <span asp-validation-for="Name" class="text-danger"></span>
+                      <label for="exampleInputUsername1" class="required" asp-for="Product.Name" placeholder="Name"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Product.Name" placeholder="Name">
+                      <span asp-validation-for="Product.Name" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                      <label for="exampleInputUsername1" class="required" asp-for="SKU" placeholder="Stock Keep Unit"></label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="SKU" placeholder="Stock Keep Unit">
-                      <span asp-validation-for="SKU" class="text-danger"></span>
+                      <label for="exampleInputUsername1" class="required" asp-for="Product.SKU" placeholder="Stock Keep Unit"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Product.SKU" placeholder="Stock Keep Unit">
+                      <span asp-validation-for="Product.SKU" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                      <label asp-for="BrandId" class="required"  placeholder="Brand">Brand</label>
-                      <select style="width:100%" class="form-control select2"  asp-for="BrandId" asp-items="@ViewBag.BrandId">
+                      <label asp-for="Product.BrandId" class="required"  placeholder="Brand">Brand</label>
+                      <select style="width:100%" class="form-control select2"  asp-for="Product.BrandId" asp-items="Model.Brands">
                           <option selected disabled value=""> - Select Brand - </option>
                       </select>
-                      <span asp-validation-for="BrandId" class="text-danger"></span>
+                      <span asp-validation-for="Product.BrandId" class="text-danger"></span>
                     </div>
 
 
                     <div class="form-group">
-                      <label for="exampleInputUsername1" class="required" asp-for="ShortDescription" placeholder="Short Description"></label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="ShortDescription" placeholder="Short Description">
-                      <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                      <label asp-for="Product.CategoryId" class="required"  placeholder="Brand">Category</label>
+                      <select style="width:100%" class="form-control select2"  asp-for="Product.CategoryId" asp-items="Model.Categories">
+                          <option selected disabled value=""> - Select Brand - </option>
+                      </select>
+                      <span asp-validation-for="Product.BrandId" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="exampleInputUsername1" class="required" asp-for="Product.ShortDescription" placeholder="Short Description"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Product.ShortDescription" placeholder="Short Description">
+                      <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
                     </div>
                         
                     <div class="form-group">
-                      <label for="exampleInputEmail1" class="required" asp-for="Description" placeholder="Description">Description</label>
-                      <textarea  class="form-control form-control-lg" id="exampleInputEmail1" asp-for="Description" placeholder="Description"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
+                      <label for="exampleInputEmail1" class="required" asp-for="Product.Description" placeholder="Description">Description</label>
+                      <textarea  class="form-control form-control-lg" id="exampleInputEmail1" asp-for="Product.Description" placeholder="Description"></textarea>
+                        <span asp-validation-for="Product.Description" class="text-danger"></span>
                         @if(ViewBag.Message != null){
                             <span class="text-danger">@ViewBag.Message</span>
                         }
                     </div>
+
+
+
+
+                    <h2>Specifications</h2>
+                    <span asp-validation-for="Specifications" class="text-danger"></span>
+
+
+
+
+                    <div class="form-group">
+                    @{
+                        int index = 0;
+                    }
+                          @foreach (var item in Model.Specifications)
+                         {
+                             <input type="hidden" name="SelectedSpecifications[@(index)].Id"  value="@item.Id">
+                             <div>
+                                <label>@item.Name</label>
+                                <input class="form-control" type="text" name="SelectedSpecifications[@(index++)].Value">
+                                <i class="input-helper"></i>
+                              </div>
+                         }
+                        </div>
+
+
+
+
+
+
+
+
                     <button type="submit" class="btn btn-success me-2">Submit</button>
                     <a class="btn btn-light" asp-area="Admin" asp-controller="Products" asp-action="Index">Cancel</a>
                   </form>

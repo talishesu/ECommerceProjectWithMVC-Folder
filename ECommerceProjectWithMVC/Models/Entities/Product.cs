@@ -26,9 +26,12 @@ namespace ECommerceProjectWithMVC.Models.Entities
         public virtual Brand Brand { get; set; }
 
 
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+
+
         public virtual ICollection<ProductImages> Images { get; set; }
         public virtual ICollection<SpecificationProductItem> SpecificationItems { get; set; }
-        public virtual ICollection<ProductCategoryItem> CategoryItems { get; set; }
 
         public int? CreatedByUserId { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.Now;

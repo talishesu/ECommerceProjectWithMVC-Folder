@@ -3,16 +3,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ECommerceProjectWithMVC.Migrations
 {
-    public partial class SpecificationsCategoriesCollectionAdded : Migration
+    public partial class ProductUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ProductsCategoryItems");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
-                name: "SpecificationCategoryCollection",
+                name: "ProductsCategoryItems",
                 columns: table => new
                 {
-                    SpecificationId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
                     CreatedByUserId = table.Column<int>(type: "int", nullable: true),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeletedByUserId = table.Column<int>(type: "int", nullable: true),
@@ -20,31 +26,25 @@ namespace ECommerceProjectWithMVC.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SpecificationCategoryCollection", x => new { x.SpecificationId, x.CategoryId });
+                    table.PrimaryKey("PK_ProductsCategoryItems", x => new { x.CategoryId, x.ProductId });
                     table.ForeignKey(
-                        name: "FK_SpecificationCategoryCollection_Categories_CategoryId",
+                        name: "FK_ProductsCategoryItems_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SpecificationCategoryCollection_Specifications_SpecificationId",
-                        column: x => x.SpecificationId,
-                        principalTable: "Specifications",
+                        name: "FK_ProductsCategoryItems_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_SpecificationCategoryCollection_CategoryId",
-                table: "SpecificationCategoryCollection",
-                column: "CategoryId");
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "SpecificationCategoryCollection");
+                name: "IX_ProductsCategoryItems_ProductId",
+                table: "ProductsCategoryItems",
+                column: "ProductId");
         }
     }
 }

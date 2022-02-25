@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerceProjectWithMVC.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    [Migration("20220218201126_SpecificationCategoryItemsAdded3")]
-    partial class SpecificationCategoryItemsAdded3
+    [Migration("20220225163009_ProductUpdate2")]
+    partial class ProductUpdate2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -180,7 +180,7 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Property<int?>("DeletedByUserId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletedDate")
+                    b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -191,8 +191,9 @@ namespace ECommerceProjectWithMVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SKU")
-                        .HasColumnType("int");
+                    b.Property<string>("SKU")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()
@@ -205,6 +206,41 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.ProductImages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CreatedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Size", b =>
@@ -279,6 +315,21 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.HasKey("SpecificationId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SpecificationCategoryItems");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.SpecificationProductItem", b =>
+                {
+                    b.Property<int>("SpecificationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CreatedByUserId")
                         .HasColumnType("int");
 
@@ -291,11 +342,14 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("SpecificationId", "CategoryId");
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("CategoryId");
+                    b.HasKey("SpecificationId", "ProductId");
 
-                    b.ToTable("SpecificationCategoryItems");
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("SpecificationProductItems");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Category", b =>
@@ -326,6 +380,17 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.ProductImages", b =>
+                {
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.Product", "Product")
+                        .WithMany("Images")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.SpecificationCategoryItem", b =>
                 {
                     b.HasOne("ECommerceProjectWithMVC.Models.Entities.Category", "Category")
@@ -345,9 +410,35 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Navigation("Specification");
                 });
 
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.SpecificationProductItem", b =>
+                {
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.Product", "Product")
+                        .WithMany("SpecificationItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.Specification", "Specification")
+                        .WithMany()
+                        .HasForeignKey("SpecificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Specification");
+                });
+
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Category", b =>
                 {
                     b.Navigation("Children");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Product", b =>
+                {
+                    b.Navigation("Images");
+
+                    b.Navigation("SpecificationItems");
                 });
 #pragma warning restore 612, 618
         }

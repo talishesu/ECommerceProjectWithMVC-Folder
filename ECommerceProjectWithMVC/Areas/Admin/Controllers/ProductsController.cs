@@ -1,5 +1,7 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities;
+using ECommerceProjectWithMVC.Models.FormModels;
+using ECommerceProjectWithMVC.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,36 +39,69 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+
+            var vm = new ProductViewModel();
+
+
+
             var brands = await db.Brands.Where(b => b.DeletedTime == null).ToListAsync();
             var selectList = new SelectList(brands, "Id", "Name");
-            ViewBag.BrandId = selectList;
 
-            return View();
+            vm.Brands = selectList;
+
+
+            var categories = await db.Categories
+                .Include(c => c.Children)
+                .Where(b => b.DeletedTime == null).ToListAsync();
+            var selectList2 = new SelectList(categories, "Id", "Name");
+
+            vm.Categories = selectList2;
+
+
+            vm.Specifications = await db.Specifications.Where(s=>s.DeletedTime == null).ToListAsync();
+
+            return View(vm);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product)
+        public async Task<IActionResult> Create(ProductFormModel productFormModel)
         {
 
-            var brands = await db.Brands.Where(b => b.DeletedTime == null).ToListAsync();
-            var selectList = new SelectList(brands, "Id", "Name");
-            ViewBag.BrandId = selectList;
-
-            if (product.Files == null || !product.Files.Any())
+            if (productFormModel.Product.Files == null || !productFormModel.Product.Files.Any())
             {
-                ModelState.AddModelError("Files", "Add Photo!");
+                ModelState.AddModelError("Product.Files", "Add Photo!");
             }
+
+
+            var SCI = await db.SpecificationCategoryItems.Where(c=>c.CategoryId == productFormModel.Product.CategoryId).ToListAsync();
+            ModelState.AddModelError("Specifications", "There is no specification for the selected category!!");
+
+            var spec =  productFormModel.SelectedSpecifications.Where(ss=>ss.Value.Trim() != null).ToList();
+
+            foreach (var item in spec)
+            {
+                foreach (var item2 in SCI)
+                {
+                    if(item.Id == item2.SpecificationId)
+                    {
+                        ModelState.AddModelError("Specifications", "Not Found");
+                    }
+                }
+            }
+
+
+
 
             if (!ModelState.IsValid)
             {
-                return View(product);
+                return View(productFormModel);
             }
 
-            product.Images = new List<ProductImages>();
+            productFormModel.Product.Images = new List<ProductImages>();
 
-            foreach (var img in product.Files)
+            foreach (var img in productFormModel.Product.Files)
             {
                 var extension = Path.GetExtension(img.File.FileName);
                 var fileName = $"product-{Guid.NewGuid()}{extension}".ToLower();
@@ -78,16 +113,16 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                     await img.File.CopyToAsync(fs);
                 }
 
-                product.Images.Add(new ProductImages
+                productFormModel.Product.Images.Add(new ProductImages
                 {
                     ImagePath = fileName,
                     IsMain = img.IsMain,
                     CreatedByUserId = 1
                 });
             }
-            product.CreatedByUserId = 1;
+            productFormModel.Product.CreatedByUserId = 1;
 
-            db.Products.Add(product);
+            db.Products.Add(productFormModel.Product);
             await db.SaveChangesAsync();
             return RedirectToAction("Create");
         }

@@ -17,7 +17,6 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<SpecificationCategoryItem> SpecificationCategoryItems { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCategoryItem> ProductsCategoryItems { get; set; }
         public DbSet<SpecificationProductItem> SpecificationProductItems { get; set; }
 
 
@@ -31,12 +30,6 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
             });
 
 
-
-
-            modelBuilder.Entity<ProductCategoryItem>(e =>
-            {
-                e.HasKey(k => new { k.CategoryId, k.ProductId });
-            });
 
 
 

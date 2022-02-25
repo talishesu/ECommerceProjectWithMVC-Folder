@@ -2,7 +2,7 @@
 
 namespace ECommerceProjectWithMVC.Migrations
 {
-    public partial class ProductAddedCategory : Migration
+    public partial class ProductUpdate2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

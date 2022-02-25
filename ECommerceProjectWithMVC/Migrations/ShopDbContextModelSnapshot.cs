@@ -166,6 +166,9 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CreatedByUserId")
                         .HasColumnType("int");
 
@@ -198,34 +201,9 @@ namespace ECommerceProjectWithMVC.Migrations
 
                     b.HasIndex("BrandId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.ProductCategoryItem", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CreatedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeletedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("CategoryId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductsCategoryItems");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.ProductImages", b =>
@@ -389,26 +367,15 @@ namespace ECommerceProjectWithMVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Brand");
-                });
-
-            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.ProductCategoryItem", b =>
-                {
                     b.HasOne("ECommerceProjectWithMVC.Models.Entities.Category", "Category")
-                        .WithMany("ProductItems")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.Product", "Product")
-                        .WithMany("CategoryItems")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Brand");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.ProductImages", b =>
@@ -463,14 +430,10 @@ namespace ECommerceProjectWithMVC.Migrations
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Category", b =>
                 {
                     b.Navigation("Children");
-
-                    b.Navigation("ProductItems");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Product", b =>
                 {
-                    b.Navigation("CategoryItems");
-
                     b.Navigation("Images");
 
                     b.Navigation("SpecificationItems");
