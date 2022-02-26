@@ -85,13 +85,11 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
             foreach (var item in selectSpec)
             {
-                foreach (var spec in specListForCategory)
-                {
-                    if(spec.SpecificationId != item.Id)
+                    var t = specListForCategory.Where(slc => slc.SpecificationId == item.Id);
+                    if (!t.Any())
                     {
                         ModelState.AddModelError("Specifications", "An unspecified specification is written for the selected category!!");
                     }
-                }
             }
 
 
@@ -125,6 +123,22 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
+            foreach (var item in selectSpec)
+            {
+                SpecificationProductItem newSCI = new SpecificationProductItem();
+                newSCI.SpecificationId = item.Id;
+                newSCI.ProductId = productFormModel.Product.Id;
+                newSCI.Value = item.Value;
+                newSCI.Product = productFormModel.Product;
+                newSCI.Specification = await db.Specifications.FirstOrDefaultAsync(s=> s.Id == item.Id);
+                newSCI.CreatedByUserId = 1;
+                await db.SpecificationProductItems.AddAsync(newSCI);
+                //await db.SaveChangesAsync();
+            }
+
+
+
+
             productFormModel.Product.Images = new List<ProductImages>();
 
             foreach (var img in productFormModel.Product.Files)
@@ -148,7 +162,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             }
             productFormModel.Product.CreatedByUserId = 1;
 
-            db.Products.Add(productFormModel.Product);
+            await db.Products.AddAsync(productFormModel.Product);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
