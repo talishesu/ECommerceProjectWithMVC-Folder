@@ -60,6 +60,12 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
             vm.Specifications = await db.Specifications.Where(s=>s.DeletedTime == null).ToListAsync();
 
+
+            ViewBag.Sizes = new SelectList(await db.Sizes.Where(b => b.DeletedTime == null).ToListAsync(), "Id", "Name");
+            ViewBag.Colors = new SelectList(await db.Colors.Where(b => b.DeletedTime == null)
+                .Select(c => new {Id = c.Id, Text = $"{c.Name}({c.ColorHexCode})"})
+                .ToListAsync(), "Id", "Text");
+
             return View(vm);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ECommerceProjectWithMVC.Models.Entities
@@ -12,6 +13,7 @@ namespace ECommerceProjectWithMVC.Models.Entities
         public string ShortName { get; set; }
 
 
+        public virtual ICollection<ProductPricing> PriceList { get; set; }
         public int? CreatedByUserId { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.Now;
 

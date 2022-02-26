@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceProjectWithMVC.Models.Entities
 {
     public class ProductPricing
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id{ get; set; }
 
 

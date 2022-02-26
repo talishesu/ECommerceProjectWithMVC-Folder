@@ -32,6 +32,8 @@ namespace ECommerceProjectWithMVC.Models.Entities
 
         public virtual ICollection<ProductImages> Images { get; set; }
         public virtual ICollection<SpecificationProductItem> SpecificationItems { get; set; }
+        public virtual ICollection<ProductPricing> PriceList { get; set; }
+
 
         public int? CreatedByUserId { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.Now;

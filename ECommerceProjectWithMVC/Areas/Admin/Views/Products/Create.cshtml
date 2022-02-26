@@ -66,14 +66,10 @@
 
                     <h2>Specifications</h2>
                     <span asp-validation-for="Specifications" class="text-danger"></span>
-
-
-
-
                     <div class="form-group">
-                    @{
-                        int index = 0;
-                    }
+                        @{
+                            int index = 0;
+                        }
                           @foreach (var item in Model.Specifications)
                          {
                              <input type="hidden" name="SelectedSpecifications[@(index)].Id"  value="@item.Id">
@@ -85,7 +81,31 @@
                          }
                         </div>
 
+                    
 
+
+
+
+
+                    <button type="button" class="btn btn-info btn-rounded btn-fw" id="add-price">Create Price</button>
+                    <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Color</th>
+                          <th>Size</th>
+                          <th>Price</th>
+                        </tr>
+                      </thead>
+                      <tbody id="pricing-chooses">
+                        <tr>
+                          <td>
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
 
 
@@ -105,6 +125,14 @@
  <script src="~/admin-assets/libs/select2/js/select2.full.min.js"></script>
  <script src="~/admin-assets/libs/multiple-imager-js/js/imager.js" ></script>
  <script>
+     const _sizeList=`@Html.DropDownList("sizeId",ViewBag.Sizes,"Select",htmlAttributes:new{
+         @class="form-control select2"
+     })`;
+
+     const _colorList=`@Html.DropDownList("colorId",ViewBag.Colors,"Select",htmlAttributes:new{
+         @class="form-control select2"
+     })`;
+
         $('#viewer1').imgadd({
             tnWidth: '120px',
             tnHeight: '120px',
@@ -118,6 +146,20 @@
                 width: 'resolve'
             });
         });
+
+
+        $('#add-price').click(function(e){
+            e.preventDefault();
+
+            let tBody = $('#pricing-chooses')
+            let newRow = $(`<tr>
+            <td>${_colorList}</td>
+            <td>${_sizeList}</td>
+            <td><input name="Price" class="form-control" type="text"></td>
+            </tr>`)
+
+            $(newRow).insertBefore(tBody)
+        })
     </script>
  
 }

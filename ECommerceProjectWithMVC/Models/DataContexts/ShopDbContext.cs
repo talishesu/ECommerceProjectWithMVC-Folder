@@ -18,6 +18,7 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
         public DbSet<SpecificationCategoryItem> SpecificationCategoryItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<SpecificationProductItem> SpecificationProductItems { get; set; }
+        public DbSet<ProductPricing> ProductPricings { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,15 +30,16 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
                 e.HasKey(k => new { k.SpecificationId, k.CategoryId });
             });
 
-
-
-
-
-
-
             modelBuilder.Entity<SpecificationProductItem>(e =>
             {
                 e.HasKey(k => new { k.SpecificationId, k.ProductId });
+            });
+
+
+
+            modelBuilder.Entity<ProductPricing>(e =>
+            {
+                e.HasKey(k => new { k.SizeId, k.ProductId,k.ColorId });
             });
         }
     }
