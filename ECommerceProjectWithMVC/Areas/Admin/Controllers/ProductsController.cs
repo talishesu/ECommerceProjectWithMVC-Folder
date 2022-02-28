@@ -244,5 +244,56 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var vm = new ProductCreateViewModel();
+
+            var brands = await db.Brands.Where(b => b.DeletedTime == null).ToListAsync();
+            var selectList = new SelectList(brands, "Id", "Name");
+            vm.Brands = selectList;
+
+
+            var categories = await db.Categories
+                .Include(c => c.Children)
+                .Where(b => b.DeletedTime == null).ToListAsync();
+            var selectList2 = new SelectList(categories, "Id", "Name");
+            vm.Categories = selectList2;
+
+
+
+
+            vm.Specifications = await db.Specifications.Where(s => s.DeletedTime == null).ToListAsync();
+
+
+            var sizes = await db.Sizes.Where(b => b.DeletedTime == null).ToListAsync();
+            var selectList3 = new SelectList(sizes, "Id", "Name");
+            vm.Sizes = selectList3;
+
+
+
+            var colors = await db.Colors.Where(b => b.DeletedTime == null)
+                .Select(c => new { Id = c.Id, Text = $"{c.Name}({c.ColorHexCode})" })
+                .ToListAsync();
+            var selectList4 = new SelectList(colors, "Id", "Text");
+            vm.Colors = selectList4;
+
+            vm.AllSizes = await db.Sizes.Where(b => b.DeletedTime == null).ToListAsync();
+            vm.AllColors = await db.Colors.Where(b => b.DeletedTime == null).ToListAsync();
+
+
+            vm.Product = await db.Products.FirstOrDefaultAsync(pp => pp.Id == id);
+
+            vm.SpecificationProductItems = await db.SpecificationProductItems.Where(SPI=>SPI.ProductId == id).ToListAsync();
+            vm.ProductImages = await db.ProductImages.Where(p => p.ProductId == id).ToListAsync();
+            vm.ProductPricings = await db.ProductPricings.Where(pp => pp.ProductId == id).ToListAsync();
+
+
+
+            return View(vm);
+        }
     }
 }

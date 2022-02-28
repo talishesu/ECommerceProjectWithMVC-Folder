@@ -17,6 +17,7 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<SpecificationCategoryItem> SpecificationCategoryItems { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductImages> ProductImages { get; set; }
         public DbSet<SpecificationProductItem> SpecificationProductItems { get; set; }
         public DbSet<ProductPricing> ProductPricings { get; set; }
 

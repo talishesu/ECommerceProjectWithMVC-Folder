@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model ProductCreateViewModel
 @{
     ViewData["Title"] = "Edit";
 }
@@ -8,32 +8,147 @@
                 <div class="card-body">
                   <h4 class="card-title">Products</h4>
                   <p class="card-description">
-                      Edit Product
+                      Edit @Model.Product.Name Product
                   </p>
                   <form class="forms-sample" method="post" enctype="multipart/form-data">
                       <div class="form-group">
-                          <div style="width: 600px;" class="imager-container" id="viewer1" name="files">
-                            <label thumb-url='https://picsum.photos/300?v=1' image-id="1" checked="true"></label>
-                            <label thumb-url='https://picsum.photos/300?v=2' image-id="2"></label>
-                            <label thumb-url='https://picsum.photos/300?v=3' image-id="3"></label>
-                            <label thumb-url='https://picsum.photos/300?v=4' image-id="4"></label>
-                            <label thumb-url='https://picsum.photos/300?v=5' image-id="5"></label>
+                        <div style="width: 600px;" class="imager-container" id="viewer1" name="Product.Files">
+                            @foreach (var item in Model.ProductImages)
+                           {
+                                if(item.IsMain == true)
+                                {
+                                    <label data-image-id="@item.Id" thumb-url='/uploads/products/images/@item.ImagePath' image-id="@item.Id" checked="true"></label>
+                                }else{
+                                    <label data-image-id="@item.Id" thumb-url='/uploads/products/images/@item.ImagePath' image-id="@item.Id"></label>
+                                }
+                            }
                         </div>
+                        <span asp-validation-for="Product.Files" class="text-danger"></span>
                       </div>
                       <div class="form-group">
-                      <label for="exampleInputUsername1" class="required" asp-for="Name" placeholder="Name"></label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Name" placeholder="Name">
-                      <span asp-validation-for="Name" class="text-danger"></span>
+                      <label for="exampleInputUsername1" class="required" asp-for="Product.Name" placeholder="Name"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Product.Name" placeholder="Name">
+                      <span asp-validation-for="Product.Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputUsername1" class="required" asp-for="Product.SKU" placeholder="Stock Keep Unit"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Product.SKU" placeholder="Stock Keep Unit">
+                      <span asp-validation-for="Product.SKU" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label asp-for="Product.BrandId" class="required"  placeholder="Brand">Brand</label>
+                      <select style="width:100%" class="form-control select2"  asp-for="Product.BrandId" asp-items="Model.Brands">
+                          <option selected disabled value=""> - Select Brand - </option>
+                      </select>
+                      <span asp-validation-for="Product.BrandId" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label asp-for="Product.CategoryId" class="required"  placeholder="Brand">Category</label>
+                      <select style="width:100%" class="form-control select2"  asp-for="Product.CategoryId" asp-items="Model.Categories">
+                          <option selected disabled value=""> - Select Brand - </option>
+                      </select>
+                      <span asp-validation-for="Product.BrandId" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="exampleInputUsername1" class="required" asp-for="Product.ShortDescription" placeholder="Short Description"></label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" asp-for="Product.ShortDescription" placeholder="Short Description">
+                      <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
                     </div>
                         
                     <div class="form-group">
-                      <label for="exampleInputEmail1" class="required" asp-for="Description" placeholder="Description">Description</label>
-                      <textarea  class="form-control form-control-lg" id="exampleInputEmail1" asp-for="Description" placeholder="Description"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
+                      <label for="exampleInputEmail1" class="required" asp-for="Product.Description" placeholder="Description">Description</label>
+                      <textarea  class="form-control form-control-lg" id="exampleInputEmail1" asp-for="Product.Description" placeholder="Description"></textarea>
+                        <span asp-validation-for="Product.Description" class="text-danger"></span>
                         @if(ViewBag.Message != null){
                             <span class="text-danger">@ViewBag.Message</span>
                         }
                     </div>
+
+
+
+
+                    <h2>Specifications</h2>
+                    <span asp-validation-for="Specifications" class="text-danger"></span>
+                    <div class="form-group">
+                        @{
+                            int index = 0;
+                        }
+                          @foreach (var item in Model.Specifications)
+                         {
+                             <input type="hidden" name="SelectedSpecifications[@(index)].Id"  value="@item.Id">
+                        <div>
+                            @{
+                                var t = Model.SpecificationProductItems.Where(s => s.SpecificationId == item.Id).FirstOrDefault();
+                            }
+                            @if(t!=null){
+                                <label>@item.Name</label>
+                                <input class="form-control" type="text" value="@t.Value"   name="SelectedSpecifications[@(index++)].Value">
+                                <i class="input-helper"></i>
+                            }else{
+                                <label>@item.Name</label>
+                                <input class="form-control" type="text"   name="SelectedSpecifications[@(index++)].Value">
+                                <i class="input-helper"></i>
+                            }
+                        </div>
+                         }
+                     </div>
+
+                    
+
+
+
+                    <h2>Pricing</h2>
+                    <span asp-validation-for="Colors" class="text-danger"></span>
+                    <span asp-validation-for="Sizes" class="text-danger"></span>
+                    <br />
+                    <button type="button" class="btn btn-info btn-rounded btn-fw" id="add-price">Create Price</button>
+                    <div class="table-responsive">
+                    <table class="table mb-5">
+                      <thead>
+                        <tr>
+                          <th>Color</th>
+                          <th>Size</th>
+                          <th>Price</th>
+                        </tr>
+                      </thead>
+                      <tbody id="pricing-chooses">
+                            @if (Model.ProductPricings.Any())
+                            {
+                                  @foreach (var item in Model.ProductPricings)
+                                 {
+                                     <tr>
+                                            <td>
+                                                <select disabled class="form-control" id="ProductPricings[@item.ColorId].ColorId" name="ProductPricings[@item.ColorId].ColorId">
+                                                    <option value="@item.ColorId" selected>@Model.AllColors.Where(i=>i.Id == item.ColorId).FirstOrDefault().ColorHexCode</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select disabled class="form-control" id="ProductPricings[@item.SizeId].SizeId" name="ProductPricings[@item.SizeId].SizeId">
+                                                    <option value="@item.SizeId" selected>@Model.AllSizes.Where(i=>i.Id == item.SizeId).FirstOrDefault().Name</option>
+                                                </select>
+                                            </td>
+                                        <td>
+                                            <input disabled value="@item.Price" class="form-control" type="number">
+                                        </td>
+                                    </tr>
+
+                                 }
+                            }
+                        </tbody>
+                    </table>
+                  </div>
+
+
+
+
+
+
                     <button type="submit" class="btn btn-success me-2">Submit</button>
                     <a class="btn btn-light" asp-area="Admin" asp-controller="Products" asp-action="Index">Cancel</a>
                   </form>
@@ -42,8 +157,22 @@
             </div>
 
 @section addjs{
+    <script src="~/assets/libraries/jquery-validate/jquery.validate.min.js"></script>
+ <script src="~/assets/libraries/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+ <script src="~/admin-assets/libs/select2/js/select2.full.min.js"></script>
  <script src="~/admin-assets/libs/multiple-imager-js/js/imager.js" ></script>
  <script>
+     const _sizeList=`@Html.DropDownList("CustomSizeId",@Model.Sizes,"Select",htmlAttributes:new{
+         @class="form-control select2"
+     })`;
+
+
+
+     const _colorList=`@Html.DropDownList("CustomColorId",@Model.Colors,"Select",htmlAttributes:new{
+         @class="form-control select2"
+     })`;
+     let index2 = 0;
+
         $('#viewer1').imgadd({
             tnWidth: '120px',
             tnHeight: '120px',
@@ -51,6 +180,40 @@
             plusInnerHtml: '',
             plusBtnClass: undefined
         });
+
+        $(document).ready(function() {
+            $('.select2').select2({
+                width: 'resolve'
+            });
+        });
+
+
+        $('#add-price').click(function(e){
+            e.preventDefault();
+            
+            let tBody = $('#pricing-chooses')
+
+            $(tBody).children().remove();
+
+
+            let newRow = $(`<tr>
+            <td>${_colorList}</td>
+            <td>${_sizeList}</td>
+            <td><input name="ProductPricings[${index2}].Price" class="form-control" type="number"></td>
+            </tr>`)
+            $(tBody).append(newRow);
+
+            console.log($( "select[id='CustomColorId']" ))
+            console.log($( "select[id='CustomSizeId']" ))
+
+
+            $( "select[id='CustomColorId']" ).attr("name",`ProductPricings[${index2}].ColorId`)
+            $( "select[id='CustomColorId']" ).attr("id",`ProductPricings[${index2}].ColorId`)
+            $( "select[id='CustomSizeId']" ).attr("name",`ProductPricings[${index2}].SizeId`)
+            $( "select[id='CustomSizeId']" ).attr("id",`ProductPricings[${index2}].SizeId`)
+
+            index2++;
+        })
     </script>
  
 }
@@ -58,5 +221,12 @@
 @section addcss{
     <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
  <link href="~/admin-assets/libs/multiple-imager-js/css/imager.css"  rel="stylesheet"/>
+
+ <link rel="stylesheet" href="~/admin-assets/libs/select2/css/select2.min.css">
+    <style>
+         .selection .select2-selection{
+            height:60px;
+         }
+    </style>
 }
 
