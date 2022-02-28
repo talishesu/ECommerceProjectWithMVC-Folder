@@ -46,7 +46,6 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
             var brands = await db.Brands.Where(b => b.DeletedTime == null).ToListAsync();
             var selectList = new SelectList(brands, "Id", "Name");
-
             vm.Brands = selectList;
 
 
@@ -54,17 +53,25 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                 .Include(c => c.Children)
                 .Where(b => b.DeletedTime == null).ToListAsync();
             var selectList2 = new SelectList(categories, "Id", "Name");
-
             vm.Categories = selectList2;
+
+
 
 
             vm.Specifications = await db.Specifications.Where(s=>s.DeletedTime == null).ToListAsync();
 
 
-            ViewBag.Sizes = new SelectList(await db.Sizes.Where(b => b.DeletedTime == null).ToListAsync(), "Id", "Name");
-            ViewBag.Colors = new SelectList(await db.Colors.Where(b => b.DeletedTime == null)
-                .Select(c => new {Id = c.Id, Text = $"{c.Name}({c.ColorHexCode})"})
-                .ToListAsync(), "Id", "Text");
+            var sizes = await db.Sizes.Where(b => b.DeletedTime == null).ToListAsync();
+            var selectList3 = new SelectList(sizes, "Id", "Name");
+            vm.Sizes = selectList3;
+
+
+
+            var colors = await db.Colors.Where(b => b.DeletedTime == null)
+                .Select(c => new { Id = c.Id, Text = $"{c.Name}({c.ColorHexCode})" })
+                .ToListAsync();
+            var selectList4 = new SelectList(colors, "Id", "Text");
+            vm.Colors = selectList4;
 
             return View(vm);
         }
@@ -99,6 +106,43 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             }
 
 
+            if(productFormModel.ProductPricings == null)
+            {
+                ModelState.AddModelError("Colors", "Please Create New Pricing!!");
+            }
+            else
+            {
+                foreach (var item in productFormModel.ProductPricings)
+                {
+
+                    var oldpp =  productFormModel.ProductPricings.Where(pp=>pp.ColorId == item.ColorId && pp.SizeId == item.SizeId).ToList();
+                    if(oldpp.Count() > 1)
+                    {
+                        ModelState.AddModelError("Colors", "Size and Color Cannot Be Similar!!");
+                    }
+                    else
+                    {
+                        if (  item.Price == 0 ||item.Price == null)
+                        {
+                            ModelState.AddModelError("Colors", "Fill in all the fields!!");
+                        }
+
+                        if (item.ColorId == 0 || item.ColorId == null )
+                        {
+                            ModelState.AddModelError("Colors", "Fill in all the fields!!");
+                        }
+                        if (item.SizeId == 0 || item.SizeId == null)
+                        {
+                            ModelState.AddModelError("Colors", "Fill in all the fields!!");
+                        }
+                    }
+
+                }
+            }
+
+
+            
+
 
 
 
@@ -110,7 +154,6 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
                 var brands = await db.Brands.Where(b => b.DeletedTime == null).ToListAsync();
                 var selectList = new SelectList(brands, "Id", "Name");
-
                 vm.Brands = selectList;
 
 
@@ -118,11 +161,25 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                     .Include(c => c.Children)
                     .Where(b => b.DeletedTime == null).ToListAsync();
                 var selectList2 = new SelectList(categories, "Id", "Name");
-
                 vm.Categories = selectList2;
 
 
+
+
                 vm.Specifications = await db.Specifications.Where(s => s.DeletedTime == null).ToListAsync();
+
+
+                var sizes = await db.Sizes.Where(b => b.DeletedTime == null).ToListAsync();
+                var selectList3 = new SelectList(sizes, "Id", "Name");
+                vm.Sizes = selectList3;
+
+
+
+                var colors = await db.Colors.Where(b => b.DeletedTime == null)
+                    .Select(c => new { Id = c.Id, Text = $"{c.Name}({c.ColorHexCode})" })
+                    .ToListAsync();
+                var selectList4 = new SelectList(colors, "Id", "Text");
+                vm.Colors = selectList4;
 
                 return View(vm);
             }
@@ -167,6 +224,21 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                 });
             }
             productFormModel.Product.CreatedByUserId = 1;
+
+            foreach (var item in productFormModel.ProductPricings)
+            {
+                ProductPricing newPP = new ProductPricing();
+                newPP.ColorId = item.ColorId;
+                newPP.Price = item.Price;
+                newPP.ProductId = productFormModel.Product.Id;
+                newPP.Product = productFormModel.Product;
+                newPP.SizeId = item.SizeId;
+                
+                newPP.CreatedByUserId = 1;
+                await db.ProductPricings.AddAsync(newPP);
+                //await db.SaveChangesAsync();
+            }
+
 
             await db.Products.AddAsync(productFormModel.Product);
             await db.SaveChangesAsync();

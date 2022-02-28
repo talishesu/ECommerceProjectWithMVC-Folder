@@ -6,6 +6,7 @@ namespace ECommerceProjectWithMVC.Models.FormModels
     {
         public Product Product { get; set; }
         public SelectedSpecification[] SelectedSpecifications { get; set; }
+        public ProductPricing[] ProductPricings { get; set; }
     }
     public class SelectedSpecification
     {
