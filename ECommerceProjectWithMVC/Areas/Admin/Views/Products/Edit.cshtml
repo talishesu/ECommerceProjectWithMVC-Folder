@@ -125,7 +125,7 @@
                                      <tr>
                                             <td>
                                                 <select disabled class="form-control" id="ProductPricings[@item.ColorId].ColorId" name="ProductPricings[@item.ColorId].ColorId">
-                                                    <option value="@item.ColorId" selected>@Model.AllColors.Where(i=>i.Id == item.ColorId).FirstOrDefault().ColorHexCode</option>
+                                                    <option value="@item.ColorId" selected>@Model.AllColors.Where(i=>i.Id == item.ColorId).FirstOrDefault().Name (@Model.AllColors.Where(i=>i.Id == item.ColorId).FirstOrDefault().ColorHexCode)</option>
                                                 </select>
                                             </td>
                                             <td>
@@ -148,7 +148,7 @@
 
 
 
-
+                  <input type="hidden" asp-for="Product.Id" />
                     <button type="submit" class="btn btn-success me-2">Submit</button>
                     <a class="btn btn-light" asp-area="Admin" asp-controller="Products" asp-action="Index">Cancel</a>
                   </form>
@@ -172,6 +172,7 @@
          @class="form-control select2"
      })`;
      let index2 = 0;
+     let count = 0;
 
         $('#viewer1').imgadd({
             tnWidth: '120px',
@@ -193,7 +194,11 @@
             
             let tBody = $('#pricing-chooses')
 
-            $(tBody).children().remove();
+
+            if(count == 0){
+                $(tBody).children().remove();
+                count++
+            }
 
 
             let newRow = $(`<tr>
