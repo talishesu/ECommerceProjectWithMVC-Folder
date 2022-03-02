@@ -1,0 +1,86 @@
+﻿@model ProductDetailViewModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Products</h4>
+                  <p class="card-description">
+                      @Model.Product.Name Product Detail
+                  </p>
+
+                  @foreach (var item in Model.ProductImages.Where(p=>p.IsMain == true))
+                   {
+                           <h3 class="display-4">Main Photo</h3>
+                       <img class="img-sm rounded-10" src="~/uploads/products/images/@item.ImagePath" />
+                   }
+                   @if(Model.ProductImages.Where(p=>p.IsMain == false).Any()){
+                       <h3 class="display-4">Secondary Photo</h3>
+                   @foreach (var item in Model.ProductImages.Where(p=>p.IsMain == false))
+                   {
+                           
+                       <img class="img-sm rounded-10" src="~/uploads/products/images/@item.ImagePath" />
+                   }
+                   }
+                   
+
+
+
+                    <h3 class="display-5">Name: @Model.Product.Name</h3>
+                    <h3 class="display-5">Description: @Model.Product.Description</h3>
+                    <h3 class="display-5">Short Description: @Model.Product.ShortDescription</h3>
+                    <h3 class="display-5">Brand: @Model.Product.Brand.Name</h3>
+                    <h3 class="display-5">Category: @Model.Product.Category.Name</h3>
+                    <h3 class="display-5">SKU: @Model.Product.SKU</h3>
+                    <h3 class="display-5">Created Time: @Model.Product.CreatedTime</h3>
+                    <h3 class="display-5">Created By User Id: @Model.Product.CreatedByUserId</h3>
+                    @if(Model.Product.DeletedByUserId != null){
+                    <h3 class="display-5">Deleted By User Id: @Model.Product.DeletedByUserId</h3>
+                    <h3 class="display-5">Deleted Time: @Model.Product.DeletedTime</h3>
+                    }
+
+                    <h1 class="display-3">Specifications:</h1>
+                          @foreach (var item in Model.Specifications)
+                          {
+                            var t = Model.SpecificationProductItems.Where(s => s.SpecificationId == item.Id).FirstOrDefault();
+                            
+
+                            if(t!=null){
+                                <label>@item.Name</label>
+                                <h3>@t.Value</h3>
+                            }
+                          }
+
+                    <h1 class="display-3">Pricings:</h1>
+                    <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Color</th>
+                          <th>Size</th>
+                          <th>Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          @if (Model.ProductPricings.Any())
+                            {
+                                  @foreach (var item in Model.ProductPricings)
+                                 {
+                                     <tr>
+                                      <td>@Model.AllColors.Where(i=>i.Id == item.ColorId).FirstOrDefault().Name (@Model.AllColors.Where(i=>i.Id == item.ColorId).FirstOrDefault().ColorHexCode)</td>
+                                      <td>@Model.AllSizes.Where(i=>i.Id == item.SizeId).FirstOrDefault().Name</td>
+                                      <td>@item.Price $</td>
+                                    </tr>
+                                 }
+                            }
+                        
+                      </tbody>
+                    </table>
+                  </div>
+
+                          
+                </div>
+                </div>
+              </div>
