@@ -6,7 +6,7 @@ namespace Shop.Cryptolib
 {
     public partial class Crypto
     {
-        static string saltKey = "9979198940c77d09758137a3feca3a86";
+        static string saltKey = "shop-security_key2022";
 
 
         public static string ToMd5(string value)
