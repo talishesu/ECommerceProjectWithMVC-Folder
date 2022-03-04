@@ -34,4 +34,8 @@
     <Folder Include="wwwroot\uploads\products\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Shop.Cryptolib\Shop.Cryptolib.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -127,11 +127,14 @@ namespace ECommerceProjectWithMVC.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Answer")
+                    b.Property<string>("AnswerMessage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("AnswerTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Answered")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("AnsweredByUserId")
                         .HasColumnType("int");
@@ -142,6 +145,9 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EmailConfirmTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Message")
                         .IsRequired()

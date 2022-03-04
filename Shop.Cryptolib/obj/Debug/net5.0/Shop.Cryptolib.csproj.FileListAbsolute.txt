@@ -1,0 +1,12 @@
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\bin\Debug\net5.0\Shop.Cryptolib.deps.json
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\bin\Debug\net5.0\Shop.Cryptolib.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\bin\Debug\net5.0\ref\Shop.Cryptolib.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\bin\Debug\net5.0\Shop.Cryptolib.pdb
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\obj\Debug\net5.0\Shop.Cryptolib.csproj.AssemblyReference.cache
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\obj\Debug\net5.0\Shop.Cryptolib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\obj\Debug\net5.0\Shop.Cryptolib.AssemblyInfoInputs.cache
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\obj\Debug\net5.0\Shop.Cryptolib.AssemblyInfo.cs
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\obj\Debug\net5.0\Shop.Cryptolib.csproj.CoreCompileInputs.cache
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\obj\Debug\net5.0\Shop.Cryptolib.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\obj\Debug\net5.0\ref\Shop.Cryptolib.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\Shop.Cryptolib\obj\Debug\net5.0\Shop.Cryptolib.pdb

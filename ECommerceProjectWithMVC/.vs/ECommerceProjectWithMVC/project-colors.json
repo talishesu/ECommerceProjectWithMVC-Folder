@@ -10,7 +10,22 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Miscellaneous Files",
       "ColorIndex": -1
+    },
+    "5f5166a2-7e53-466a-8127-4f45ab66fe7d": {
+      "ProjectGuid": "5f5166a2-7e53-466a-8127-4f45ab66fe7d",
+      "DisplayName": "CryptoHashing",
+      "ColorIndex": 1
+    },
+    "a48ef665-a240-4bb6-a195-8c5c99ecb660": {
+      "ProjectGuid": "a48ef665-a240-4bb6-a195-8c5c99ecb660",
+      "DisplayName": "Shop.Cryptolib",
+      "ColorIndex": 2
+    },
+    "22c8e058-b127-4daf-867b-e6f24d270a9b": {
+      "ProjectGuid": "22c8e058-b127-4daf-867b-e6f24d270a9b",
+      "DisplayName": "CryptoManager",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 4
 }

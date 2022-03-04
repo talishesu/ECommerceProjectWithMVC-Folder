@@ -2010,6 +2010,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Shop.Cryptolib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Shop.Cryptolib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shop.Cryptolib.dll": {}
+        }
       }
     }
   },
@@ -7138,6 +7148,11 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "Shop.Cryptolib/1.0.0": {
+      "type": "project",
+      "path": "../Shop.Cryptolib/Shop.Cryptolib.csproj",
+      "msbuildProject": "../Shop.Cryptolib/Shop.Cryptolib.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7146,7 +7161,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 5.0.14",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.14",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
+      "Shop.Cryptolib >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -7175,7 +7191,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithMVC-Folder\\Shop.Cryptolib\\Shop.Cryptolib.csproj": {
+              "projectPath": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithMVC-Folder\\Shop.Cryptolib\\Shop.Cryptolib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

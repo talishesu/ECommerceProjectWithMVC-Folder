@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "CryptoHashing/1.0.0": {
+        "dependencies": {
+          "Shop.Cryptolib": "1.0.0"
+        },
+        "runtime": {
+          "CryptoHashing.dll": {}
+        }
+      },
+      "Shop.Cryptolib/1.0.0": {
+        "runtime": {
+          "Shop.Cryptolib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CryptoHashing/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Shop.Cryptolib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

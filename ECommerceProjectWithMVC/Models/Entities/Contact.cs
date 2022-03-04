@@ -11,10 +11,14 @@ namespace ECommerceProjectWithMVC.Models.Entities
         [Required(ErrorMessage = "Email Bos Buraxila Bilmez")]
         [EmailAddress]
         public string Email { get; set; }
+
+        public DateTime? EmailConfirmTime { get; set; }
+
         [Required(ErrorMessage = "Serh Bos Buraxila Bilmez")]
         public string Message { get; set; }
         public DateTime CreatedTime { get; set; }= DateTime.Now;
-        public string? Answer { get; set; }
+        public bool Answered { get; set; } = false;
+        public string AnswerMessage { get; set; }
         public DateTime? AnswerTime { get; set; }
         public int? AnsweredByUserId { get; set; }
     }
