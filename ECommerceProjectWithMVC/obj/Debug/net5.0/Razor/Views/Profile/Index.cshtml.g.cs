@@ -33,8 +33,15 @@ using ECommerceProjectWithMVC.Models.DataContexts;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.Models.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a3ac9c1197c2afeab6481d9f497ac426649a1bd7", @"/Views/Profile/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"51cda39b23e2f1f9845975a81c0798bd70568361", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a2e2e5b3d79534e7316c941214c6a29d50ba92d3", @"/Views/_ViewImports.cshtml")]
     public class Views_Profile_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString(""), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -136,7 +143,7 @@ using ECommerceProjectWithMVC.Models.DataContexts;
             BeginWriteAttribute("srcset", "\r\n                      srcset=\"", 2075, "\"", 2107, 0);
             EndWriteAttribute();
             WriteLiteral("\r\n                    />\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a3ac9c1197c2afeab6481d9f497ac426649a1bd77024", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a3ac9c1197c2afeab6481d9f497ac426649a1bd77267", async() => {
                 WriteLiteral(@"
                       <div class=""input-group mb-3"">
                         <label class=""input-group-text"" for=""inputGroupFile01""

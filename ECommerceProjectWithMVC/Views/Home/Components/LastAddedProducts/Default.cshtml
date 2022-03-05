@@ -1,0 +1,104 @@
+﻿@model List<Product>
+
+<section class="col-12 p-4">
+        <div class="d-flex justify-content-center p-5 text-center">
+          <h2>Last Added Products</h2>
+        </div>
+        <div
+          id="carouselExampleCaptions"
+          class="carousel slide shadow-lg bg-dark custom-carousel"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner custom-carousel-item custom-carousel">
+              @{
+                    var active = 0;
+               }
+            @foreach (var item in Model)
+           {
+                if(active == 0)
+                {
+                            <div class="carousel-item active  custom-carousel-item">
+                          <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id">
+                            <img
+                              src="~/uploads/products/images/@item.Images.FirstOrDefault()?.ImagePath"
+                              class="custom-carousel-image d-block w-100"
+                              alt="..."
+                            />
+                          </a>
+                          <div class="carousel-caption d-none d-md-block">
+                              <p style="color: var(--secondary)" class="card-text text-center">
+                                $@item.PriceList.FirstOrDefault(p=>p.ProductId==item.Id).Price
+                              </p>
+                            <h5>@item.Name</h5>
+                
+                            <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id" class="btn custom-button btn-light m-3">
+                              Go To Detail
+                            </a>
+                      </div>
+                    </div>
+                        active++;
+                }else{
+                            <div class="carousel-item  custom-carousel-item">
+                          <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id">
+                            <img
+                              src="~/uploads/products/images/@item.Images.FirstOrDefault()?.ImagePath"
+                              class="custom-carousel-image d-block w-100"
+                              alt="..."
+                            />
+                          </a>
+                          <div class="carousel-caption d-none d-md-block">
+                              <p style="color: var(--secondary)" class="card-text text-center">
+                                $@item.PriceList.FirstOrDefault(p=>p.ProductId==item.Id).Price
+                              </p>
+                            <h5>@item.Name</h5>
+                
+                            <a asp-controller="Product" asp-action="Index" asp-route-id="@item.Id" class="btn custom-button btn-light m-3">
+                              Go To Detail
+                            </a>
+                      </div>
+                    </div>
+                }
+            }
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>

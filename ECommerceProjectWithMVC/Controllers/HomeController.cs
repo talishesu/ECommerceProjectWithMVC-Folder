@@ -1,5 +1,6 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceProjectWithMVC.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         readonly ShopDbContext db;

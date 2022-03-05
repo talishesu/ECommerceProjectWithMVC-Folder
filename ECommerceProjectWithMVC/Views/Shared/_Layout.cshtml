@@ -53,7 +53,7 @@
     />
     <link rel="stylesheet" href="~/assets/css/main.css" />
     @RenderSection("addcss",required:false)
-    <style>
+    @*<style>
         ::-webkit-scrollbar-track
         {
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -74,7 +74,7 @@
             background-color: var(--secondary-dark);
         }
 
-    </style>
+    </style>*@
   </head>
 
   <body class="clearfix bg-light">
@@ -104,7 +104,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
+              <a class="nav-link"  asp-controller="Home" asp-action="Index">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" asp-controller="Shop" asp-action="Index" >Shop</a>

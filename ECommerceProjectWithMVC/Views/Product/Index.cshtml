@@ -1,4 +1,4 @@
-﻿
+﻿@model ProductIndexViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,52 +7,53 @@
     <section class="pt-5 mt-5">
       <div class="container">
         <div class="heading-section">
-          <h2>Logitech G Pro X </h2>
+          <h2>@Model.Product.Name</h2>
         </div>
         <div class="row">
           <div class="col-md-6">
             <div id="slider" class="owl-carousel product-slider">
-              <div class="item">
-                <img
-                  src="https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-wireless/pro-wireless-headset-gallery-1.png?v=1" />
-              </div>
-              <div class="item">
-                <img
-                  src="https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-wireless/pro-wireless-headset-gallery-2.png?v=1" />
-              </div>
-              <div class="item">
-                <img
-                  src="https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-wireless/pro-wireless-headset-gallery-3.png?v=1" />
-              </div>
-              <div class="item">
-                <img
-                  src="https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-wireless/pro-wireless-headset-gallery-4.png?v=1" />
-              </div>
+                    @{
+                        var MainPhoto = Model.ProductImages.FirstOrDefault(p => p.IsMain == true);
+                    }
+                    @if(MainPhoto != null)
+                    {
+                        <div class="item">
+                            <img
+                              src="~/uploads/products/images/@Model.ProductImages.FirstOrDefault(p=>p.IsMain == true).ImagePath" />
+                        </div>
+                    }
+
+                    @foreach (var item in Model.ProductImages.Where(p=>p.IsMain == false))
+                    {
+                            <div class="item">
+                            <img
+                              src="~/uploads/products/images/@item.ImagePath" />
+                          </div>
+                    }
             </div>
             <div id="thumb" class="owl-carousel product-thumb">
-              <div class="item">
-                <img
-                  src="https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-wireless/pro-wireless-headset-gallery-1.png?v=1" />
-              </div>
-              <div class="item">
-                <img
-                  src="https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-wireless/pro-wireless-headset-gallery-2.png?v=1" />
-              </div>
-              <div class="item">
-                <img
-                  src="https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-wireless/pro-wireless-headset-gallery-3.png?v=1" />
-              </div>
-              <div class="item">
-                <img
-                  src="https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-wireless/pro-wireless-headset-gallery-4.png?v=1" />
-              </div>
+                    @if(MainPhoto != null)
+                    {
+                        <div class="item">
+                            <img
+                              src="~/uploads/products/images/@Model.ProductImages.FirstOrDefault(p=>p.IsMain == true).ImagePath" />
+                        </div>
+                    }
+
+                    @foreach (var item in Model.ProductImages.Where(p=>p.IsMain == false))
+                    {
+                            <div class="item">
+                            <img
+                              src="~/uploads/products/images/@item.ImagePath" />
+                          </div>
+                    }
             </div>
           </div>
           <div class="col-md-6">
             <div class="product-dtl">
               <div class="product-info">
-                <div class="product-name">Variable Product</div>
-                <div class="reviews-counter">
+                <div class="product-name">@Model.Product.Brand.Name</div>
+                @*<div class="reviews-counter">
                   <div class="rate">
                     <input type="radio" id="star5" name="rate" value="5" checked />
                     <label for="star5" title="text">5 stars</label>
@@ -66,19 +67,31 @@
                     <label for="star1" title="text">1 star</label>
                   </div>
                   <span>3 Reviews</span>
-                </div>
-                <div class="product-price-discount"><span>$39.00</span><span class="line-through">$29.00</span></div>
+                </div>*@
+                <div class="product-price-discount"><span>$@Model.ProductPricings.FirstOrDefault().Price</span></div>
               </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat.</p>
+              <p>
+                  @Model.Product.ShortDescription
+              </p>
               <div class="row">
                 <div class="col-md-6">
                   <label for="color">Color</label>
                   <select id="color" name="color" class="form-control">
-                    <option>Blue</option>
-                    <option>Green</option>
-                    <option>Red</option>
+                    @foreach (var item in Model.ProductPricings)
+                   {
+                       <option>@item.Color.Name</option>
+                   }
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="size">Size</label>
+                  <select id="size" name="size" class="form-control">
+                    @foreach (var item in Model.ProductPricings)
+                   {
+                       <option>@item.Size.Name</option>
+                   }
                   </select>
                 </div>
               </div>
@@ -86,7 +99,7 @@
                 <label for="size">Quantity</label>
                 <form action="#" class="display-flex">
                   <div class="qtyminus">-</div>
-                  <input type="text" name="quantity" value="1" class="qty">
+                  <input type="text" name="quantity" value="1"  class="qty">
                   <div class="qtyplus">+</div>
                 </form>
                 <a href="#" class="round-black-btn">Add to Cart</a>
@@ -107,18 +120,25 @@
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-              doloremque laudantium, totam rem aperiam.
+              @Model.Product.Description
+               <h3 >Specifications:</h3>
+              @foreach (var item in Model.Specifications)
+                          {
+                            var t = Model.SpecificationProductItems.Where(s => s.SpecificationId == item.Id).FirstOrDefault();
+                            
+
+                            if(t!=null){
+                                <label>@item.Name</label>
+                                <h3>@t.Value</h3>
+                            }
+                          }
+
             </div>
             <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
               <div class="review-heading">REVIEWS</div>
               <p class="mb-20">There are no reviews yet.</p>
               <form class="review-form">
-                <div class="form-group">
+                @*<div class="form-group">
                   <label>Your rating</label>
                   <div class="reviews-counter">
                     <div class="rate">
@@ -134,7 +154,7 @@
                       <label for="star1" title="text">1 star</label>
                     </div>
                   </div>
-                </div>
+                </div>*@
                 <div class="form-group">
                   <label>Your message</label>
                   <textarea class="form-control" rows="10"></textarea>

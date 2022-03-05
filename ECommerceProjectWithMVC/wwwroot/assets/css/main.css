@@ -1089,7 +1089,6 @@ input:focus {
 }
 /* profile */
 body {
-  margin-top: 30px;
   background-color: #eee;
 }
 .faq-nav {
@@ -1167,4 +1166,9 @@ body {
 }
 .collapse.show .card-body {
   border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+.custom-card-img-top {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }

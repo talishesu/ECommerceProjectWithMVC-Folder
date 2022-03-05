@@ -1,8 +1,12 @@
 using ECommerceProjectWithMVC.AppCode.Providers;
 using ECommerceProjectWithMVC.Models.DataContexts;
+using ECommerceProjectWithMVC.Models.Entities.Membership;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +34,12 @@ namespace ECommerceProjectWithMVC
             services.AddControllersWithViews(cfg =>
             {
                 cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());
+
+                var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+
+                cfg.Filters.Add(new AuthorizeFilter(policy));
             });
             services.AddRouting(cfg =>
             {
@@ -38,14 +48,28 @@ namespace ECommerceProjectWithMVC
             services.AddDbContext<ShopDbContext>(cfg =>
             {
                 string connectionString = configuration.GetConnectionString("cString");
-                cfg.UseSqlServer(connectionString) ;
+                cfg.UseSqlServer(connectionString);
             });
+
+
+            services.AddIdentity<ShopUser, ShopRole>()
+                .AddEntityFrameworkStores<ShopDbContext>();
+
+            services.AddScoped<SignInManager<ShopUser>>();
+            services.AddScoped<UserManager<ShopUser>>();
+            services.AddScoped<RoleManager<ShopRole>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+
+            app.SeedMemberShip();
+
             app.UseHttpsRedirection();
+
+
             app.UseStaticFiles();
 
             app.UseRouting();

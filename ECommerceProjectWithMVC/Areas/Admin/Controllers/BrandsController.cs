@@ -1,5 +1,6 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,12 +26,14 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
+        [Authorize(Policy ="admin.brands.create")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        //[Authorize(Policy = "admin.brands.create")]
         public async Task<IActionResult> Create(Brand brand)
         {
 
@@ -54,6 +57,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
+        //[Authorize(Policy = "admin.brands.detail")]
         public async Task<IActionResult> Detail(int id)
         {
             if (id < 1)
@@ -72,6 +76,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             return View(brand);
         }
 
+
+        //[Authorize(Policy = "admin.brands.edit")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id < 1)
@@ -96,7 +102,10 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             return View(brand);
         }
 
+
+
         [HttpPost]
+        //[Authorize(Policy = "admin.brands.edit")]
         public async Task<IActionResult> Edit([FromRoute] int id, Brand brand)
         {
 
@@ -134,6 +143,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
+
+        //[Authorize(Policy = "admin.brands.delete")]
         public async Task<IActionResult> Delete( int id)
         {
             if (id < 1)
@@ -158,6 +169,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+
+        //[Authorize(Policy = "admin.brands.reverse")]
         public async Task<IActionResult> Reverse(int id)
         {
             if (id < 1)
