@@ -40,8 +40,15 @@ using ECommerceProjectWithMVC.Models.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.Models.FormModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"091b4953f933b4d36c3299785f60e80b0ec273c4", @"/Views/Home/Components/LastAddedProducts/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a2e2e5b3d79534e7316c941214c6a29d50ba92d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ab2dd5ce387f76211d379bffa99ed5efe80fd6d7", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Components_LastAddedProducts_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Product>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("custom-carousel-image d-block w-100"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -126,9 +133,9 @@ using ECommerceProjectWithMVC.Models.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("                            <div class=\"carousel-item active  custom-carousel-item\">\r\n                          ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "091b4953f933b4d36c3299785f60e80b0ec273c47683", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "091b4953f933b4d36c3299785f60e80b0ec273c47926", async() => {
                 WriteLiteral("\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "091b4953f933b4d36c3299785f60e80b0ec273c47966", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "091b4953f933b4d36c3299785f60e80b0ec273c48209", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -200,7 +207,7 @@ AddHtmlAttributeValue("", 1622, item.Images.FirstOrDefault()?.ImagePath, 1622, 4
 #line hidden
 #nullable disable
             WriteLiteral("</h5>\r\n                \r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "091b4953f933b4d36c3299785f60e80b0ec273c413013", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "091b4953f933b4d36c3299785f60e80b0ec273c413256", async() => {
                 WriteLiteral("\r\n                              Go To Detail\r\n                            ");
             }
             );
@@ -243,9 +250,9 @@ AddHtmlAttributeValue("", 1622, item.Images.FirstOrDefault()?.ImagePath, 1622, 4
 #line hidden
 #nullable disable
             WriteLiteral("                            <div class=\"carousel-item  custom-carousel-item\">\r\n                          ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "091b4953f933b4d36c3299785f60e80b0ec273c416108", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "091b4953f933b4d36c3299785f60e80b0ec273c416351", async() => {
                 WriteLiteral("\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "091b4953f933b4d36c3299785f60e80b0ec273c416392", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "091b4953f933b4d36c3299785f60e80b0ec273c416635", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -317,7 +324,7 @@ AddHtmlAttributeValue("", 2826, item.Images.FirstOrDefault()?.ImagePath, 2826, 4
 #line hidden
 #nullable disable
             WriteLiteral("</h5>\r\n                \r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "091b4953f933b4d36c3299785f60e80b0ec273c421440", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "091b4953f933b4d36c3299785f60e80b0ec273c421683", async() => {
                 WriteLiteral("\r\n                              Go To Detail\r\n                            ");
             }
             );

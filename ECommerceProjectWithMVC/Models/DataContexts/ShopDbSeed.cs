@@ -9,7 +9,7 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
     static public class ShopDbSeed
     {
         const string adminEmail = "talishesu@gmail.com";
-        const string adminPassword = "Talishesu107dsadasasd@ewqeqw!";
+        const string adminPassword = "Talishesu107";
         const string superAdminName = "SuperAdmin";
         static internal IApplicationBuilder SeedMemberShip(this IApplicationBuilder builder)
         {

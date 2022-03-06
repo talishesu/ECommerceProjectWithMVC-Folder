@@ -1,5 +1,6 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         {
             this.db = db;
         }
-
+        [Authorize(Policy = "admin.categories.index")]
         public async Task<IActionResult> Index()
         {
             var data = await db.Categories
@@ -27,7 +28,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
-
+        [Authorize(Policy = "admin.categories.create")]
         public async Task<IActionResult> Create()
         {
             var categories = await db.Categories.Where(c => c.DeletedTime == null).ToListAsync();
@@ -37,6 +38,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "admin.categories.create")]
         public async Task<IActionResult> Create(Category category)
         {
             var categories = db.Categories.Where(c => c.DeletedTime == null).ToList();
@@ -69,7 +71,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
-
+        [Authorize(Policy = "admin.categories.detail")]
         public async Task<IActionResult> Detail(int id)
         {
             if (id < 1)
@@ -90,6 +92,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             return View(category);
         }
 
+
+        [Authorize(Policy = "admin.categories.edit")]
         public async Task<IActionResult> Edit(int id)
         {
                 if (id < 1)
@@ -117,7 +121,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
-
+        [Authorize(Policy = "admin.categories.edit")]
         [HttpPost]
         public async Task<IActionResult> Edit([FromRoute] int id, Category category)
         {
@@ -176,7 +180,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                 return RedirectToAction("Index");
         }
 
-
+        [Authorize(Policy = "admin.categories.delete")]
         public async Task<IActionResult> Delete( int id)
         {
             if (id < 1)
@@ -213,6 +217,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [Authorize(Policy = "admin.categories.reverse")]
         public async Task<IActionResult> Reverse(int id)
         {
             if (id < 1)

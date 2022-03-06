@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Profile";
 }
 
 
@@ -113,9 +113,9 @@
                         <button type="submit" class="btn btn-primary">
                           Submit
                         </button>
-                        <button type="submit" class="btn btn-danger">
-                          Log Out
-                        </button>
+                        <a asp-area="" asp-controller="Account" asp-action="Signout" type="submit" class="btn btn-danger">
+                          Sign Out
+                        </a>
                       </div>
                     </form>
                   </div>

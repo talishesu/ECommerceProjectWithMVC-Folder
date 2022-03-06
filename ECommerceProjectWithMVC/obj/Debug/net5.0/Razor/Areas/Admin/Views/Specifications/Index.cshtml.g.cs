@@ -40,8 +40,15 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Areas\Admin\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.Models.Entities.Membership;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf", @"/Areas/Admin/Views/Specifications/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"66a5c04304a50a3841b6efbb9621ea244c18d2d7", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4b26e7244ff0272710bc69e84fc30cc10bfb4196", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Specifications_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Specification>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", new global::Microsoft.AspNetCore.Html.HtmlString("button"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -105,7 +112,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
                       Specification List
                   </p>
                   ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf9061", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf9325", async() => {
                 WriteLiteral("Create Specification");
             }
             );
@@ -207,7 +214,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line hidden
 #nullable disable
             WriteLiteral("                              <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf14182", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf14446", async() => {
                 WriteLiteral("Detail");
             }
             );
@@ -253,7 +260,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf17486", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf17750", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -308,7 +315,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf21070", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf21334", async() => {
                 WriteLiteral("Delete");
             }
             );
@@ -355,7 +362,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf24310", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf24574", async() => {
                 WriteLiteral("Reverse");
             }
             );
@@ -424,7 +431,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
                       There Is No Specification
                   </p>
                   ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf28493", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f20606114cd9f1d1d86c7dbe5b3f8ce18feed5bf28757", async() => {
                 WriteLiteral("Create Specification");
             }
             );

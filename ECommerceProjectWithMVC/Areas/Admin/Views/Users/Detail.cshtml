@@ -1,0 +1,84 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Users</h4>
+                  <p class="card-description">
+                      @Model.User.UserName User Detail
+                  </p>
+                  
+                    <h1 class="display-4">Username: @Model.User.UserName</h1>
+                    @if(Model.User.Email != null){
+                        <h1 class="display-4">Email: @Model.User.Email</h1>
+                        <h1 class="display-4">Email Confirmed:</h1>
+                        @if(Model.User.EmailConfirmed == true){
+                            <span class="badge badge-success">Confirmed</span>
+                          }else{
+                            <span class="badge badge-danger">Not Confirmed</span>
+                          }
+                    }else{
+                        <h1 class="display-4">Email: Not Have Email Address</h1>
+                    }
+
+                    
+                    @if(Model.User.PhoneNumber != null){
+                        <h1 class="display-4">Phone: @Model.User.PhoneNumber</h1>
+                        <h1 class="display-4">Phone Confirmed:</h1>
+                        @if(Model.User.PhoneNumberConfirmed == true){
+                            <span class="badge badge-success">Confirmed</span>
+                          }else{
+                            <span class="badge badge-danger">Not Confirmed</span>
+                          }
+                    }else{
+                        <h1 class="display-4">Phone: Not Have Phone Number</h1>
+                    }
+
+
+                    @if(Model.User.LockoutEnd != null){
+                        <h1 class="display-4">Ban End Time: @Model.User.LockoutEnd</h1>
+                    }
+
+                    
+                    <form class="forms-sample" method="post">
+                        <h2>Roles</h2>
+                        <div class="form-group">
+                                @foreach (var item in Model.Roles)
+                               {
+                                   <input type="hidden" name="SelectedRoles[@item.Item1].Id"  value="SuperAdmin">
+                                 <div class="form-check">
+                                    <label class="form-check-label">
+                                      <input type="checkbox" name="SelectedRoles[@item.Item1].Id" @(@item.Item2 ? "checked" : "")  class="form-check-input">
+                                      @item.Item1.Name
+                                    <i class="input-helper"></i></label>
+                                  </div>
+                               }
+                        </div>
+
+                        <h2>Claims</h2>
+                        <div class="form-group">
+                                @foreach (var item in Model.Claims)
+                               {
+                                   <input type="hidden" name="SelectedClaims[@item.Item1]"  value="@item.Item1">
+                                 <div class="form-check">
+                                    <label class="form-check-label">
+                                      <input type="checkbox" name="SelectedClaims[@item.Item1]" @(item.Item2 ? "checked" : "") class="form-check-input">
+                                      @item.Item1
+                                    <i class="input-helper"></i></label>
+                                  </div>
+                               }
+                        </div>
+
+                        <button type="submit" class="btn btn-success me-2">Submit</button>
+                        <a class="btn btn-light" asp-area="Admin" asp-controller="Users" asp-action="Index">Cancel</a>
+                    </form>
+                </div>
+              </div>
+            </div>
+@section addjs{
+ <script src="~/assets/libraries/jquery-validate/jquery.validate.min.js"></script>
+ <script src="~/assets/libraries/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

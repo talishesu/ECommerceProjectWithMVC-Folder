@@ -18,6 +18,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             this.db = db;
         }
 
+        [Authorize(Policy = "admin.brands.index")]
         public async Task<IActionResult> Index()
         {
             var data = await db.Brands.ToListAsync();
@@ -25,15 +26,14 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
-
-        [Authorize(Policy ="admin.brands.create")]
+        [Authorize(Policy = "admin.brands.create")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        //[Authorize(Policy = "admin.brands.create")]
+        [Authorize(Policy = "admin.brands.create")]
         public async Task<IActionResult> Create(Brand brand)
         {
 
@@ -56,8 +56,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
-
-        //[Authorize(Policy = "admin.brands.detail")]
+        [Authorize(Policy = "admin.brands.detail")]
         public async Task<IActionResult> Detail(int id)
         {
             if (id < 1)
@@ -77,7 +76,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
-        //[Authorize(Policy = "admin.brands.edit")]
+
+        [Authorize(Policy = "admin.brands.edit")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id < 1)
@@ -103,9 +103,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
-
         [HttpPost]
-        //[Authorize(Policy = "admin.brands.edit")]
+        [Authorize(Policy = "admin.brands.edit")]
         public async Task<IActionResult> Edit([FromRoute] int id, Brand brand)
         {
 
@@ -144,7 +143,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
-        //[Authorize(Policy = "admin.brands.delete")]
+        [Authorize(Policy = "admin.brands.delete")]
         public async Task<IActionResult> Delete( int id)
         {
             if (id < 1)
@@ -170,7 +169,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
-        //[Authorize(Policy = "admin.brands.reverse")]
+        [Authorize(Policy = "admin.brands.reverse")]
         public async Task<IActionResult> Reverse(int id)
         {
             if (id < 1)

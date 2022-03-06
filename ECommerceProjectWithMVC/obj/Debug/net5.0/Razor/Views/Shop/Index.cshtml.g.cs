@@ -40,8 +40,15 @@ using ECommerceProjectWithMVC.Models.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.Models.FormModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"11bbca2c419cf9028d55013c934bb0f1672ec148", @"/Views/Shop/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a2e2e5b3d79534e7316c941214c6a29d50ba92d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ab2dd5ce387f76211d379bffa99ed5efe80fd6d7", @"/Views/_ViewImports.cshtml")]
     public class Views_Shop_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "all", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -106,9 +113,9 @@ using ECommerceProjectWithMVC.Models.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n\r\n      <!-- Filter -->\r\n      <div\r\n        class=\"w-wrapper pt-5 mt-5 d-flex align-items-center justify-content-center\"\r\n      >\r\n        <div class=\"w-filters\">\r\n          \r\n          ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14812249", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14812492", async() => {
                 WriteLiteral("\r\n          <div class=\"w-select-wrapper\">\r\n            <select class=\"w-filter-by\" name=\"category\" required>\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14812641", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14812884", async() => {
                     WriteLiteral("All Categories");
                 }
                 );
@@ -127,7 +134,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14814210", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14814453", async() => {
                     WriteLiteral("Mouse");
                 }
                 );
@@ -143,7 +150,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14815447", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14815690", async() => {
                     WriteLiteral("Keyboard");
                 }
                 );
@@ -159,7 +166,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14816687", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14816930", async() => {
                     WriteLiteral("Headset");
                 }
                 );
@@ -175,7 +182,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14817926", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14818169", async() => {
                     WriteLiteral("Mousepad");
                 }
                 );
@@ -191,7 +198,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14819166", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14819409", async() => {
                     WriteLiteral("Camera");
                 }
                 );
@@ -207,7 +214,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n            </select>\r\n            <span class=\"focus\"></span>\r\n          </div>\r\n          <div class=\"w-select-wrapper\">\r\n            <select class=\"w-filter-by\" name=\"color\" required>\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14820610", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14820853", async() => {
                     WriteLiteral("All Colors");
                 }
                 );
@@ -226,7 +233,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14822175", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14822418", async() => {
                     WriteLiteral("Red");
                 }
                 );
@@ -242,7 +249,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14823410", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14823653", async() => {
                     WriteLiteral("Blue");
                 }
                 );
@@ -258,7 +265,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14824646", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14824889", async() => {
                     WriteLiteral("Cyan");
                 }
                 );
@@ -274,7 +281,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14825882", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14826125", async() => {
                     WriteLiteral("Gray");
                 }
                 );
@@ -290,7 +297,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14827118", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14827361", async() => {
                     WriteLiteral("Green");
                 }
                 );
@@ -306,7 +313,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14828357", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14828600", async() => {
                     WriteLiteral("Yellow");
                 }
                 );
@@ -322,7 +329,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n            </select>\r\n          </div>\r\n          <div class=\"w-select-wrapper\">\r\n            <select class=\"w-filter-by\" name=\"Price\" required>\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14829758", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14830001", async() => {
                     WriteLiteral("Price");
                 }
                 );
@@ -344,7 +351,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14831641", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14831884", async() => {
                     WriteLiteral("All Price");
                 }
                 );
@@ -363,7 +370,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14833205", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14833448", async() => {
                     WriteLiteral("0-50");
                 }
                 );
@@ -379,7 +386,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14834443", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14834686", async() => {
                     WriteLiteral("50-150");
                 }
                 );
@@ -395,7 +402,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14835683", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14835926", async() => {
                     WriteLiteral("100-200");
                 }
                 );
@@ -411,7 +418,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14836924", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14837167", async() => {
                     WriteLiteral("150-250");
                 }
                 );
@@ -427,7 +434,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n            </select>\r\n          </div>\r\n          <div class=\"w-select-wrapper\">\r\n            <select class=\"w-filter-by\" name=\"all brands\" required>\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14838331", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14838574", async() => {
                     WriteLiteral("All Brands");
                 }
                 );
@@ -446,7 +453,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14839896", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14840139", async() => {
                     WriteLiteral("Logitech1");
                 }
                 );
@@ -462,7 +469,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14841139", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14841382", async() => {
                     WriteLiteral("Logitech2");
                 }
                 );
@@ -478,7 +485,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14842382", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14842625", async() => {
                     WriteLiteral("Logitech3");
                 }
                 );
@@ -494,7 +501,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n            </select>\r\n          </div>\r\n          <div class=\"w-select-wrapper\">\r\n            <select class=\"w-filter-by\" name=\"show\" required>\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14843785", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14844028", async() => {
                     WriteLiteral("Show");
                 }
                 );
@@ -513,7 +520,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14845346", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14845589", async() => {
                     WriteLiteral("12");
                 }
                 );
@@ -532,7 +539,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14846905", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14847148", async() => {
                     WriteLiteral("24");
                 }
                 );
@@ -548,7 +555,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14848141", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11bbca2c419cf9028d55013c934bb0f1672ec14848384", async() => {
                     WriteLiteral("36");
                 }
                 );

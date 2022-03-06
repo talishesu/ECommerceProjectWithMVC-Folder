@@ -204,7 +204,12 @@
           </svg>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" asp-controller="Profile" asp-action="Index">Profile</a>
+                @if(User.Identity.IsAuthenticated){
+                    <a class="nav-link" asp-controller="Account" asp-action="Profile">Profile</a>
+                }else{
+                    <a class="nav-link" asp-controller="Account" asp-action="Signin">Sign In</a>
+                }
+              
             </li>
           </ul>
         </div>

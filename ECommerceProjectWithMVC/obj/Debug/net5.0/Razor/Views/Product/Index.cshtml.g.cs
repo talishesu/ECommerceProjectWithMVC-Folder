@@ -40,8 +40,15 @@ using ECommerceProjectWithMVC.Models.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.Models.FormModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f4ff195325c18b77d89027787cf05b17c99d6861", @"/Views/Product/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a2e2e5b3d79534e7316c941214c6a29d50ba92d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ab2dd5ce387f76211d379bffa99ed5efe80fd6d7", @"/Views/_ViewImports.cshtml")]
     public class Views_Product_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ProductIndexViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("#"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -109,7 +116,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("                        <div class=\"item\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f4ff195325c18b77d89027787cf05b17c99d68616704", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f4ff195325c18b77d89027787cf05b17c99d68616947", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -149,7 +156,7 @@ AddHtmlAttributeValue("", 715, Model.ProductImages.FirstOrDefault(p=>p.IsMain ==
 #line hidden
 #nullable disable
             WriteLiteral("                            <div class=\"item\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f4ff195325c18b77d89027787cf05b17c99d68618993", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f4ff195325c18b77d89027787cf05b17c99d68619236", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -189,7 +196,7 @@ AddHtmlAttributeValue("", 1101, item.ImagePath, 1101, 15, false);
 #line hidden
 #nullable disable
             WriteLiteral("                        <div class=\"item\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f4ff195325c18b77d89027787cf05b17c99d686111273", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f4ff195325c18b77d89027787cf05b17c99d686111516", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -229,7 +236,7 @@ AddHtmlAttributeValue("", 1469, Model.ProductImages.FirstOrDefault(p=>p.IsMain =
 #line hidden
 #nullable disable
             WriteLiteral("                            <div class=\"item\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f4ff195325c18b77d89027787cf05b17c99d686113567", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f4ff195325c18b77d89027787cf05b17c99d686113810", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -294,7 +301,7 @@ AddHtmlAttributeValue("", 1855, item.ImagePath, 1855, 15, false);
 #line hidden
 #nullable disable
             WriteLiteral("                       ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4ff195325c18b77d89027787cf05b17c99d686117270", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4ff195325c18b77d89027787cf05b17c99d686117513", async() => {
 #nullable restore
 #line 82 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\Product\Index.cshtml"
                           Write(item.Color.Name);
@@ -338,7 +345,7 @@ AddHtmlAttributeValue("", 1855, item.ImagePath, 1855, 15, false);
 #line hidden
 #nullable disable
             WriteLiteral("                       ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4ff195325c18b77d89027787cf05b17c99d686119297", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4ff195325c18b77d89027787cf05b17c99d686119540", async() => {
 #nullable restore
 #line 93 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\Product\Index.cshtml"
                           Write(item.Size.Name);
@@ -366,7 +373,7 @@ AddHtmlAttributeValue("", 1855, item.ImagePath, 1855, 15, false);
 #line hidden
 #nullable disable
             WriteLiteral("                  </select>\r\n                </div>\r\n              </div>\r\n              <div class=\"product-count\">\r\n                <label for=\"size\">Quantity</label>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4ff195325c18b77d89027787cf05b17c99d686120906", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4ff195325c18b77d89027787cf05b17c99d686121149", async() => {
                 WriteLiteral("\r\n                  <div class=\"qtyminus\">-</div>\r\n                  <input type=\"text\" name=\"quantity\" value=\"1\"  class=\"qty\">\r\n                  <div class=\"qtyplus\">+</div>\r\n                ");
             }
             );
@@ -449,7 +456,7 @@ AddHtmlAttributeValue("", 1855, item.ImagePath, 1855, 15, false);
 #line hidden
 #nullable disable
             WriteLiteral("\r\n            </div>\r\n            <div class=\"tab-pane fade\" id=\"review\" role=\"tabpanel\" aria-labelledby=\"review-tab\">\r\n              <div class=\"review-heading\">REVIEWS</div>\r\n              <p class=\"mb-20\">There are no reviews yet.</p>\r\n              ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4ff195325c18b77d89027787cf05b17c99d686125547", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4ff195325c18b77d89027787cf05b17c99d686125790", async() => {
                 WriteLiteral("\r\n");
                 WriteLiteral(@"                <div class=""form-group"">
                   <label>Your message</label>

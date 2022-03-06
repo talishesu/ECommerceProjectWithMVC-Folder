@@ -58,6 +58,59 @@ namespace ECommerceProjectWithMVC
             services.AddScoped<SignInManager<ShopUser>>();
             services.AddScoped<UserManager<ShopUser>>();
             services.AddScoped<RoleManager<ShopRole>>();
+
+            services.AddAuthentication();
+            services.AddAuthorization(cfg =>
+            {
+                foreach (var claimName in Program.policies)
+                {
+                    
+
+                    cfg.AddPolicy(claimName, p =>
+                    {
+                        p.RequireAssertion(a =>
+                        {
+
+                            return a.User.HasClaim(claimName, "1")
+                            || a.User.IsInRole("SuperAdmin");
+
+                        });
+                        //p.RequireClaim(claimName, "1");
+                    });
+                }
+
+                
+            });
+
+
+            services.ConfigureApplicationCookie(cfg =>
+            {
+
+                cfg.Cookie.Name = "shop";
+                cfg.Cookie.HttpOnly = true;
+                cfg.ExpireTimeSpan =new TimeSpan(0,5,0);
+                cfg.LoginPath = "/signin.html";
+                cfg.AccessDeniedPath = "/accessdenied.html";
+
+               
+
+            });
+
+
+            services.Configure<IdentityOptions>(cfg =>
+            {
+                //cfg.User.AllowedUserNameCharacters = "qwertadsghjkl";
+
+                cfg.User.RequireUniqueEmail = true;
+                cfg.Password.RequireDigit = true;
+                cfg.Password.RequiredLength = 6;
+                cfg.Password.RequiredUniqueChars = 1;
+                cfg.Password.RequireUppercase = true;
+                cfg.Password.RequireNonAlphanumeric = false;
+                cfg.Lockout.MaxFailedAccessAttempts = 5;
+
+                cfg.Lockout.DefaultLockoutTimeSpan = new TimeSpan(0,5,0);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,16 +118,25 @@ namespace ECommerceProjectWithMVC
         {
 
 
-            app.SeedMemberShip();
+            
 
             app.UseHttpsRedirection();
 
 
-            app.UseStaticFiles();
+            
 
             app.UseRouting();
 
+
+            app.SeedMemberShip();
+
+            app.UseStaticFiles();
+
+
+
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

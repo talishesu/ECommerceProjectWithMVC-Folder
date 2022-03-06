@@ -40,8 +40,15 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Areas\Admin\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.Models.Entities.Membership;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a24cb1b83a05ab068adb99d7ea442065443f3d82", @"/Areas/Admin/Views/Colors/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"66a5c04304a50a3841b6efbb9621ea244c18d2d7", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4b26e7244ff0272710bc69e84fc30cc10bfb4196", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Colors_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Color>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", new global::Microsoft.AspNetCore.Html.HtmlString("button"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -99,7 +106,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line hidden
 #nullable disable
             WriteLiteral("               <div class=\"card\">\r\n                <div class=\"card-body\">\r\n                  <h4 class=\"card-title\">Colors</h4>\r\n                  <p class=\"card-description\">\r\n                      Color List\r\n                  </p>\r\n                  ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d828984", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d829248", async() => {
                 WriteLiteral("Create Color");
             }
             );
@@ -219,7 +226,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line hidden
 #nullable disable
             WriteLiteral("                              <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d8214798", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d8215062", async() => {
                 WriteLiteral("Detail");
             }
             );
@@ -265,7 +272,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d8218086", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d8218350", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -320,7 +327,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d8221646", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d8221910", async() => {
                 WriteLiteral("Delete");
             }
             );
@@ -367,7 +374,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d8224870", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d8225134", async() => {
                 WriteLiteral("Reverse");
             }
             );
@@ -436,7 +443,7 @@ using ECommerceProjectWithMVC.AppCode.Extensions;
                       There Is No Color
                   </p>
                   ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d8229005", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a24cb1b83a05ab068adb99d7ea442065443f3d8229269", async() => {
                 WriteLiteral("Create Color");
             }
             );

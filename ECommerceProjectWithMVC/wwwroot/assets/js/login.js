@@ -1,33 +1,11 @@
-$(document).ready(function () {
-  var panelOne = $(".form-panel.two").height(),
-    panelTwo = $(".form-panel.two")[0].scrollHeight;
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
 
-  $(".form-panel.two")
-    .not(".form-panel.two.active")
-    .on("click", function (e) {
-      e.preventDefault();
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
 
-      $(".form-toggle").addClass("visible");
-      $(".form-panel.one").addClass("hidden");
-      $(".form-panel.two").addClass("active");
-      $(".form").animate(
-        {
-          height: panelTwo,
-        },
-        200
-      );
-    });
-
-  $(".form-toggle").on("click", function (e) {
-    e.preventDefault();
-    $(this).removeClass("visible");
-    $(".form-panel.one").removeClass("hidden");
-    $(".form-panel.two").removeClass("active");
-    $(".form").animate(
-      {
-        height: panelOne,
-      },
-      200
-    );
-  });
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
 });

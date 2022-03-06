@@ -40,8 +40,15 @@ using ECommerceProjectWithMVC.Models.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.Models.FormModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5b43bf799cca6510438124ce476a59fa2467177f", @"/Views/Home/Components/TopSellProducts/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a2e2e5b3d79534e7316c941214c6a29d50ba92d3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ab2dd5ce387f76211d379bffa99ed5efe80fd6d7", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Components_TopSellProducts_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Product>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-fluid card-img-top custom-card-img-top"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -91,7 +98,7 @@ using ECommerceProjectWithMVC.Models.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("               <div class=\"custom-card col-sm d-flex justify-content-center\">\r\n              <div\r\n                class=\"card-custom-item card bg-dark shadow-lg\"\r\n                style=\"width: 18rem\"\r\n              >\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5b43bf799cca6510438124ce476a59fa2467177f6512", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5b43bf799cca6510438124ce476a59fa2467177f6755", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -132,7 +139,7 @@ AddHtmlAttributeValue("", 625, item.Images.FirstOrDefault()?.ImagePath, 625, 40,
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                  </p>\r\n                  ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b43bf799cca6510438124ce476a59fa2467177f9386", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b43bf799cca6510438124ce476a59fa2467177f9629", async() => {
                 WriteLiteral("\r\n                    Go To Detail\r\n                  ");
             }
             );
