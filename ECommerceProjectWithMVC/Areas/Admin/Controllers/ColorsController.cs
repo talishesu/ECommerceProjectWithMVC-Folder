@@ -1,11 +1,14 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities;
+using ECommerceProjectWithMVC.AppCode.Modules.ColorModule;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceProjectWithMVC.AppCode.Extensions;
 
 namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 {
@@ -13,14 +16,18 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
     public class ColorsController : Controller
     {
         readonly ShopDbContext db;
-        public ColorsController(ShopDbContext db)
+        readonly IMediator mediator;
+        public ColorsController(ShopDbContext db, IMediator mediator)
         {
             this.db = db;
+            this.mediator = mediator;
         }
         [Authorize(Policy = "admin.colors.index")]
         public async Task<IActionResult> Index()
         {
-            var data = await db.Colors.ToListAsync();
+            var query = new ColorPagedQuery();
+
+            var data = await mediator.Send(query);
             return View(data);
         }
 
@@ -53,7 +60,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 ViewBag.Message = null;
-                color.CreatedByUserId = 1;
+                color.CreatedByUserId = User.GetPrincipalId();
                 db.Colors.Add(color);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -64,22 +71,15 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
         [Authorize(Policy = "admin.colors.detail")]
-        public async Task<IActionResult> Detail(int id)
+        public async Task<IActionResult> Detail(ColorSingleQuery query)
         {
-            if (id < 1)
+            var data = await mediator.Send(query);
+
+            if (data == null)
             {
                 return NotFound();
             }
-
-            var color = await db.Colors.FirstOrDefaultAsync(b=>b.Id == id);
-            if (color == null)
-            {
-                return NotFound();
-            }
-
-            
-
-            return View(color);
+            return View(data);
         }
 
         [Authorize(Policy = "admin.colors.edit")]
@@ -171,7 +171,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             }
 
             color.DeletedTime = DateTime.Now;
-            color.DeletedByUserId = 1;
+            color.DeletedByUserId = User.GetPrincipalId();
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");

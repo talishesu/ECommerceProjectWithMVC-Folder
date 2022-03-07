@@ -2,12 +2,15 @@
 using ECommerceProjectWithMVC.Models.Entities;
 using ECommerceProjectWithMVC.Models.FormModels;
 using ECommerceProjectWithMVC.Models.ViewModels;
+using ECommerceProjectWithMVC.AppCode.Modules.SpecificationModule;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceProjectWithMVC.AppCode.Extensions;
 
 namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 {
@@ -15,15 +18,19 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
     public class SpecificationsController : Controller
     {
         readonly ShopDbContext db;
-        public SpecificationsController(ShopDbContext db)
+        readonly IMediator mediator;
+        public SpecificationsController(ShopDbContext db, IMediator mediator)
         {
             this.db = db;
+            this.mediator = mediator;
         }
 
         [Authorize(Policy = "admin.specifications.index")]
         public async Task<IActionResult> Index()
         {
-            var data = await db.Specifications.ToListAsync();
+            var query = new SpecificationPagedQuery();
+
+            var data = await mediator.Send(query);
             return View(data);
         }
 
@@ -61,7 +68,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
-            specificationFormModel.Specification.CreatedByUserId = 1;
+            specificationFormModel.Specification.CreatedByUserId = User.GetPrincipalId();
             db.Specifications.Add(specificationFormModel.Specification);
             await db.SaveChangesAsync();
 
@@ -93,31 +100,15 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
         [Authorize(Policy = "admin.specifications.detail")]
-        public async Task<IActionResult> Detail(int id)
+        public async Task<IActionResult> Detail(SpecificationSingleQuery query)
         {
-            if (id < 1)
+            var data = await mediator.Send(query);
+
+            if (data == null)
             {
                 return NotFound();
             }
-
-            var specification = await db.Specifications.FirstOrDefaultAsync(b=>b.Id == id);
-            if (specification == null)
-            {
-                return NotFound();
-            }
-            var vm = new SpecificationViewModel();
-
-            var specificationCategoryItems = await db.SpecificationCategoryItems.Where(c => c.SpecificationId == id).ToListAsync();
-
-            vm.Specification = specification;
-            vm.SpecificationCategoryItems = specificationCategoryItems;
-            vm.Categories = await db.Categories
-                .Include(c => c.Children)
-                .Where(c => c.DeletedTime == null)
-                .ToListAsync();
-
-
-            return View(vm);
+            return View(data);
         }
 
         [Authorize(Policy = "admin.specifications.edit")]
@@ -247,7 +238,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             }
 
             specification.DeletedTime = DateTime.Now;
-            specification.DeletedByUserId = 1;
+            specification.DeletedByUserId = User.GetPrincipalId();
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");

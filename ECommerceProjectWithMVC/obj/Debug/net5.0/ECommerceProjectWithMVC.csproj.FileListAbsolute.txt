@@ -228,3 +228,7 @@ C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectW
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Views\Account\Denied.cshtml.g.cs
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Index.cshtml.g.cs
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Detail.cshtml.g.cs
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\MediatR.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\MediatR.Contracts.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll

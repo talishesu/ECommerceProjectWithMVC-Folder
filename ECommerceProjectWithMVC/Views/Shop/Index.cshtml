@@ -1,4 +1,4 @@
-﻿
+﻿@model ShopViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -15,51 +15,31 @@
             class="d-flex justify-content-center align-items-center"
           >
           <div class="w-select-wrapper">
-            <select class="w-filter-by" name="category" required>
-              <option value="all" selected>All Categories</option>
-              <option value="credit">Mouse</option>
-              <option value="insurance">Keyboard</option>
-              <option value="payments-and-remittances">Headset</option>
-              <option value="savings-and-pfm">Mousepad</option>
-              <option value="infrastructure">Camera</option>
+            <select class="w-filter-by" name="CategoryId" required>
+              <option value="0">All Categories</option>
+              @foreach (var item in Model.Categories)
+             {
+                 if(item.Id == Model.SelectedCategory){
+                     <option value="@item.Id" selected>@item.Name</option>
+                 }else{
+                     <option value="@item.Id">@item.Name</option>
+                 }
+                 
+             }
             </select>
             <span class="focus"></span>
           </div>
           <div class="w-select-wrapper">
-            <select class="w-filter-by" name="color" required>
-              <option value="all" selected>All Colors</option>
-              <option value="Red">Red</option>
-              <option value="Blue">Blue</option>
-              <option value="Cyan">Cyan</option>
-              <option value="Gray">Gray</option>
-              <option value="Green">Green</option>
-              <option value="Yellow">Yellow</option>
-            </select>
-          </div>
-          <div class="w-select-wrapper">
-            <select class="w-filter-by" name="Price" required>
-              <option value="" disabled hidden>Price</option>
-              <option value="all" selected>All Price</option>
-              <option value="0-50">0-50</option>
-              <option value="50-150">50-150</option>
-              <option value="100-50">100-200</option>
-              <option value="150-250">150-250</option>
-            </select>
-          </div>
-          <div class="w-select-wrapper">
-            <select class="w-filter-by" name="all brands" required>
-              <option value="all" selected>All Brands</option>
-              <option value="Logitech1">Logitech1</option>
-              <option value="Logitech2">Logitech2</option>
-              <option value="Logitech3">Logitech3</option>
-            </select>
-          </div>
-          <div class="w-select-wrapper">
-            <select class="w-filter-by" name="show" required>
-              <option value="show" disabled>Show</option>
-              <option value="12" selected>12</option>
-              <option value="24">24</option>
-              <option value="36">36</option>
+            <select class="w-filter-by" name="BrandId" required>
+              <option value="0">All Brands</option>
+              @foreach (var item in Model.Brands)
+             {
+                 if(item.Id == Model.SelectedBrand){
+                     <option value=@item.Id selected>@item.Name</option>
+                 }else{
+                     <option value=@item.Id>@item.Name</option>
+                 }
+             }
             </select>
           </div>
             <button class="btn btn-primary">Submit</button>
@@ -69,153 +49,40 @@
       <!-- Filter End -->
       <div class="container text-center">
         <div class="row">
-          <div class="col">
-            <a
-              href="product-detail.html"
-              class="card product shadow-lg"
-              style="width: 18rem"
-            >
-              <img
-                src="https://resource.logitechg.com/w_419,ar_1.0,c_limit,f_auto,q_auto,dpr_2.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-superlight/pro-x-superlight-black-gallery-1.png?v=1"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body details">
-                <p style="color: black" class="card-text text-center">
-                  Shroud G303 HERO
-                </p>
+        @if (Model.Products.Count != 0)
+        {
+            @foreach (var item in Model.Products)
+             {
+                     <div class="col">
+                    <a
+                      asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"
+                      class="card product shadow-lg"
+                      style="width: 18rem"
+                    >
+                      <img
+                        src="~/uploads/products/images/@item.Images.FirstOrDefault(p=>p.IsMain == true)?.ImagePath"
+                        class="card-img-top"
+                        alt="..."
+                      />
+                      <div class="card-body details">
+                        <p style="color: black" class="card-text text-center">
+                          @item.Name
+                        </p>
 
-                <p style="color: black" class="card-text text-center">$99.99</p>
-                <button class="btn btn-primary">Go To Detail</button>
-              </div>
-            </a>
-          </div>
-          <div class="col">
-            <a
-              href="product-detail.html"
-              class="card product shadow-lg"
-              style="width: 18rem"
-            >
-              <img
-                src="https://resource.logitechg.com/w_419,ar_1.0,c_limit,f_auto,q_auto,dpr_2.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-superlight/pro-x-superlight-black-gallery-1.png?v=1"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body details">
-                <p style="color: black" class="card-text text-center">
-                  Shroud G303 HERO
-                </p>
+                        <p style="color: black" class="card-text text-center">$@item.PriceList.FirstOrDefault(p=>p.ProductId == item.Id && p.DeletedTime == null).Price</p>
+                        <button asp-controller="Product" asp-action="Index" asp-route-id="@item.Id" class="btn btn-primary">Go To Detail</button>
+                      </div>
+                    </a>
+                    </div>
+                }
 
-                <p style="color: black" class="card-text text-center">$99.99</p>
-                <button class="btn btn-primary">Go To Detail</button>
-              </div>
-            </a>
-          </div>
-          <div class="col">
-            <a
-              href="product-detail.html"
-              class="card product shadow-lg"
-              style="width: 18rem"
-            >
-              <img
-                src="https://resource.logitechg.com/w_419,ar_1.0,c_limit,f_auto,q_auto,dpr_2.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-superlight/pro-x-superlight-black-gallery-1.png?v=1"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body details">
-                <p style="color: black" class="card-text text-center">
-                  Shroud G303 HERO
-                </p>
-
-                <p style="color: black" class="card-text text-center">$99.99</p>
-                <button class="btn btn-primary">Go To Detail</button>
-              </div>
-            </a>
-          </div>
-          <div class="col">
-            <a
-              href="product-detail.html"
-              class="card product shadow-lg"
-              style="width: 18rem"
-            >
-              <img
-                src="https://resource.logitechg.com/w_419,ar_1.0,c_limit,f_auto,q_auto,dpr_2.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-superlight/pro-x-superlight-black-gallery-1.png?v=1"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body details">
-                <p style="color: black" class="card-text text-center">
-                  Shroud G303 HERO
-                </p>
-
-                <p style="color: black" class="card-text text-center">$99.99</p>
-                <button class="btn btn-primary">Go To Detail</button>
-              </div>
-            </a>
-          </div>
-          <div class="col">
-            <a
-              href="product-detail.html"
-              class="card product shadow-lg"
-              style="width: 18rem"
-            >
-              <img
-                src="https://resource.logitechg.com/w_419,ar_1.0,c_limit,f_auto,q_auto,dpr_2.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-superlight/pro-x-superlight-black-gallery-1.png?v=1"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body details">
-                <p style="color: black" class="card-text text-center">
-                  Shroud G303 HERO
-                </p>
-
-                <p style="color: black" class="card-text text-center">$99.99</p>
-                <button class="btn btn-primary">Go To Detail</button>
-              </div>
-            </a>
-          </div>
-          <div class="col">
-            <a
-              href="product-detail.html"
-              class="card product shadow-lg"
-              style="width: 18rem"
-            >
-              <img
-                src="https://resource.logitechg.com/w_419,ar_1.0,c_limit,f_auto,q_auto,dpr_2.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-superlight/pro-x-superlight-black-gallery-1.png?v=1"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body details">
-                <p style="color: black" class="card-text text-center">
-                  Shroud G303 HERO
-                </p>
-
-                <p style="color: black" class="card-text text-center">$99.99</p>
-                <button class="btn btn-primary">Go To Detail</button>
-              </div>
-            </a>
-          </div>
-          <div class="col">
-            <a
-              href="product-detail.html"
-              class="card product shadow-lg"
-              style="width: 18rem"
-            >
-              <img
-                src="https://resource.logitechg.com/w_419,ar_1.0,c_limit,f_auto,q_auto,dpr_2.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-superlight/pro-x-superlight-black-gallery-1.png?v=1"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body details">
-                <p style="color: black" class="card-text text-center">
-                  Shroud G303 HERO
-                </p>
-
-                <p style="color: black" class="card-text text-center">$99.99</p>
-                <button class="btn btn-primary">Go To Detail</button>
-              </div>
-            </a>
-          </div>
-        </div>
+        }
+        else
+        {
+            <h3 style="color: black" class="card-text text-center">
+               Product not found       
+             </h3>
+        }
+    </div>
       </div>
     

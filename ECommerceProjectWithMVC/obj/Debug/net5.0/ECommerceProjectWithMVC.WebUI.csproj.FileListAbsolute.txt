@@ -189,3 +189,7 @@ C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectW
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\ref\ECommerceProjectWithMVC.WebUI.dll
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\ECommerceProjectWithMVC.WebUI.pdb
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\ECommerceProjectWithMVC.WebUI.genruntimeconfig.cache
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\MediatR.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\MediatR.Contracts.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll

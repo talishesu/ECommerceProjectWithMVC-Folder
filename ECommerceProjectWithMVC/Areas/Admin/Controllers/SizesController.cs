@@ -1,11 +1,14 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities;
+using ECommerceProjectWithMVC.AppCode.Modules.SizeModule;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceProjectWithMVC.AppCode.Extensions;
 
 namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 {
@@ -13,15 +16,19 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
     public class SizesController : Controller
     {
         readonly ShopDbContext db;
-        public SizesController(ShopDbContext db)
+        readonly IMediator mediator;
+        public SizesController(ShopDbContext db, IMediator mediator)
         {
             this.db = db;
+            this.mediator = mediator;
         }
         [Authorize(Policy = "admin.sizes.index")]
 
         public async Task<IActionResult> Index()
         {
-            var data = await db.Sizes.ToListAsync();
+            var query = new SizePagedQuery();
+
+            var data = await mediator.Send(query);
             return View(data);
         }
 
@@ -56,7 +63,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                size.CreatedByUserId = 1;
+                size.CreatedByUserId = User.GetPrincipalId();
                 db.Sizes.Add(size);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -68,22 +75,15 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
         [Authorize(Policy = "admin.sizes.detail")]
-        public async Task<IActionResult> Detail(int id)
+        public async Task<IActionResult> Detail(SizeSingleQuery query)
         {
-            if (id < 1)
+            var data = await mediator.Send(query);
+
+            if (data == null)
             {
                 return NotFound();
             }
-
-            var size = await db.Sizes.FirstOrDefaultAsync(b=>b.Id == id);
-            if (size == null)
-            {
-                return NotFound();
-            }
-
-            
-
-            return View(size);
+            return View(data);
         }
 
         [Authorize(Policy = "admin.sizes.edit")]
@@ -177,7 +177,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             }
 
             size.DeletedTime = DateTime.Now;
-            size.DeletedByUserId = 1;
+            size.DeletedByUserId = User.GetPrincipalId();
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");

@@ -3,6 +3,8 @@ using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities.Membership;
 using ECommerceProjectWithMVC.Models.FormModels;
 using ECommerceProjectWithMVC.Models.ViewModels;
+using ECommerceProjectWithMVC.AppCode.Modules.UserModule;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,18 +19,22 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
     { 
     
         readonly ShopDbContext db;
-        public UsersController(ShopDbContext db)
+        readonly IMediator mediator;
+        public UsersController(ShopDbContext db,IMediator mediator)
         {
 
             this.db = db;
+            this.mediator = mediator;
         }
 
 
         [Authorize(Policy = "admin.users.index")]
         public async Task<IActionResult> Index()
         {
-            var users = await db.Users.ToListAsync();
-            return View(users);
+            var query = new UserPagedQuery();
+
+            var data = await mediator.Send(query);
+            return View(data);
         }
 
 

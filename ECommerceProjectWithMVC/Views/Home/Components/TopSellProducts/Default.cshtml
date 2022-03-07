@@ -14,7 +14,7 @@
                 style="width: 18rem"
               >
                 <img
-                  src="~/uploads/products/images/@item.Images.FirstOrDefault()?.ImagePath"
+                  src="~/uploads/products/images/@item.Images.FirstOrDefault(p=>p.IsMain == true)?.ImagePath"
                   class="img-fluid card-img-top custom-card-img-top"
                   alt="..."
                 />

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceProjectWithMVC.WebUI", "ECommerceProjectWithMVC.WebUI.csproj", "{B88329A3-FA65-411C-9B7C-6F2EC1D52E75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceProjectWithMVC", "ECommerceProjectWithMVC.csproj", "{B88329A3-FA65-411C-9B7C-6F2EC1D52E75}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Cryptolib", "..\Shop.Cryptolib\Shop.Cryptolib.csproj", "{A48EF665-A240-4BB6-A195-8C5C99ECB660}"
 EndProject

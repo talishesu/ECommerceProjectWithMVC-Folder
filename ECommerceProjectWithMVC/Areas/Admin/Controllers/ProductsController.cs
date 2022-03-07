@@ -2,6 +2,8 @@
 using ECommerceProjectWithMVC.Models.Entities;
 using ECommerceProjectWithMVC.Models.FormModels;
 using ECommerceProjectWithMVC.Models.ViewModels;
+using ECommerceProjectWithMVC.AppCode.Modules.ProductModule;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +15,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceProjectWithMVC.AppCode.Extensions;
 
 namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 {
@@ -21,54 +24,36 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
     {
         readonly ShopDbContext db;
         readonly IWebHostEnvironment env;
-        public ProductsController(ShopDbContext db, IWebHostEnvironment env)
+        readonly IMediator mediator;
+        public ProductsController(ShopDbContext db, IWebHostEnvironment env, IMediator mediator)
         {
             this.db = db;
             this.env = env;
+            this.mediator = mediator;
         }
 
         [Authorize(Policy = "admin.products.index")]
         public async Task<IActionResult> Index()
         {
-            var products = await db.Products
-                .Include(p => p.Images.Where(i=>i.DeletedTime == null))
-                .ToListAsync();
-            return View(products);
+
+            var query = new ProductPagedQuery();
+
+            var data = await mediator.Send(query);
+            return View(data);
         }
 
 
 
         [Authorize(Policy = "admin.products.detail")]
-        public async Task<IActionResult> Detail(int id)
+        public async Task<IActionResult> Detail(ProductSingleQuery query)
         {
-            if (id < 1)
+            var data = await mediator.Send(query);
+
+            if (data == null)
             {
                 return NotFound();
             }
-
-            
-            var vm = new ProductDetailViewModel();
-
-
-            vm.Product = await db.Products
-                .Include(p => p.Images.Where(i => i.DeletedTime == null))
-                .FirstOrDefaultAsync(p=>p.Id == id && p.DeletedTime == null);
-            if (vm.Product == null)
-            {
-                return NotFound();
-            }
-            vm.Product.Brand = await db.Brands.FirstOrDefaultAsync(b => b.Id == vm.Product.BrandId);
-            vm.Product.Category = await db.Categories.FirstOrDefaultAsync(b => b.Id == vm.Product.CategoryId);
-            vm.ProductImages = await db.ProductImages.Where(pi=>pi.DeletedTime == null &&pi.ProductId ==id).ToListAsync();
-            vm.SpecificationProductItems = await db.SpecificationProductItems.Where(spi=>spi.ProductId == id && spi.DeletedTime ==null).ToListAsync();
-            vm.Specifications = await db.Specifications.Where(s=>s.DeletedTime == null).ToListAsync();
-
-
-            vm.AllSizes = await db.Sizes.Where(s=>s.DeletedTime==null).ToListAsync();
-            vm.AllColors = await db.Colors.Where(s=>s.DeletedTime==null).ToListAsync();
-            vm.ProductPricings = await db.ProductPricings.Where(pp=>pp.ProductId == id && pp.DeletedTime ==null).ToListAsync();
-
-            return View(vm);
+            return View(data);
         }
 
 
@@ -232,7 +217,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                 newSCI.Value = item.Value;
                 newSCI.Product = productFormModel.Product;
                 newSCI.Specification = await db.Specifications.FirstOrDefaultAsync(s => s.Id == item.Id);
-                newSCI.CreatedByUserId = 1;
+                newSCI.CreatedByUserId = User.GetPrincipalId();
                 await db.SpecificationProductItems.AddAsync(newSCI);
                 //await db.SaveChangesAsync();
             }
@@ -258,10 +243,10 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                 {
                     ImagePath = fileName,
                     IsMain = img.IsMain,
-                    CreatedByUserId = 1
-                });
+                    CreatedByUserId = User.GetPrincipalId()
+            });
             }
-            productFormModel.Product.CreatedByUserId = 1;
+            productFormModel.Product.CreatedByUserId = User.GetPrincipalId();
 
             foreach (var item in productFormModel.ProductPricings)
             {
@@ -272,7 +257,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                 newPP.Product = productFormModel.Product;
                 newPP.SizeId = item.SizeId;
 
-                newPP.CreatedByUserId = 1;
+                newPP.CreatedByUserId = User.GetPrincipalId();
                 await db.ProductPricings.AddAsync(newPP);
                 //await db.SaveChangesAsync();
             }
@@ -491,8 +476,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                         //newPP.Product = productFormModel.Product;
                         newPP.SizeId = item.SizeId;
 
-                        newPP.CreatedByUserId = 1;
-                        await db.ProductPricings.AddAsync(newPP);
+                        newPP.CreatedByUserId = User.GetPrincipalId();
+                    await db.ProductPricings.AddAsync(newPP);
                         //await db.SaveChangesAsync();
                     }
                 }
@@ -513,7 +498,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                     newSCI.Value = item.Value;
                     //newSCI.Product = productFormModel.Product;
                     newSCI.Specification = await db.Specifications.FirstOrDefaultAsync(s => s.Id == item.Id);
-                    newSCI.CreatedByUserId = 1;
+                    newSCI.CreatedByUserId = User.GetPrincipalId();
                     await db.SpecificationProductItems.AddAsync(newSCI);
                     //await db.SaveChangesAsync();
                 }
@@ -552,7 +537,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                             if (string.IsNullOrWhiteSpace(image.TempPath)) //viewde silinme kimi vurulub
                             {
 
-                                current.DeletedByUserId = 1;
+                                current.DeletedByUserId = User.GetPrincipalId();
                                 current.DeletedTime = DateTime.Now;
 
                             }
@@ -609,7 +594,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             }
 
             product.DeletedTime = DateTime.Now;
-            product.DeletedByUserId = 1;
+            product.DeletedByUserId = User.GetPrincipalId();
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");

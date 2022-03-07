@@ -1,5 +1,7 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities;
+using ECommerceProjectWithMVC.AppCode.Modules.CategoryModule;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceProjectWithMVC.AppCode.Extensions;
 
 namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 {
@@ -14,16 +17,19 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
     public class CategoriesController : Controller
     {
         readonly ShopDbContext db;
-        public CategoriesController(ShopDbContext db)
+        readonly IMediator mediator;
+        public CategoriesController(ShopDbContext db,IMediator mediator)
         {
             this.db = db;
+            this.mediator = mediator;
         }
         [Authorize(Policy = "admin.categories.index")]
         public async Task<IActionResult> Index()
         {
-            var data = await db.Categories
-                .Include(c=>c.Children)
-                .ToListAsync();
+            var query = new CategoryPagedQuery();
+            
+            var data = await mediator.Send(query);
+
             return View(data);
         }
 
@@ -59,7 +65,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                category.CreatedByUserId = 1;
+                category.CreatedByUserId = User.GetPrincipalId();
                 db.Categories.Add(category);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -72,24 +78,22 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
         [Authorize(Policy = "admin.categories.detail")]
-        public async Task<IActionResult> Detail(int id)
+        public async Task<IActionResult> Detail(CategorySingleQuery query)
         {
-            if (id < 1)
+
+            //var query = new CategoriesSingleQuery
+            //{
+            //    Id = id,
+            //};
+
+
+            var data = await mediator.Send(query);
+
+            if(data == null)
             {
                 return NotFound();
             }
-
-            var category = await db.Categories
-                .Include(c=>c.Parent)
-                .FirstOrDefaultAsync(b=>b.Id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            
-
-            return View(category);
+            return View(data);
         }
 
 
@@ -211,7 +215,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             }
 
             category.DeletedTime = DateTime.Now;
-            category.DeletedByUserId = 1;
+            category.DeletedByUserId = User.GetPrincipalId();
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");

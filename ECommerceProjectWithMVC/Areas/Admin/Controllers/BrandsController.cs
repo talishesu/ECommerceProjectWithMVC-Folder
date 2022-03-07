@@ -1,11 +1,14 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities;
+using ECommerceProjectWithMVC.AppCode.Modules.BrandModule;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceProjectWithMVC.AppCode.Extensions;
 
 namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 {
@@ -13,15 +16,19 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
     public class BrandsController : Controller
     {
         readonly ShopDbContext db;
-        public BrandsController(ShopDbContext db)
+        readonly IMediator mediator;
+        public BrandsController(ShopDbContext db , IMediator mediator)
         {
             this.db = db;
+            this.mediator = mediator;
         }
 
         [Authorize(Policy = "admin.brands.index")]
         public async Task<IActionResult> Index()
         {
-            var data = await db.Brands.ToListAsync();
+            var query = new BrandPagedQuery();
+
+            var data = await mediator.Send(query);
             return View(data);
         }
 
@@ -46,7 +53,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                brand.CreatedByUserId = 1;
+                brand.CreatedByUserId = User.GetPrincipalId();
                 db.Brands.Add(brand);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -57,22 +64,16 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
         [Authorize(Policy = "admin.brands.detail")]
-        public async Task<IActionResult> Detail(int id)
+        public async Task<IActionResult> Detail(BrandSingleQuery query)
         {
-            if (id < 1)
+
+            var data = await mediator.Send(query);
+
+            if (data == null)
             {
                 return NotFound();
             }
-
-            var brand = await db.Brands.FirstOrDefaultAsync(b=>b.Id == id);
-            if (brand == null)
-            {
-                return NotFound();
-            }
-
-            
-
-            return View(brand);
+            return View(data);
         }
 
 
@@ -162,7 +163,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             }
 
             brand.DeletedTime = DateTime.Now;
-            brand.DeletedByUserId = 1;
+            brand.DeletedByUserId = User.GetPrincipalId();
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");

@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using MediatR;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace ECommerceProjectWithMVC
 {
@@ -28,6 +30,9 @@ namespace ECommerceProjectWithMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMediatR(typeof(Startup).Assembly);
+
+
             services.AddControllersWithViews(cfg =>
             {
                 cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());
@@ -58,6 +63,7 @@ namespace ECommerceProjectWithMVC
 
             services.AddScoped<IClaimsTransformation,AppClaimProvider>();
 
+            //services.AddSingleton<IActionContextAccessor,ActionContextAccessor>();//CQRS ModelState
             services.AddAuthentication();
             services.AddAuthorization(cfg =>
             {
