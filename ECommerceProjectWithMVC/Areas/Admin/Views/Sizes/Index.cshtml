@@ -12,7 +12,11 @@
                   <p class="card-description">
                       Size List
                   </p>
-                  <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Sizes" asp-action="Create">Create Size</a>
+                  @if (User.HasAccess("admin.sizes.create"))
+                                      {
+                                             <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Sizes" asp-action="Create">Create Size</a>
+
+                                      }
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -39,22 +43,38 @@
 
                                 }
                               <td>
-                                    <a type="button" class="btn btn-success btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Sizes" asp-action="Detail">Detail</a>
+                                  @if (User.HasAccess("admin.sizes.detail"))
+                                      {
+                                            <a type="button" class="btn btn-success btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Sizes" asp-action="Detail">Detail</a>
+
+                                      }
                                         
                                   
                                     @if (item.DeletedTime == null)
                                     {
-                                    <a type="button" class="btn btn-warning btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Sizes" asp-action="Edit">Edit</a>
+                                         @if (User.HasAccess("admin.sizes.edit"))
+                                      {
+                                            <a type="button" class="btn btn-warning btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Sizes" asp-action="Edit">Edit</a>
+
+                                      }
                                         
                                     }
                                   
                                     @if (item.DeletedTime == null)
                                     {
-                                    <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Sizes" asp-action="Delete">Delete</a>
+                                         @if (User.HasAccess("admin.sizes.delete"))
+                                      {
+                                             <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Sizes" asp-action="Delete">Delete</a>
+
+                                      }
                                         
                                     }
                                     else{
-                                    <a type="button" class="btn btn-secondary btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Sizes" asp-action="Reverse">Reverse</a>
+                                         @if (User.HasAccess("admin.sizes.reverse"))
+                                      {
+                                            <a type="button" class="btn btn-secondary btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Sizes" asp-action="Reverse">Reverse</a>
+
+                                      }
                                     }
                                 </td>
                             </tr>

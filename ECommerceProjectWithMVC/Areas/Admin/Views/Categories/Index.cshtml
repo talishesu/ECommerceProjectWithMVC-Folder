@@ -11,7 +11,11 @@
                   <p class="card-description">
                       Category List
                   </p>
-                  <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Categories" asp-action="Create">Create Category</a>
+                  @if (User.HasAccess("admin.categories.create"))
+                  {
+                     <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Categories" asp-action="Create">Create Category</a>
+                                                
+                   }
                   <span class="text-danger">@ViewBag.Message</span>
                   <span class="text-danger">@TempData["Message"]</span>
                   <div class="table-responsive">
@@ -73,22 +77,42 @@
 
                                         }
                                       <td>
+                                          @if (User.HasAccess("admin.categories.detail"))
+                                          {
                                             <a type="button" class="btn btn-success btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Detail">Detail</a>
+                                                
+                                           }
                                         
                                   
                                             @if (child.DeletedTime == null)
                                             {
-                                            <a type="button" class="btn btn-warning btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Edit">Edit</a>
+                                                @if (User.HasAccess("admin.categories.edit"))
+                                                  {
+                                                        <a type="button" class="btn btn-warning btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Edit">Edit</a>
+
+                                                
+                                                   }
                                         
                                             }
                                   
                                             @if (child.DeletedTime == null)
                                             {
-                                            <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Delete">Delete</a>
+                                                @if (User.HasAccess("admin.categories.delete"))
+                                                  {
+                                                         <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Delete">Delete</a>
+
+                                                
+                                                   }
                                         
                                             }
                                             else{
-                                            <a type="button" class="btn btn-secondary btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Reverse">Reverse</a>
+
+                                                @if (User.HasAccess("admin.categories.reverse"))
+                                                  {
+                                                        <a type="button" class="btn btn-secondary btn-rounded btn-fw" asp-route-id="@child.Id" asp-area="Admin" asp-controller="Categories" asp-action="Reverse">Reverse</a>
+
+                                                
+                                                   }
                                             }
                                         </td>
                                     </tr>

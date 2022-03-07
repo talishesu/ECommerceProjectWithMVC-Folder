@@ -1,5 +1,6 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,6 +17,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         {
             this.db = db;
         }
+        [Authorize(Policy = "admin.sizes.index")]
 
         public async Task<IActionResult> Index()
         {
@@ -24,13 +26,14 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
-
+        [Authorize(Policy = "admin.sizes.create")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Policy = "admin.sizes.create")]
         public async Task<IActionResult> Create(Size size)
         {
 
@@ -64,6 +67,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
+        [Authorize(Policy = "admin.sizes.detail")]
         public async Task<IActionResult> Detail(int id)
         {
             if (id < 1)
@@ -82,6 +86,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             return View(size);
         }
 
+        [Authorize(Policy = "admin.sizes.edit")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id < 1)
@@ -107,6 +112,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "admin.sizes.edit")]
         public async Task<IActionResult> Edit([FromRoute] int id, Size size)
         {
 
@@ -152,6 +158,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
+        [Authorize(Policy = "admin.sizes.delete")]
         public async Task<IActionResult> Delete( int id)
         {
             if (id < 1)
@@ -176,6 +183,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Policy = "admin.sizes.reverse")]
         public async Task<IActionResult> Reverse(int id)
         {
             if (id < 1)

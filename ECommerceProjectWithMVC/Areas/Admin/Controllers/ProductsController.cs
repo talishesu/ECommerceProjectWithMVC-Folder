@@ -27,7 +27,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             this.env = env;
         }
 
-
+        [Authorize(Policy = "admin.products.index")]
         public async Task<IActionResult> Index()
         {
             var products = await db.Products
@@ -38,7 +38,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
-
+        [Authorize(Policy = "admin.products.detail")]
         public async Task<IActionResult> Detail(int id)
         {
             if (id < 1)
@@ -73,6 +73,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
         [HttpGet]
+        [Authorize(Policy = "admin.products.create")]
         public async Task<IActionResult> Create()
         {
 
@@ -115,6 +116,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.products.create")]
         public async Task<IActionResult> Create(ProductFormModel productFormModel)
         {
 
@@ -284,6 +286,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
         [HttpGet]
+        [Authorize(Policy = "admin.products.edit")]
+
         public async Task<IActionResult> Edit(int id)
         {
             var vm = new ProductCreateViewModel();
@@ -337,6 +341,8 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.products.edit")]
+
         public async Task<IActionResult> Edit([FromRoute] int id, ProductFormModel productFormModel)
         {
                 if (id != productFormModel.Product.Id)
@@ -583,6 +589,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
+        [Authorize(Policy = "admin.products.delete")]
 
         public async Task<IActionResult> Delete(int id)
         {
@@ -608,6 +615,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Policy = "admin.products.reverse")]
         public async Task<IActionResult> Reverse(int id)
         {
             if (id < 1)

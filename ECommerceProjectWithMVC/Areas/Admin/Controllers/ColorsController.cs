@@ -1,5 +1,6 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,7 +17,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         {
             this.db = db;
         }
-
+        [Authorize(Policy = "admin.colors.index")]
         public async Task<IActionResult> Index()
         {
             var data = await db.Colors.ToListAsync();
@@ -24,13 +25,14 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
-
+        [Authorize(Policy = "admin.colors.create")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Policy = "admin.colors.create")]
         public async Task<IActionResult> Create(Color color)
         {
 
@@ -61,7 +63,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
 
-
+        [Authorize(Policy = "admin.colors.detail")]
         public async Task<IActionResult> Detail(int id)
         {
             if (id < 1)
@@ -80,6 +82,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             return View(color);
         }
 
+        [Authorize(Policy = "admin.colors.edit")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id < 1)
@@ -105,6 +108,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "admin.colors.edit")]
         public async Task<IActionResult> Edit([FromRoute] int id, Color color)
         {
 
@@ -148,7 +152,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [Authorize(Policy = "admin.colors.delete")]
         public async Task<IActionResult> Delete( int id)
         {
             if (id < 1)
@@ -172,7 +176,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize(Policy = "admin.colors.reverse")]
         public async Task<IActionResult> Reverse(int id)
         {
             if (id < 1)

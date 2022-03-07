@@ -32,6 +32,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="AppCode\Modules\CategoryModule\" />
+    <Folder Include="AppCode\Modules\BrandModule\" />
     <Folder Include="wwwroot\admin-assets\libs\multiple-imager-js\img\" />
     <Folder Include="wwwroot\uploads\products\images\" />
   </ItemGroup>

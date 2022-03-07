@@ -1,28 +1,23 @@
+using ECommerceProjectWithMVC.AppCode.Providers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace ECommerceProjectWithMVC
 {
     public class Program
     {
-        internal static string[] policies = null;
         public static void Main(string[] args)
         {
 
             var types = Assembly.GetExecutingAssembly().GetTypes();
 
-
-            policies = types
+            AppClaimProvider.policies = types
                     .Where(t => typeof(ControllerBase).IsAssignableFrom(t) && t.IsDefined(typeof(AuthorizeAttribute), true))
                     .SelectMany(t => t.GetCustomAttributes<AuthorizeAttribute>())
                     .Union(types
@@ -37,12 +32,7 @@ namespace ECommerceProjectWithMVC
                     .Distinct()
                     .ToArray();
 
-
-
             CreateHostBuilder(args).Build().Run();
-
-
-            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

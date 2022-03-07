@@ -7328,9 +7328,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithMVC-Folder\\ECommerceProjectWithMVC\\ECommerceProjectWithMVC.csproj",
-      "projectName": "ECommerceProjectWithMVC",
-      "projectPath": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithMVC-Folder\\ECommerceProjectWithMVC\\ECommerceProjectWithMVC.csproj",
+      "projectUniqueName": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithMVC-Folder\\ECommerceProjectWithMVC\\ECommerceProjectWithMVC.WebUI.csproj",
+      "projectName": "ECommerceProjectWithMVC.WebUI",
+      "projectPath": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithMVC-Folder\\ECommerceProjectWithMVC\\ECommerceProjectWithMVC.WebUI.csproj",
       "packagesPath": "C:\\Users\\CalenLoki\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithMVC-Folder\\ECommerceProjectWithMVC\\obj\\",
       "projectStyle": "PackageReference",

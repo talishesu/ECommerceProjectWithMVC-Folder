@@ -12,7 +12,11 @@
                   <p class="card-description">
                       User List
                   </p>
-                  <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Users" asp-action="Create">Create User</a>
+                   @if (User.HasAccess("admin.users.create"))
+                                        {
+                                            <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Users" asp-action="Create">Create User</a>
+
+                                      }
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -58,17 +62,29 @@
 
                                 }
                               <td>
-                                    <a type="button" class="btn btn-success btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Users" asp-action="Detail">Detail</a>
+                                  @if (User.HasAccess("admin.users.detail"))
+                                        {
+                                            <a type="button" class="btn btn-success btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Users" asp-action="Detail">Detail</a>
+
+                                      }
                                         
                                   
                                   
                                     @if (item.LockoutEnd == null)
                                     {
-                                    <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Users" asp-action="Ban">Ban</a>
+                                         @if (User.HasAccess("admin.users.ban"))
+                                        {
+                                        <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Users" asp-action="Ban">Ban</a>
+
+                                      }
                                         
                                     }
                                     else{
-                                    <a type="button" class="btn btn-secondary btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Users" asp-action="Unban">Unban</a>
+                                        @if (User.HasAccess("admin.users.unban"))
+                                        {
+                                            <a type="button" class="btn btn-secondary btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Users" asp-action="Unban">Unban</a>
+
+                                      }
                                     }
                                 </td>
                             </tr>

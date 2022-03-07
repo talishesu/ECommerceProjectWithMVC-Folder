@@ -44,34 +44,40 @@
 
                     
                     <form class="forms-sample" method="post">
+                        <span class="text-danger" asp-validation-for="Roles"></span>
                         <h2>Roles</h2>
                         <div class="form-group">
+                            @{
+                                int index = 0;
+                            }
                                 @foreach (var item in Model.Roles)
                                {
-                                   <input type="hidden" name="SelectedRoles[@item.Item1].Id"  value="SuperAdmin">
+                                   <input type="hidden" name="SelectedRoles[@(index)].Id"  value="@item.Item1.Id">
                                  <div class="form-check">
                                     <label class="form-check-label">
-                                      <input type="checkbox" name="SelectedRoles[@item.Item1].Id" @(@item.Item2 ? "checked" : "")  class="form-check-input">
+                                      <input type="checkbox" name="SelectedRoles[@(index++)].Selected" @(@item.Item2 ? "checked" : "")  class="form-check-input">
                                       @item.Item1.Name
                                     <i class="input-helper"></i></label>
                                   </div>
                                }
                         </div>
-
+                        @{
+                                int index2 = 0;
+                            }
                         <h2>Claims</h2>
                         <div class="form-group">
                                 @foreach (var item in Model.Claims)
                                {
-                                   <input type="hidden" name="SelectedClaims[@item.Item1]"  value="@item.Item1">
+                                   <input type="hidden" name="SelectedClaims[@(index2)].ClaimType"  value="@item.Item1">
                                  <div class="form-check">
                                     <label class="form-check-label">
-                                      <input type="checkbox" name="SelectedClaims[@item.Item1]" @(item.Item2 ? "checked" : "") class="form-check-input">
+                                      <input type="checkbox" name="SelectedClaims[@(index2++)].Selected" @(item.Item2 ? "checked" : "") class="form-check-input">
                                       @item.Item1
                                     <i class="input-helper"></i></label>
                                   </div>
                                }
                         </div>
-
+                        <input type="hidden"   asp-for="User.Id">
                         <button type="submit" class="btn btn-success me-2">Submit</button>
                         <a class="btn btn-light" asp-area="Admin" asp-controller="Users" asp-action="Index">Cancel</a>
                     </form>

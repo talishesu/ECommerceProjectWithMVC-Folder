@@ -1,10 +1,10 @@
 using ECommerceProjectWithMVC.AppCode.Providers;
 using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities.Membership;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ECommerceProjectWithMVC
 {
@@ -59,10 +56,12 @@ namespace ECommerceProjectWithMVC
             services.AddScoped<UserManager<ShopUser>>();
             services.AddScoped<RoleManager<ShopRole>>();
 
+            services.AddScoped<IClaimsTransformation,AppClaimProvider>();
+
             services.AddAuthentication();
             services.AddAuthorization(cfg =>
             {
-                foreach (var claimName in Program.policies)
+                foreach (var claimName in AppClaimProvider.policies)
                 {
                     
 
@@ -117,8 +116,12 @@ namespace ECommerceProjectWithMVC
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
 
-            
+            }
+
 
             app.UseHttpsRedirection();
 

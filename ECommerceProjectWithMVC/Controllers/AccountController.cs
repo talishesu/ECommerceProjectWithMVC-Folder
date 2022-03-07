@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Riode.Application.Extensions;
+using ECommerceProjectWithMVC.AppCode.Extensions;
 using System.Threading.Tasks;
 
 namespace ECommerceProjectWithMVC.Controllers

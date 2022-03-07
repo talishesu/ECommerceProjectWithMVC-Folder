@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Riode.Application.Extensions
+namespace ECommerceProjectWithMVC.AppCode.Extensions
 {
     static public partial class Extension
     {

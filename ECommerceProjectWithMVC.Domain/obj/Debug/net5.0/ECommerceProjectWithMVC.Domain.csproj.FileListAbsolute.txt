@@ -1,0 +1,12 @@
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\bin\Debug\net5.0\ECommerceProjectWithMVC.Domain.deps.json
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\bin\Debug\net5.0\ECommerceProjectWithMVC.Domain.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\bin\Debug\net5.0\ref\ECommerceProjectWithMVC.Domain.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\bin\Debug\net5.0\ECommerceProjectWithMVC.Domain.pdb
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\obj\Debug\net5.0\ECommerceProjectWithMVC.Domain.csproj.AssemblyReference.cache
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\obj\Debug\net5.0\ECommerceProjectWithMVC.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\obj\Debug\net5.0\ECommerceProjectWithMVC.Domain.AssemblyInfoInputs.cache
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\obj\Debug\net5.0\ECommerceProjectWithMVC.Domain.AssemblyInfo.cs
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\obj\Debug\net5.0\ECommerceProjectWithMVC.Domain.csproj.CoreCompileInputs.cache
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\obj\Debug\net5.0\ECommerceProjectWithMVC.Domain.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\obj\Debug\net5.0\ref\ECommerceProjectWithMVC.Domain.dll
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC.Domain\obj\Debug\net5.0\ECommerceProjectWithMVC.Domain.pdb

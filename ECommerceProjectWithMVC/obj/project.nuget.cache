@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3ad2HazmzCgJJJCctfHlt3LIjndA9iEm7t3lg/k6fJcCSleLO6hN5SQ8UjN385U0ORFDxazJdV9fGYOSxCFLLg==",
+  "dgSpecHash": "FaibdA6mDW1KZokT3MZ7SGeIsjhAvD/ULYwIYi3nGwNsUYX96BAsqNMRNzFJBBU2QujBnHqhH2SzsXarWzdw0g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithMVC-Folder\\ECommerceProjectWithMVC\\ECommerceProjectWithMVC.csproj",
+  "projectFilePath": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithMVC-Folder\\ECommerceProjectWithMVC\\ECommerceProjectWithMVC.WebUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CalenLoki\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\CalenLoki\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.14\\microsoft.aspnetcore.cryptography.internal.5.0.14.nupkg.sha512",
