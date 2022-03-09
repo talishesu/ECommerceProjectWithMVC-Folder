@@ -45,6 +45,8 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
                         Email = adminEmail,
                         UserName = adminEmail,
                         EmailConfirmed = true,
+                        Name = "Admin",
+                        Surname="Admin"
                     };
 
                     var userResult = userManager.CreateAsync(adminUser, adminPassword).Result;

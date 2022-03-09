@@ -115,7 +115,8 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
-                aria-selected="false">Reviews (0)</a>
+                aria-selected="false">Reviews (@Model.Product.Comments.Count)</a>
+                
             </li>
           </ul>
           <div class="tab-content" id="myTabContent">
@@ -136,42 +137,44 @@
             </div>
             <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
               <div class="review-heading">REVIEWS</div>
-              <p class="mb-20">There are no reviews yet.</p>
-              <form class="review-form">
-                @*<div class="form-group">
-                  <label>Your rating</label>
-                  <div class="reviews-counter">
-                    <div class="rate">
-                      <input type="radio" id="star5" name="rate" value="5" />
-                      <label for="star5" title="text">5 stars</label>
-                      <input type="radio" id="star4" name="rate" value="4" />
-                      <label for="star4" title="text">4 stars</label>
-                      <input type="radio" id="star3" name="rate" value="3" />
-                      <label for="star3" title="text">3 stars</label>
-                      <input type="radio" id="star2" name="rate" value="2" />
-                      <label for="star2" title="text">2 stars</label>
-                      <input type="radio" id="star1" name="rate" value="1" />
-                      <label for="star1" title="text">1 star</label>
-                    </div>
-                  </div>
-                </div>*@
-                <div class="form-group">
-                  <label>Your message</label>
-                  <textarea class="form-control" rows="10"></textarea>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <input type="text" name="" class="form-control" placeholder="Name*">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <input type="text" name="" class="form-control" placeholder="Email Id*">
-                    </div>
-                  </div>
-                </div>
-                <button class="round-black-btn">Submit Review</button>
+                    @if(Model.Product.Comments.Count != 0)
+                    {
+                        @foreach (var item in Model.Product.Comments)
+                       {
+                           
+                           <div class="alert alert-light" role="alert">
+                               <p class="mb-20">@Model.Users.FirstOrDefault(P=>P.Id ==item.CreatedByUserId).Name @Model.Users.FirstOrDefault(P=>P.Id ==item.CreatedByUserId).Surname</p> 
+                              <p class="mb-20">@item.Comment</p>
+                            </div>
+                       }
+                    }
+                    else
+                    {
+                        <p class="mb-20">There are no reviews yet.</p>
+                    }
+                    <form method="post" asp-action="Index" asp-route-id="@Model.Product.Id" class="review-form">
+                        @*<div class="form-group">
+                          <label>Your rating</label>
+                          <div class="reviews-counter">
+                            <div class="rate">
+                              <input type="radio" id="star5" name="rate" value="5" />
+                              <label for="star5" title="text">5 stars</label>
+                              <input type="radio" id="star4" name="rate" value="4" />
+                              <label for="star4" title="text">4 stars</label>
+                              <input type="radio" id="star3" name="rate" value="3" />
+                              <label for="star3" title="text">3 stars</label>
+                              <input type="radio" id="star2" name="rate" value="2" />
+                              <label for="star2" title="text">2 stars</label>
+                              <input type="radio" id="star1" name="rate" value="1" />
+                              <label for="star1" title="text">1 star</label>
+                            </div>
+                          </div>
+                        </div>*@
+                        <div class="form-group">
+                          <label>Your message</label>
+                          <textarea class="form-control"  name="comment" rows="10"></textarea>
+                        </div>
+                        <button class="round-black-btn">Submit Review</button>
               </form>
             </div>
           </div>

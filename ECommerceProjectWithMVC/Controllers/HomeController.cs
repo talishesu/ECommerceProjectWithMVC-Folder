@@ -68,7 +68,7 @@ namespace ECommerceProjectWithMVC.Controllers
                     string token = Crypto.Encrypt($"{contact.Email}-{contact.CreatedTime.AddMinutes(20):yyyyMMddHHmm}-{contact.Id}", securityKey);
 
 
-                    string requestLink = $"{Request.Scheme}://{Request.Host}/contact-confirm?token={token}";
+                    string requestLink = $"{Request.Scheme}://{Request.Host}/contact-confirm.html?token={token}";
 
                     message.Body = $"Please verify by <a href='{requestLink}' target='_blank'>Link</a>";
                     message.IsBodyHtml = true;
@@ -94,7 +94,7 @@ namespace ECommerceProjectWithMVC.Controllers
             return View(contact);
         }
 
-        [HttpGet("/contact-confirm")]
+        [HttpGet("/contact-confirm.html")]
         public async Task<IActionResult> ContactConfirm(string token)
         {
             token = token.Replace(" ", "+");

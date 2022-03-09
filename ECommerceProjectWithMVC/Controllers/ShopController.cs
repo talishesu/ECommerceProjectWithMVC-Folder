@@ -1,4 +1,5 @@
 ﻿using ECommerceProjectWithMVC.Models.DataContexts;
+using ECommerceProjectWithMVC.Models.Entities;
 using ECommerceProjectWithMVC.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,32 +17,41 @@ namespace ECommerceProjectWithMVC.Controllers
         {
             this.db = db;
         }
-        public async Task<IActionResult> Index(int CategoryId, int BrandId)
+        public async Task<IActionResult> Index(int CategoryId, int BrandId,int pageIndex=1,int pageSize = 12)
         {
             var vm = new ShopViewModel();
             if (CategoryId == 0 && BrandId == 0)
             {
-                vm.Products = await db.Products
+                var products = await db.Products
                 .Include(p => p.Images.Where(i => i.DeletedTime == null))
                 .Where(b => b.DeletedTime == null).ToListAsync();
+                vm.Products = new PagedViewModel<Product>(products, pageIndex, pageSize);
             }
             else if(CategoryId == 0)
             {
-                vm.Products = await db.Products
+                var products = await db.Products
                 .Include(p => p.Images.Where(i => i.DeletedTime == null))
-                .Where(b => b.DeletedTime == null &&  b.BrandId == BrandId).ToListAsync();
+                .Where(b => b.DeletedTime == null && b.BrandId == BrandId).ToListAsync();
+                vm.Products = new PagedViewModel<Product>(products, pageIndex, pageSize);
+
+
+                
             }else if(BrandId == 0)
             {
-                vm.Products = await db.Products
+                var products = await db.Products
                 .Include(p => p.Images.Where(i => i.DeletedTime == null))
-                .Where(b => b.DeletedTime == null && b.CategoryId == CategoryId ).ToListAsync();
+                .Where(b => b.DeletedTime == null && b.CategoryId == CategoryId).ToListAsync();
+                vm.Products = new PagedViewModel<Product>(products, pageIndex, pageSize);
+                
             }
             else
             {
-                vm.Products = await db.Products
+                var products = await db.Products
                 .Include(p => p.Images.Where(i => i.DeletedTime == null))
                 .Where(b => b.DeletedTime == null && b.CategoryId == CategoryId && b.BrandId == BrandId).ToListAsync();
+                vm.Products = new PagedViewModel<Product>(products, pageIndex, pageSize);
             }
+
 
             
             vm.Brands = await db.Brands.Where(b => b.DeletedTime == null).ToListAsync();

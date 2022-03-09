@@ -1,4 +1,5 @@
 ﻿using ECommerceProjectWithMVC.Models.Entities;
+using ECommerceProjectWithMVC.Models.Entities.Membership;
 using System.Collections.Generic;
 
 namespace ECommerceProjectWithMVC.Models.ViewModels
@@ -10,5 +11,6 @@ namespace ECommerceProjectWithMVC.Models.ViewModels
         public List<Specification> Specifications { get; set; }
         public List<SpecificationProductItem> SpecificationProductItems { get; set; }
         public List<ProductPricing> ProductPricings { get; set; }
+        public List<ShopUser> Users { get; set; }
     }
 }

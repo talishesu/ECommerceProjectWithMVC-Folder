@@ -22,6 +22,7 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
         public DbSet<ProductImages> ProductImages { get; set; }
         public DbSet<SpecificationProductItem> SpecificationProductItems { get; set; }
         public DbSet<ProductPricing> ProductPricings { get; set; }
+        public DbSet<ProductComment> ProductComments { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

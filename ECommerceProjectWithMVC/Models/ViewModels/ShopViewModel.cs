@@ -5,7 +5,7 @@ namespace ECommerceProjectWithMVC.Models.ViewModels
 {
     public class ShopViewModel
     {
-        public List<Product> Products { get; set; }
+        public PagedViewModel<Product> Products { get; set; }
         public List<Category> Categories { get; set; }
         public List<Brand> Brands { get; set; }
         public List<ProductPricing> ProductPricings { get; set; }

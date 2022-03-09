@@ -242,6 +242,7 @@ namespace ECommerceProjectWithMVC.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
@@ -265,6 +266,7 @@ namespace ECommerceProjectWithMVC.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -413,6 +415,41 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.ProductComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Confirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("CreatedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductComments");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.ProductImages", b =>
@@ -678,6 +715,17 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.ProductComment", b =>
+                {
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.ProductImages", b =>
                 {
                     b.HasOne("ECommerceProjectWithMVC.Models.Entities.Product", "Product")
@@ -766,6 +814,8 @@ namespace ECommerceProjectWithMVC.Migrations
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Product", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Images");
 
                     b.Navigation("PriceList");

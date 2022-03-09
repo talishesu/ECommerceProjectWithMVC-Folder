@@ -29,7 +29,7 @@ namespace ECommerceProjectWithMVC.Models.Entities
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
-
+        public virtual ICollection<ProductComment> Comments { get; set; }
         public virtual ICollection<ProductImages> Images { get; set; }
         public virtual ICollection<SpecificationProductItem> SpecificationItems { get; set; }
         public virtual ICollection<ProductPricing> PriceList { get; set; }

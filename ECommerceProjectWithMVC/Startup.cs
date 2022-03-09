@@ -55,7 +55,8 @@ namespace ECommerceProjectWithMVC
 
 
             services.AddIdentity<ShopUser, ShopRole>()
-                .AddEntityFrameworkStores<ShopDbContext>();
+                .AddEntityFrameworkStores<ShopDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddScoped<SignInManager<ShopUser>>();
             services.AddScoped<UserManager<ShopUser>>();
