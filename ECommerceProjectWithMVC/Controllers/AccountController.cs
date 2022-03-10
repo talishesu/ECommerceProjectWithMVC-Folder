@@ -338,8 +338,12 @@ namespace ECommerceProjectWithMVC.Controllers
 
         [AllowAnonymous]
         [Route("/new-password.html")]
-        public async Task<IActionResult> NewPassword()
+        public async Task<IActionResult> NewPassword(string email, string token)
         {
+            if (email == null || token == null)
+            {
+                return BadRequest();
+            }
             return View();
         }
 
@@ -350,6 +354,12 @@ namespace ECommerceProjectWithMVC.Controllers
         [Route("/new-password.html")]
         public async Task<IActionResult> NewPassword(string email, string token, string newPassword)
         {
+            if(email == null||token == null || newPassword == null)
+            {
+                return BadRequest();
+            }
+
+
             token = token.Replace(" ", "+");
             ShopUser foundedUser = null;
             if (email.IsEmail())

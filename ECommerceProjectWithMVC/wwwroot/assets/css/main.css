@@ -1,6 +1,9 @@
 @import url(/assets/css/variable.css);
 @import url(//fonts.googleapis.com/css?family=Lato:400);
 
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -13,7 +16,8 @@
   }
 }
 * {
-  font-family: "Lato", sans-serif;
+    /*font-family: "Lato", sans-serif;*/
+    font-family: 'Montserrat', sans-serif;
 }
 body {
   background: linear-gradient(
@@ -94,7 +98,13 @@ body {
 
 /* home */
 nav {
-  transition: 0.3s;
+    transition: 0.3s;
+    font-weight: 600;
+
+}
+.nav-item{
+    padding-right :20px;
+    text-transform:uppercase;
 }
 /* carousel */
 .custom-button {

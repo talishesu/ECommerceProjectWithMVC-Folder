@@ -1,6 +1,7 @@
 using ECommerceProjectWithMVC.AppCode.Providers;
 using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities.Membership;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -12,8 +13,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using MediatR;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace ECommerceProjectWithMVC
 {
@@ -25,7 +24,6 @@ namespace ECommerceProjectWithMVC
             this.configuration = configuration;
         }
 
-        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)

@@ -15,6 +15,7 @@
                     @{
                         var MainPhoto = Model.ProductImages.FirstOrDefault(p => p.IsMain == true);
                     }
+
                     @if(MainPhoto != null)
                     {
                         <div class="item">

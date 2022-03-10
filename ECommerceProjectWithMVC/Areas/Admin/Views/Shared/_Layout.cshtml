@@ -75,7 +75,6 @@
                 @*<img class="img-md rounded-circle" src="~/admin-assets/images/faces/face1.jpg" alt="Profile image">*@
                 <p class="mb-1 mt-3 font-weight-semibold">@User.ClaimValue("FullName")</p>
               </div>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile </a>
               <a asp-area="" asp-controller="Account" asp-action="Signout" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
             </div>
           </li>
@@ -260,12 +259,12 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          <li class="nav-item">
+          @*<li class="nav-item">
             <a class="nav-link" asp-area="Admin" asp-controller="Account" asp-action="Profile">
               <i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>
               <span class="menu-title">@User.ClaimValue("FullName")</span>
             </a>
-          </li>
+          </li>*@
           @if(User.HasAccess("admin.dashboard.index")){
               <li class="nav-item">
                 <a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
@@ -319,6 +318,14 @@
                 <a class="nav-link" asp-area="Admin" asp-controller="Products" asp-action="Index">
                   <i class="mdi mdi-grid-large menu-icon"></i>
                   <span class="menu-title">Products</span>
+                </a>
+              </li>
+          }
+          @if(User.HasAccess("admin.comments.index")){
+              <li class="nav-item">
+                <a class="nav-link" asp-area="Admin" asp-controller="Comments" asp-action="Index">
+                  <i class="mdi mdi-grid-large menu-icon"></i>
+                  <span class="menu-title">Comments</span>
                 </a>
               </li>
           }

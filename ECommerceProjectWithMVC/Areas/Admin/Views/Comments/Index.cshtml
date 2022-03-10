@@ -1,0 +1,86 @@
+﻿@model List<ProductComment>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+        @if (Model.Any())
+        {
+               <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Comments</h4>
+                  <p class="card-description">
+                      Comment List
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>User Id</th>
+                          <th>Name</th>
+                          <th>Created Time</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach (var item in Model)
+                       {
+                           <tr>
+                              <td>@item.Id</td>
+                              <td>@item.CreatedByUserId</td>
+                              <td>@item.Comment</td>
+                              <td>@item.CreatedTime</td>
+                              <td>
+                                            
+                                            @if(item.DeletedTime == null)
+                                        {
+                                            @if (User.HasAccess("admin.comments.delete"))
+                                            {
+                                                <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Comments" asp-action="Delete">Delete</a>
+                                                
+                                            }
+                                        }else{
+                                            @if (User.HasAccess("admin.comments.reverse"))
+                                            {
+                                                <a type="button" class="btn btn-light btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Comments" asp-action="Reverse">Reverse</a>
+                                                
+                                            }
+                                        }
+                                        @if(item.Confirmed == false)
+                                        {
+                                            @if (User.HasAccess("admin.comments.confirm"))
+                                            {
+                                                <a type="button" class="btn btn-success btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Comments" asp-action="Confirm">Confirm</a>
+                                                
+                                            }
+                                        }else{
+                                            @if (User.HasAccess("admin.comments.unconfirm"))
+                                            {
+                                                <a type="button" class="btn btn-warning btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Comments" asp-action="UnConfirm">Un Confirm</a>
+                                                
+                                            }
+                                        }
+                                    </td>
+                            </tr>
+                       }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              }
+    else
+        {
+            <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Comments</h4>
+                  <p class="card-description">
+                      There Is No Comment
+                  </p>
+                  <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Comments" asp-action="Create">Create Comment</a>
+                </div>
+            </div>
+        }
+</div>
+
