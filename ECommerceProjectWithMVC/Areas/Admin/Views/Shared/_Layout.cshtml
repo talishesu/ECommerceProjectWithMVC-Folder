@@ -329,6 +329,22 @@
                 </a>
               </li>
           }
+          @if(User.HasAccess("admin.roles.index")){
+              <li class="nav-item">
+                <a class="nav-link" asp-area="Admin" asp-controller="Roles" asp-action="Index">
+                  <i class="mdi mdi-grid-large menu-icon"></i>
+                  <span class="menu-title">Roles</span>
+                </a>
+              </li>
+          }
+          @if(User.HasAccess("admin.contacts.index")){
+              <li class="nav-item">
+                <a class="nav-link" asp-area="Admin" asp-controller="Contacts" asp-action="Index">
+                  <i class="mdi mdi-grid-large menu-icon"></i>
+                  <span class="menu-title">Contacts</span>
+                </a>
+              </li>
+          }
           @if(User.HasAccess("admin.users.index")){
               <li class="nav-item">
                 <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">

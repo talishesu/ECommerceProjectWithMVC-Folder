@@ -23,6 +23,7 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
         public DbSet<SpecificationProductItem> SpecificationProductItems { get; set; }
         public DbSet<ProductPricing> ProductPricings { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
+        public DbSet<UserCardItem> UserCardItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -43,7 +44,10 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
             {
                 e.HasKey(k => new { k.SizeId, k.ProductId,k.ColorId });
             });
-
+            modelBuilder.Entity<UserCardItem>(e =>
+            {
+                e.HasKey(k => new { k.UserId, k.ProductPricingId});
+            });
             #region Membership
 
 

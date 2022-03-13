@@ -1,4 +1,4 @@
-﻿
+﻿@model ProfileViewModel
 @{
     ViewData["Title"] = "Profile";
 }
@@ -55,22 +55,34 @@
                   aria-labelledby="tab1"
                 >
                   <div class="d-flex justify-content-center align-items-center">
-                    <img
-                      width="150px"
-                      style="border-radius: 50%"
-                      src="https://cdn2.vectorstock.com/i/1000x1000/20/76/man-avatar-profile-vector-21372076.jpg"
-                      alt=""
-                      srcset=""
-                    />
-                    <form action="" class="container">
+                      
+                    <form method="post" class="container" asp-action="Profile">
                       <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupFile01"
-                          >Profile Image</label
+                        <span class="input-group-text" id="basic-addon1"
+                          >Email</span
                         >
                         <input
-                          type="file"
+                          type="email"
                           class="form-control"
-                          id="inputGroupFile01"
+                          placeholder="Email"
+                          aria-label="Email"
+                          value="@Model.User.Email"
+                          disabled
+                          aria-describedby="basic-addon1"
+                        />
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"
+                          >Username</span
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Username"
+                          aria-label="Username"
+                          value="@Model.User.UserName"
+                          name="Username"
+                          aria-describedby="basic-addon1"
                         />
                       </div>
                       <div class="input-group mb-3">
@@ -82,21 +94,26 @@
                           class="form-control"
                           placeholder="Name"
                           aria-label="Name"
+                          value="@Model.User.Name"
+                          name="Name"
                           aria-describedby="basic-addon1"
                         />
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"
-                          >Email</span
+                          >Surname</span
                         >
                         <input
-                          type="email"
+                          type="text"
                           class="form-control"
-                          placeholder="Email"
-                          aria-label="Email"
+                          placeholder="Surname"
+                          aria-label="Surname"
+                          value="@Model.User.Surname"
+                          name="Surname"
                           aria-describedby="basic-addon1"
                         />
                       </div>
+                      
                       <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"
                           >Password</span
@@ -106,9 +123,11 @@
                           class="form-control"
                           placeholder="Password"
                           aria-label="Password"
+                          name="Password"
                           aria-describedby="basic-addon1"
                         />
                       </div>
+                      <span class="text-danger">@ViewBag.Error</span>
                       <div class="container">
                         <button type="submit" class="btn btn-primary">
                           Submit
@@ -116,6 +135,7 @@
                         <a asp-area="" asp-controller="Account" asp-action="Signout" type="submit" class="btn btn-danger">
                           Sign Out
                         </a>
+                        <a class="btn btn-light" href="/forget-password.html">Change your Password</a>
                       </div>
                     </form>
                   </div>
@@ -161,70 +181,28 @@
                   aria-labelledby="tab3"
                 >
                   <ol class="list-group list-group-numbered">
-                    <li class="list-group-item">
-                      <p>
-                        Product Url: <a href="./product-detail.html">G Pro x</a>
-                      </p>
-                      <p>Price :99$</p>
-                      <div class="alert alert-danger" role="alert">
-                        Comment: Lorem ipsum, dolor sit amet consectetur
-                        adipisicing elit. Cum voluptatum reiciendis consequuntur
-                        porro in sapiente laboriosam consectetur atque natus
-                        nam, labore minus, suscipit magni iure accusantium non,
-                        perferendis ducimus quisquam. Iure officiis veniam eum
-                        cupiditate accusantium corrupti autem quo optio ex id
-                        aliquam, mollitia, inventore cumque tenetur blanditiis!
-                        Doloremque, aliquam.
-                      </div>
-                    </li>
-                    <li class="list-group-item">
-                      <p>
-                        Product Url: <a href="./product-detail.html">G Pro x</a>
-                      </p>
-                      <p>Price :99$</p>
-                      <div class="alert alert-danger" role="alert">
-                        Comment: Lorem ipsum, dolor sit amet consectetur
-                        adipisicing elit. Cum voluptatum reiciendis consequuntur
-                        porro in sapiente laboriosam consectetur atque natus
-                        nam, labore minus, suscipit magni iure accusantium non,
-                        perferendis ducimus quisquam. Iure officiis veniam eum
-                        cupiditate accusantium corrupti autem quo optio ex id
-                        aliquam, mollitia, inventore cumque tenetur blanditiis!
-                        Doloremque, aliquam.
-                      </div>
-                    </li>
-                    <li class="list-group-item">
-                      <p>
-                        Product Url: <a href="./product-detail.html">G Pro x</a>
-                      </p>
-                      <p>Price :99$</p>
-                      <div class="alert alert-danger" role="alert">
-                        Comment: Lorem ipsum, dolor sit amet consectetur
-                        adipisicing elit. Cum voluptatum reiciendis consequuntur
-                        porro in sapiente laboriosam consectetur atque natus
-                        nam, labore minus, suscipit magni iure accusantium non,
-                        perferendis ducimus quisquam. Iure officiis veniam eum
-                        cupiditate accusantium corrupti autem quo optio ex id
-                        aliquam, mollitia, inventore cumque tenetur blanditiis!
-                        Doloremque, aliquam.
-                      </div>
-                    </li>
-                    <li class="list-group-item">
-                      <p>
-                        Product Url: <a href="./product-detail.html">G Pro x</a>
-                      </p>
-                      <p>Price :99$</p>
-                      <div class="alert alert-danger" role="alert">
-                        Comment: Lorem ipsum, dolor sit amet consectetur
-                        adipisicing elit. Cum voluptatum reiciendis consequuntur
-                        porro in sapiente laboriosam consectetur atque natus
-                        nam, labore minus, suscipit magni iure accusantium non,
-                        perferendis ducimus quisquam. Iure officiis veniam eum
-                        cupiditate accusantium corrupti autem quo optio ex id
-                        aliquam, mollitia, inventore cumque tenetur blanditiis!
-                        Doloremque, aliquam.
-                      </div>
-                    </li>
+                      @foreach (var item in Model.Comments)
+                     {
+                        if(item.Product.DeletedTime == null){
+                            <li class="list-group-item">
+                          <p>
+                           <a href="/product/index/@item.Product.Id">@item.Product.Name</a>
+                          </p>
+                          @if(item.Confirmed == false){
+                              <div class="alert alert-danger" role="alert">
+                                @item.Comment
+                              </div>
+                              <span class="text-danger">Not Confirmed</span>
+                          }else{
+                              <div class="alert alert-success" role="alert">
+                                @item.Comment
+                              </div>
+                              <span class="text-success">Confirmed</span>
+                          }
+                        </li>
+                        }
+                     }
+                    
                   </ol>
                 </div>
               </div>

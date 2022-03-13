@@ -24,19 +24,6 @@
                         <h1 class="display-4">Email: Not Have Email Address</h1>
                     }
 
-                    
-                    @if(Model.User.PhoneNumber != null){
-                        <h1 class="display-4">Phone: @Model.User.PhoneNumber</h1>
-                        <h1 class="display-4">Phone Confirmed:</h1>
-                        @if(Model.User.PhoneNumberConfirmed == true){
-                            <span class="badge badge-success">Confirmed</span>
-                          }else{
-                            <span class="badge badge-danger">Not Confirmed</span>
-                          }
-                    }else{
-                        <h1 class="display-4">Phone: Not Have Phone Number</h1>
-                    }
-
 
                     @if(Model.User.LockoutEnd != null){
                         <h1 class="display-4">Ban End Time: @Model.User.LockoutEnd</h1>

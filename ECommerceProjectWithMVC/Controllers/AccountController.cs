@@ -12,6 +12,8 @@ using System.Net.Mail;
 using Shop.Cryptolib;
 using System;
 using System.Net;
+using System.Linq;
+using ECommerceProjectWithMVC.Models.ViewModels;
 
 namespace ECommerceProjectWithMVC.Controllers
 {
@@ -43,13 +45,7 @@ namespace ECommerceProjectWithMVC.Controllers
             if (ModelState.IsValid)
             {
                 ShopUser founded = null;
-                bool appliedPhoneLogin = false;
-                if (model.UserName.IsPhone())
-                {
-                    appliedPhoneLogin = true;
-                    founded = await db.Users.FirstOrDefaultAsync(u=>u.PhoneNumber.Equals(model.UserName));
-                }
-                else if(model.UserName.IsEmail())
+                if(model.UserName.IsEmail())
                 {
                     founded = await userManager.FindByEmailAsync(model.UserName);
                 }else{
@@ -61,11 +57,7 @@ namespace ECommerceProjectWithMVC.Controllers
                     goto end;
                 }
 
-                if(appliedPhoneLogin && founded.PhoneNumberConfirmed == false)
-                {
-                    ViewBag.Message = "Your Phone Number Not Confirmed!";
-                    return View(model);
-                }else if(founded.EmailConfirmed == false)
+                if(founded.EmailConfirmed == false)
                 {
                     ViewBag.Message = "Your Email Address Not Confirmed!";
                     return View(model);
@@ -258,7 +250,7 @@ namespace ECommerceProjectWithMVC.Controllers
 
         [AllowAnonymous]
         [Route("/forget-password.html")]
-        public async Task<IActionResult> ForgetPassword()
+        public IActionResult ForgetPassword()
         {
             return View();
         }
@@ -301,7 +293,7 @@ namespace ECommerceProjectWithMVC.Controllers
             int port = Convert.ToInt32(configuration["emailAccount:port"]);
 
             MailAddress fromAddress = new MailAddress(userName, displayName);
-            MailAddress toAddress = new MailAddress(email);
+            MailAddress toAddress = new MailAddress(founded.Email);
 
             MailMessage message = new MailMessage(fromAddress, toAddress);
             message.Subject = "Please verify with link...";
@@ -404,9 +396,127 @@ namespace ECommerceProjectWithMVC.Controllers
             return RedirectToAction("Index","Home");
         }
 
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
-            return View();
+            
+            var userId = User.GetPrincipalId().ToString();
+            if(userId != null)
+            {
+                var user = await userManager.FindByIdAsync(userId);
+
+
+                var commentsByUser = await db.ProductComments.Where(pc=>pc.CreatedByUserId == user.Id &&pc.DeletedTime == null)
+                    .Include(p=>p.Product).Where(p=>p.DeletedTime == null)
+                    .ToListAsync();
+
+                var vm = new ProfileViewModel();
+
+                vm.User = user;
+                vm.Comments = commentsByUser;
+
+                return View(vm);
+
+            }
+            return RedirectToAction("Signin");
+            
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Profile(ChangeProfileDataFormModel model)
+        {
+            var userId = User.GetPrincipalId().ToString();
+            if (!ModelState.IsValid)
+            {
+                
+                if (userId != null)
+                {
+                    ViewBag.Error = "Fill in all the cells!";
+                    var user = await userManager.FindByIdAsync(userId);
+
+
+                    var commentsByUser = await db.ProductComments.Where(pc => pc.CreatedByUserId == user.Id && pc.DeletedTime == null)
+                        .Include(p => p.Product).Where(p => p.DeletedTime == null)
+                        .ToListAsync();
+
+                    var vm = new ProfileViewModel();
+
+                    vm.User = user;
+                    vm.Comments = commentsByUser;
+
+                    return View(vm);
+                }
+                return RedirectToAction("Signin");
+            }
+            else
+            {
+
+                var user = await userManager.FindByIdAsync(userId);
+                if(user == null)
+                {
+                    return BadRequest();
+                }
+
+                var result = await userManager.CheckPasswordAsync(user, model.Password);
+                if(result != true)
+                {
+                    ViewBag.Error = "Password Incorrect!";
+                    if (userId != null)
+                    {
+
+
+                        var commentsByUser = await db.ProductComments.Where(pc => pc.CreatedByUserId == user.Id && pc.DeletedTime == null)
+                            .Include(p => p.Product).Where(p => p.DeletedTime == null)
+                            .ToListAsync();
+
+                        var vm = new ProfileViewModel();
+
+                        vm.User = user;
+                        vm.Comments = commentsByUser;
+
+                        return View(vm);
+                    }
+                    return RedirectToAction("Signin");
+                }
+                else
+                {
+                    user.Name = model.Name;
+                    user.Surname = model.Surname;
+                    var result2 = await  userManager.SetUserNameAsync(user,model.Username);
+                    if (result2.Succeeded)
+                    {
+                        await db.SaveChangesAsync();
+                        return View(user);
+                    }
+                    else
+                    {
+                        ViewBag.Error = "Username All ready Taken!";
+                        if (userId != null)
+                        {
+
+
+                            var commentsByUser = await db.ProductComments.Where(pc => pc.CreatedByUserId == user.Id && pc.DeletedTime == null)
+                                .Include(p => p.Product).Where(p => p.DeletedTime == null)
+                                .ToListAsync();
+
+                            var vm = new ProfileViewModel();
+
+                            vm.User = user;
+                            vm.Comments = commentsByUser;
+
+                            return View(vm);
+                        }
+                        return RedirectToAction("Signin");
+                    }
+                    
+                }
+
+                
+            }
+
+
+
+            
         }
     }
 }

@@ -1,0 +1,68 @@
+﻿@model List<ShopRole>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+        @if (Model.Any())
+        {
+               <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Roles</h4>
+                  <p class="card-description">
+                      Role List
+                  </p>
+                  @if (User.HasAccess("admin.roles.create"))
+                  {
+                    <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Roles" asp-action="Create">Create Role</a>
+                                                
+                   }
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>Name</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach (var item in Model)
+                       {
+                           <tr>
+                              <td>@item.Id</td>
+                              <td>@item.Name</td>
+                              <td>
+                                  @if (User.HasAccess("admin.roles.detail"))
+                                        {
+                                            <a type="button" class="btn btn-success btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Roles" asp-action="Detail">Detail</a>
+
+                                      }
+                                      @if (User.HasAccess("admin.roles.delete"))
+                                        {
+                                            <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Roles" asp-action="Delete">Delete</a>
+
+                                      }
+                              </td>
+                           </tr>
+                       }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              }
+    else
+        {
+            <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Roles</h4>
+                  <p class="card-description">
+                      There Is No Role
+                  </p>
+                  <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Roles" asp-action="Create">Create Role</a>
+                </div>
+            </div>
+        }
+</div>
+

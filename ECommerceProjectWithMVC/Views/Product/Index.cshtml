@@ -74,13 +74,14 @@
               <p>
                   @Model.Product.ShortDescription
               </p>
+              <form asp-action="AddToCard" method="post" >
               <div class="row">
                 <div class="col-md-6">
                   <label for="color">Color</label>
-                  <select id="color" name="color" class="form-control">
+                  <select id="color" name="colorId" class="form-control" >
                     @foreach (var item in Model.ProductPricings)
                    {
-                       <option>@item.Color.Name</option>
+                       <option  value=@item.ColorId>@item.Color.Name</option>
                    }
                   </select>
                 </div>
@@ -88,23 +89,25 @@
               <div class="row">
                 <div class="col-md-6">
                   <label for="size">Size</label>
-                  <select id="size" name="size" class="form-control">
+                  <select id="size" name="sizeId" class="form-control">
                     @foreach (var item in Model.ProductPricings)
                    {
-                       <option>@item.Size.Name</option>
+                       <option value=@item.SizeId>@item.Size.Name</option>
                    }
                   </select>
                 </div>
               </div>
               <div class="product-count">
                 <label for="size">Quantity</label>
-                <form action="#" class="display-flex">
+                
                   <div class="qtyminus">-</div>
-                  <input type="text" name="quantity" value="1"  class="qty">
+                  <input type="text" name="count" value="1"  class="qty">
                   <div class="qtyplus">+</div>
-                </form>
-                <a href="#" class="round-black-btn">Add to Cart</a>
+                
+                <button type="submit" class="round-black-btn">Add to Cart</button>
               </div>
+              <input value="@Model.Product.Id" name="productId" type="hidden">
+              </form>
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 {
@@ -20,11 +21,13 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
     
         readonly ShopDbContext db;
         readonly IMediator mediator;
-        public UsersController(ShopDbContext db,IMediator mediator)
+        readonly UserManager<ShopUser> userManager;
+        public UsersController(ShopDbContext db,IMediator mediator, UserManager<ShopUser> userManager)
         {
 
             this.db = db;
             this.mediator = mediator;
+            this.userManager = userManager;
         }
 
 
@@ -101,40 +104,40 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
             var selectedRoles =  fm.SelectedRoles.Where(sr => sr.Selected == true).ToList();
             var selectedClaims = fm.SelectedClaims.Where(sr => sr.Selected == true).ToList();
-            if (selectedRoles.Count < 1)
-            {
-                ModelState.AddModelError("Roles", "At least 1 role must be selected!");
-            }
+            //if (selectedRoles.Count < 1)
+            //{
+            //    ModelState.AddModelError("Roles", "At least 1 role must be selected!");
+            //}
 
 
-            if (!ModelState.IsValid)
-            {
-                var user = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
+            //if (!ModelState.IsValid)
+            //{
+            //    var user = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
 
-                if (user == null)
-                {
-                    return NotFound();
-                }
+            //    if (user == null)
+            //    {
+            //        return NotFound();
+            //    }
 
-                var vm = new UserViewModel
-                {
-                    User = user
-                };
+            //    var vm = new UserViewModel
+            //    {
+            //        User = user
+            //    };
 
-                vm.Roles = await (from r in db.Roles
-                                  join ur in db.UserRoles.Where(_ => _.UserId == user.Id) on r.Id equals ur.RoleId into ljUr
-                                  from jUr in ljUr.DefaultIfEmpty()
-                                  select Tuple.Create(r, jUr != null)).ToListAsync();
-
-
-                vm.Claims = (from p in AppClaimProvider.policies
-                             join uc in db.UserClaims.Where(_ => _.UserId == user.Id && _.ClaimValue.Equals("1")) on p equals uc.ClaimType into ljUc
-                             from jUc in ljUc.DefaultIfEmpty()
-                             select Tuple.Create(p, jUc != null)).ToList();
+            //    vm.Roles = await (from r in db.Roles
+            //                      join ur in db.UserRoles.Where(_ => _.UserId == user.Id) on r.Id equals ur.RoleId into ljUr
+            //                      from jUr in ljUr.DefaultIfEmpty()
+            //                      select Tuple.Create(r, jUr != null)).ToListAsync();
 
 
-                return View(vm);
-            }
+            //    vm.Claims = (from p in AppClaimProvider.policies
+            //                 join uc in db.UserClaims.Where(_ => _.UserId == user.Id && _.ClaimValue.Equals("1")) on p equals uc.ClaimType into ljUc
+            //                 from jUc in ljUc.DefaultIfEmpty()
+            //                 select Tuple.Create(p, jUc != null)).ToList();
+
+
+            //    return View(vm);
+            //}
 
 
             var allUserRoles = await db.UserRoles.Where(ur=>ur.UserId == id).ToListAsync();
@@ -190,18 +193,57 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         }
 
 
-        [HttpPost]
         [Authorize(Policy = "admin.users.ban")]
-        public IActionResult Ban()
+        public async Task<IActionResult> Ban(int id)
         {
-            return View();
+            var user = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+
+
+            var nowTime = DateTime.Now;
+            nowTime = nowTime.AddDays(7);
+            var result = await userManager.SetLockoutEnabledAsync(user,true);
+            var result2 = await userManager.SetLockoutEndDateAsync(user, nowTime);
+
+
+
+            if(result.Succeeded && result2.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
         }
 
-        [HttpPost]
         [Authorize(Policy = "admin.users.unban")]
-        public IActionResult Unban()
+        public async Task<IActionResult> Unban(int id)
         {
-            return View();
+            var user = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var nowTime = DateTime.Now;
+            nowTime = nowTime.AddMilliseconds(1);
+            
+
+
+            var result2 = await userManager.SetLockoutEndDateAsync(user, null);
+
+
+            if (result2.Succeeded)
+            {
+                var result = await userManager.SetLockoutEnabledAsync(user, false);
+            }
+
+
+            return RedirectToAction("Index");
         }
     }
 }

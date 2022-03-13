@@ -1,0 +1,24 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Contacts</h4>
+                  <p class="card-description">
+                      @Model.Name Contact Detail
+                  </p>
+                    <h1 class="display-4">Name: @Model.Name</h1>
+                    <h1 class="display-4">Email: @Model.Email</h1>
+                    <h1 class="display-4">Message: @Model.Message</h1>
+                    <h1 class="display-4">Created Time: @Model.CreatedTime</h1>
+                    @if(Model.Answered == true){
+                        <h1 class="display-4">Answered Time: @Model.AnswerTime</h1>
+                        <h1 class="display-4">Answered By User Id: @Model.AnsweredByUserId</h1>
+                        <h1 class="display-4">Answer Message: @Model.AnswerMessage</h1>
+                    }
+                </div>
+              </div>
+            </div>

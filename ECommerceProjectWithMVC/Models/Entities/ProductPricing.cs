@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceProjectWithMVC.Models.Entities
@@ -24,6 +25,7 @@ namespace ECommerceProjectWithMVC.Models.Entities
 
 
         public double Price { get; set; }
+
 
 
 

@@ -1,0 +1,45 @@
+﻿@model RoleViewModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Roles</h4>
+                  <p class="card-description">
+                      @Model.Role.Name Role Detail
+                  </p>
+                  
+                    <h1 class="display-4">Name: @Model.Role.Name</h1>
+
+                    
+                    <form class="forms-sample" method="post">
+                        <span class="text-danger" asp-validation-for="Claims"></span>
+                        @{
+                                int index2 = 0;
+                            }
+                        <h2>Claims</h2>
+                        <div class="form-group">
+                                @foreach (var item in Model.Claims)
+                               {
+                                   <input type="hidden" name="SelectedClaims[@(index2)].ClaimType"  value="@item.Item1">
+                                 <div class="form-check">
+                                    <label class="form-check-label">
+                                      <input type="checkbox" name="SelectedClaims[@(index2++)].Selected" @(item.Item2 ? "checked" : "") class="form-check-input">
+                                      @item.Item1
+                                    <i class="input-helper"></i></label>
+                                  </div>
+                               }
+                        </div>
+                        <input type="hidden"   asp-for="Role.Id">
+                        <button type="submit" class="btn btn-success me-2">Submit</button>
+                        <a class="btn btn-light" asp-area="Admin" asp-controller="Roles" asp-action="Index">Cancel</a>
+                    </form>
+                </div>
+              </div>
+            </div>
+@section addjs{
+ <script src="~/assets/libraries/jquery-validate/jquery.validate.min.js"></script>
+ <script src="~/assets/libraries/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -636,6 +636,33 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.ToTable("SpecificationProductItems");
                 });
 
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.UserCardItem", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductPricingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductPricingColorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductPricingProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductPricingSizeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "ProductPricingId");
+
+                    b.HasIndex("ProductPricingSizeId", "ProductPricingProductId", "ProductPricingColorId");
+
+                    b.ToTable("UserCardItems");
+                });
+
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Category", b =>
                 {
                     b.HasOne("ECommerceProjectWithMVC.Models.Entities.Category", "Parent")
@@ -800,6 +827,25 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Specification");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.UserCardItem", b =>
+                {
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.Membership.ShopUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.ProductPricing", "ProductPricing")
+                        .WithMany()
+                        .HasForeignKey("ProductPricingSizeId", "ProductPricingProductId", "ProductPricingColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductPricing");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Category", b =>

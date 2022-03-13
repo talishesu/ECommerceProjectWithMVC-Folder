@@ -73,10 +73,6 @@ namespace ECommerceProjectWithMVC.AppCode.Providers
                 {
                     claimIdentity.AddClaim(new Claim("FullName", $"{currentUser.Name} {currentUser.Surname}"));
                 }
-                else if (!string.IsNullOrWhiteSpace(currentUser.PhoneNumber))
-                {
-                    claimIdentity.AddClaim(new Claim("FullName", $"{currentUser.PhoneNumber}"));
-                }
                 else
                 {
                     claimIdentity.AddClaim(new Claim("FullName", $"{currentUser.Email}"));

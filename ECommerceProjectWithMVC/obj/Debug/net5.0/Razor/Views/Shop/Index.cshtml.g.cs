@@ -42,13 +42,27 @@ using ECommerceProjectWithMVC.Models.ViewModels;
 #nullable disable
 #nullable restore
 #line 5 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.Models.Entities.Membership;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\_ViewImports.cshtml"
 using ECommerceProjectWithMVC.Models.FormModels;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\_ViewImports.cshtml"
+using ECommerceProjectWithMVC.AppCode.Extensions;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e1f920093d5775ad68c4743eafc327a4ddf525b4", @"/Views/Shop/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ab2dd5ce387f76211d379bffa99ed5efe80fd6d7", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4af3000fe509d1bb35d9ab95deb5b2434a77adee", @"/Views/_ViewImports.cshtml")]
     public class Views_Shop_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ShopViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "0", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -99,9 +113,9 @@ using ECommerceProjectWithMVC.Models.FormModels;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n\r\n      <!-- Filter -->\r\n      <div\r\n        class=\"w-wrapper pt-5 mt-5 d-flex align-items-center justify-content-center\"\r\n      >\r\n        <div class=\"w-filters\">\r\n          \r\n          ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b48419", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b48915", async() => {
                 WriteLiteral("\r\n          <div class=\"w-select-wrapper\">\r\n            <select class=\"w-filter-by\" name=\"CategoryId\" required>\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b48812", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b49308", async() => {
                     WriteLiteral("All Categories");
                 }
                 );
@@ -127,7 +141,7 @@ using ECommerceProjectWithMVC.Models.FormModels;
 #line hidden
 #nullable disable
                 WriteLiteral("                     ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b410419", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b410915", async() => {
 #nullable restore
 #line 23 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\Shop\Index.cshtml"
                                                   Write(item.Name);
@@ -169,7 +183,7 @@ using ECommerceProjectWithMVC.Models.FormModels;
 #line hidden
 #nullable disable
                 WriteLiteral("                     ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b412944", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b413440", async() => {
 #nullable restore
 #line 25 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\Shop\Index.cshtml"
                                          Write(item.Name);
@@ -210,7 +224,7 @@ using ECommerceProjectWithMVC.Models.FormModels;
 #line hidden
 #nullable disable
                 WriteLiteral("            </select>\r\n            <span class=\"focus\"></span>\r\n          </div>\r\n          <div class=\"w-select-wrapper\">\r\n            <select class=\"w-filter-by\" name=\"BrandId\" required>\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b415368", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b415864", async() => {
                     WriteLiteral("All Brands");
                 }
                 );
@@ -236,7 +250,7 @@ using ECommerceProjectWithMVC.Models.FormModels;
 #line hidden
 #nullable disable
                 WriteLiteral("                     ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b416965", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b417461", async() => {
 #nullable restore
 #line 38 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\Shop\Index.cshtml"
                                                 Write(item.Name);
@@ -278,7 +292,7 @@ using ECommerceProjectWithMVC.Models.FormModels;
 #line hidden
 #nullable disable
                 WriteLiteral("                     ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b419487", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b419983", async() => {
 #nullable restore
 #line 40 "C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\Views\Shop\Index.cshtml"
                                        Write(item.Name);
@@ -353,9 +367,9 @@ using ECommerceProjectWithMVC.Models.FormModels;
 #line hidden
 #nullable disable
             WriteLiteral("                     <div class=\"col\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b423808", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b424304", async() => {
                 WriteLiteral("\r\n                      ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e1f920093d5775ad68c4743eafc327a4ddf525b424086", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e1f920093d5775ad68c4743eafc327a4ddf525b424582", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -396,7 +410,7 @@ AddHtmlAttributeValue("", 2189, item.Images.FirstOrDefault(p=>p.IsMain == true &
 #line hidden
 #nullable disable
                 WriteLiteral("</p>\r\n                        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b426917", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f920093d5775ad68c4743eafc327a4ddf525b427413", async() => {
                     WriteLiteral("Go To Detail");
                 }
                 );

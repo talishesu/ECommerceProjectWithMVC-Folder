@@ -71,5 +71,33 @@ namespace ECommerceProjectWithMVC.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index",id);
         }
+        [HttpPost]
+        public async Task<IActionResult> AddToCard(int colorId, int sizeId, int count,int productId)
+        {
+
+            var productPricing = await db.ProductPricings.FirstOrDefaultAsync(pp => pp.ColorId == colorId && pp.SizeId == sizeId&&pp.ProductId == productId && pp.DeletedTime == null);
+
+            if (productPricing == null)
+            {
+                return BadRequest();
+            }
+            var userId = (int)User.GetPrincipalId();
+            var userCard = await db.UserCardItems.FirstOrDefaultAsync(uc => uc.UserId == userId && uc.ProductPricingId == productPricing.Id);
+            if(userCard == null)
+            {
+                UserCardItem userCardItem = new UserCardItem();
+                userCardItem.ProductPricing = productPricing;
+                userCardItem.UserId = userId;
+                userCardItem.ProductPricingId = productPricing.Id;
+                userCardItem.Count = count;
+                db.UserCardItems.Add(userCardItem);
+            }else
+            {
+                userCard.Count = userCard.Count + count;
+            }
+            
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index","Card");
+        }
     }
 }
