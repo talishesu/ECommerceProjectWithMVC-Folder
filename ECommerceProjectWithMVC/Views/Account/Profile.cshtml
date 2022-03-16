@@ -136,6 +136,9 @@
                           Sign Out
                         </a>
                         <a class="btn btn-light" href="/forget-password.html">Change your Password</a>
+                        @if(User.HasAccess("admin.dashboard.index")){
+                            <a class="btn btn-warning" asp-area="Admin" asp-action="Index" asp-controller="Dashboard" >Admin Panel</a>
+                        }
                       </div>
                     </form>
                   </div>
@@ -148,29 +151,20 @@
                 >
                   <div class="container">
                     <ol class="list-group list-group-numbered">
-                      <li
-                        class="list-group-item d-flex justify-content-between align-items-center"
-                      >
-                        <p>G Pro X</p>
-                        <p>Price :99$</p>
-                        <div class="alert alert-info" role="alert">
-                          Deliverid
-                        </div>
-                      </li>
-                      <li
-                        class="list-group-item d-flex justify-content-between align-items-center"
-                      >
-                        <p>G Pro X</p>
-                        <p>Price :99$</p>
-                        <div class="alert alert-danger" role="alert">Soon</div>
-                      </li>
-                      <li
-                        class="list-group-item d-flex justify-content-between align-items-center"
-                      >
-                        <p>G Pro X</p>
-                        <p>Price :99$</p>
-                        <div class="alert alert-danger" role="alert">Soon</div>
-                      </li>
+                      @if(Model.Orders != null){
+                          @foreach (var item in Model.Orders)
+                             {
+                                 <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a target="_blank" href="/product/index/@item.ProductPricing.ProductId">@item.ProductPricing.Product.Name</a>
+                                <p>Price :@item.ProductPricing.Price$</p>
+                                <div class="alert alert-info" role="alert">
+                                  @item.OrderAction
+                                </div>
+                              </li>
+                             }
+                      }else{
+                          <p>Not Have Order</p>
+                      }
                     </ol>
                   </div>
                 </div>
@@ -180,30 +174,36 @@
                   role="tabpanel"
                   aria-labelledby="tab3"
                 >
-                  <ol class="list-group list-group-numbered">
-                      @foreach (var item in Model.Comments)
-                     {
-                        if(item.Product.DeletedTime == null){
-                            <li class="list-group-item">
-                          <p>
-                           <a href="/product/index/@item.Product.Id">@item.Product.Name</a>
-                          </p>
-                          @if(item.Confirmed == false){
-                              <div class="alert alert-danger" role="alert">
-                                @item.Comment
-                              </div>
-                              <span class="text-danger">Not Confirmed</span>
-                          }else{
-                              <div class="alert alert-success" role="alert">
-                                @item.Comment
-                              </div>
-                              <span class="text-success">Confirmed</span>
-                          }
-                        </li>
-                        }
-                     }
+                  
+                      @if(Model.Comments != null){
+                       <ol class="list-group list-group-numbered">
+                          @foreach (var item in Model.Comments)
+                         {
+                            if(item.Product.DeletedTime == null){
+                                <li class="list-group-item">
+                              <p>
+                               <a href="/product/index/@item.Product.Id">@item.Product.Name</a>
+                              </p>
+                              @if(item.Confirmed == false){
+                                  <div class="alert alert-danger" role="alert">
+                                    @item.Comment
+                                  </div>
+                                  <span class="text-danger">Not Confirmed</span>
+                              }else{
+                                  <div class="alert alert-success" role="alert">
+                                    @item.Comment
+                                  </div>
+                                  <span class="text-success">Confirmed</span>
+                              }
+                            </li>
+                            }
+                        }  
+                        </ol>
+                      }else{
+                          <p>No Have Comment</p>
+                      }
                     
-                  </ol>
+                  
                 </div>
               </div>
             </div>

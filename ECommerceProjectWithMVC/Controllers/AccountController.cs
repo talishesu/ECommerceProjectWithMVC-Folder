@@ -413,7 +413,16 @@ namespace ECommerceProjectWithMVC.Controllers
 
                 vm.User = user;
                 vm.Comments = commentsByUser;
-
+                vm.Orders = await db.Orders.Where(o => o.UserId == User.GetPrincipalId()).ToListAsync();
+                foreach (var item in vm.Orders)
+                {
+                    item.ProductPricing = await db.ProductPricings.FirstOrDefaultAsync(pp => pp.Id == item.ProductPricingId);
+                    item.ProductPricing.Product = await db.Products
+                        .Include(p => p.Images)
+                        .FirstOrDefaultAsync(p => p.Id == item.ProductPricing.ProductId);
+                    item.ProductPricing.Color = await db.Colors.FirstOrDefaultAsync(p => p.Id == item.ProductPricing.ColorId);
+                    item.ProductPricing.Size = await db.Sizes.FirstOrDefaultAsync(p => p.Id == item.ProductPricing.SizeId);
+                }
                 return View(vm);
 
             }
@@ -443,7 +452,16 @@ namespace ECommerceProjectWithMVC.Controllers
 
                     vm.User = user;
                     vm.Comments = commentsByUser;
-
+                    vm.Orders = await db.Orders.Where(o=>o.UserId == User.GetPrincipalId()).ToListAsync();
+                    foreach (var item in vm.Orders)
+                    {
+                        item.ProductPricing = await db.ProductPricings.FirstOrDefaultAsync(pp => pp.Id == item.ProductPricingId);
+                        item.ProductPricing.Product = await db.Products
+                            .Include(p => p.Images)
+                            .FirstOrDefaultAsync(p => p.Id == item.ProductPricing.ProductId);
+                        item.ProductPricing.Color = await db.Colors.FirstOrDefaultAsync(p => p.Id == item.ProductPricing.ColorId);
+                        item.ProductPricing.Size = await db.Sizes.FirstOrDefaultAsync(p => p.Id == item.ProductPricing.SizeId);
+                    }
                     return View(vm);
                 }
                 return RedirectToAction("Signin");
@@ -473,7 +491,16 @@ namespace ECommerceProjectWithMVC.Controllers
 
                         vm.User = user;
                         vm.Comments = commentsByUser;
-
+                        vm.Orders = await db.Orders.Where(o => o.UserId == User.GetPrincipalId()).ToListAsync();
+                        foreach (var item in vm.Orders)
+                        {
+                            item.ProductPricing = await db.ProductPricings.FirstOrDefaultAsync(pp => pp.Id == item.ProductPricingId);
+                            item.ProductPricing.Product = await db.Products
+                                .Include(p => p.Images)
+                                .FirstOrDefaultAsync(p => p.Id == item.ProductPricing.ProductId);
+                            item.ProductPricing.Color = await db.Colors.FirstOrDefaultAsync(p => p.Id == item.ProductPricing.ColorId);
+                            item.ProductPricing.Size = await db.Sizes.FirstOrDefaultAsync(p => p.Id == item.ProductPricing.SizeId);
+                        }
                         return View(vm);
                     }
                     return RedirectToAction("Signin");
@@ -486,7 +513,7 @@ namespace ECommerceProjectWithMVC.Controllers
                     if (result2.Succeeded)
                     {
                         await db.SaveChangesAsync();
-                        return View(user);
+                        return RedirectToAction("Profile","Account");
                     }
                     else
                     {
@@ -500,7 +527,16 @@ namespace ECommerceProjectWithMVC.Controllers
                                 .ToListAsync();
 
                             var vm = new ProfileViewModel();
-
+                            vm.Orders = await db.Orders.Where(o => o.UserId == User.GetPrincipalId()).ToListAsync();
+                            foreach (var item in vm.Orders)
+                            {
+                                item.ProductPricing = await db.ProductPricings.FirstOrDefaultAsync(pp => pp.Id == item.ProductPricingId);
+                                item.ProductPricing.Product = await db.Products
+                                    .Include(p => p.Images)
+                                    .FirstOrDefaultAsync(p => p.Id == item.ProductPricing.ProductId);
+                                item.ProductPricing.Color = await db.Colors.FirstOrDefaultAsync(p => p.Id == item.ProductPricing.ColorId);
+                                item.ProductPricing.Size = await db.Sizes.FirstOrDefaultAsync(p => p.Id == item.ProductPricing.SizeId);
+                            }
                             vm.User = user;
                             vm.Comments = commentsByUser;
 

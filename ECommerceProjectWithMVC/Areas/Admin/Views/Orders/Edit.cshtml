@@ -1,0 +1,41 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Orders</h4>
+                  <p class="card-description">
+                      Edit @Model.Id Order 
+                  </p>
+                  <h1 class="display-4">Username: @Model.User.UserName</h1>
+                  <h1 class="display-4">UserId: @Model.User.Id</h1>
+                  <h1 class="display-4">Color: @Model.ProductPricing.Color.Name</h1>
+                  <h1 class="display-4">Size: @Model.ProductPricing.Size.Name</h1>
+                  <h1 class="display-4">Price: @Model.ProductPricing.Price</h1>
+                  <h1 class="display-4">Count: @Model.Count</h1>
+                  <h1 class="display-4">Created Time: @Model.CreatedTime</h1>
+                  @if(Model.LastUpdateTime != null){
+                      <h1 class="display-4">Last Update Time: @Model.LastUpdateTime</h1>
+                      <h1 class="display-4">Last Update By User Id: @Model.LastUpdateByUserId</h1>
+                  }
+                  <form class="forms-sample" method="post">
+                    <div class="form-group">
+                      <label for="exampleInputUsername1" class="required" asp-for="OrderAction" placeholder="Order Action"></label>
+                      <input name="orderAction" type="text" class="form-control" id="exampleInputUsername1" asp-for="OrderAction" placeholder="OrderAction">
+                      <span asp-validation-for="OrderAction" class="text-danger">@ViewBag.Message</span>
+                    </div>
+                    <button type="submit" class="btn btn-success me-2">Submit</button>
+                    <button class="btn btn-light" asp-area="Admin" asp-controller="Orders" asp-action="Index">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+@section addjs{
+ <script src="~/assets/libraries/jquery-validate/jquery.validate.min.js"></script>
+ <script src="~/assets/libraries/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+

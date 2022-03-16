@@ -242,3 +242,5 @@ C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectW
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Roles\Index.cshtml.g.cs
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Roles\Detail.cshtml.g.cs
 C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Roles\Create.cshtml.g.cs
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Orders\Index.cshtml.g.cs
+C:\Users\CalenLoki\source\repos\ECommerceProjectWithMVC-Folder\ECommerceProjectWithMVC\obj\Debug\net5.0\Razor\Areas\Admin\Views\Orders\Edit.cshtml.g.cs

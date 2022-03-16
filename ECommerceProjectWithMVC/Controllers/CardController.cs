@@ -1,5 +1,6 @@
 ﻿using ECommerceProjectWithMVC.AppCode.Extensions;
 using ECommerceProjectWithMVC.Models.DataContexts;
+using ECommerceProjectWithMVC.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -56,5 +57,37 @@ namespace ECommerceProjectWithMVC.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index", "Shop");
         }
+
+
+
+        public async Task<IActionResult> Checkout()
+        {
+            var userCardItems = await db.UserCardItems.Where(uci=>uci.UserId == User.GetPrincipalId()).ToListAsync();
+            if(userCardItems == null)
+            {
+                return RedirectToAction("Index", "Shop");
+            }
+
+            foreach (var userCardItem in userCardItems)
+            {
+               Order order = new Order();
+                order.User = userCardItem.User;
+                order.UserId = userCardItem.UserId;
+                order.ProductPricing = await db.ProductPricings.FirstOrDefaultAsync(pp => pp.Id == userCardItem.ProductPricingId); 
+                order.ProductPricingId = userCardItem.ProductPricingId;
+                order.Count = userCardItem.Count;
+                order.CreatedByUserId = userCardItem.UserId;
+                order.OrderAction = "Waiting";
+                db.Orders.Add(order);
+            }
+            foreach (var userCardItem in userCardItems)
+            {
+                db.UserCardItems.Remove(userCardItem);
+            }
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Index","Shop");
+        }
+
     }
 }

@@ -8,5 +8,6 @@ namespace ECommerceProjectWithMVC.Models.ViewModels
     {
         public ShopUser User { get; set; }
         public List<ProductComment> Comments { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

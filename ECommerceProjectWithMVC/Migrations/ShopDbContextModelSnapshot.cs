@@ -367,6 +367,53 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.ToTable("UserTokens", "Membership");
                 });
 
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Order", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductPricingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CreatedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("LastUpdateByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastUpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderAction")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductPricingColorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductPricingProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductPricingSizeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "ProductPricingId");
+
+                    b.HasIndex("ProductPricingSizeId", "ProductPricingProductId", "ProductPricingColorId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -721,6 +768,25 @@ namespace ECommerceProjectWithMVC.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Order", b =>
+                {
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.Membership.ShopUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerceProjectWithMVC.Models.Entities.ProductPricing", "ProductPricing")
+                        .WithMany()
+                        .HasForeignKey("ProductPricingSizeId", "ProductPricingProductId", "ProductPricingColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductPricing");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Product", b =>

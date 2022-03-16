@@ -465,10 +465,80 @@ namespace ECommerceProjectWithMVC.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ProductPricingId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductPricingSizeId = table.Column<int>(type: "int", nullable: false),
+                    ProductPricingProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductPricingColorId = table.Column<int>(type: "int", nullable: false),
+                    OrderAction = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: true),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedByUserId = table.Column<int>(type: "int", nullable: true),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => new { x.UserId, x.ProductPricingId });
+                    table.ForeignKey(
+                        name: "FK_Orders_ProductPricings_ProductPricingSizeId_ProductPricingProductId_ProductPricingColorId",
+                        columns: x => new { x.ProductPricingSizeId, x.ProductPricingProductId, x.ProductPricingColorId },
+                        principalTable: "ProductPricings",
+                        principalColumns: new[] { "SizeId", "ProductId", "ColorId" },
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Users_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "Membership",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserCardItems",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ProductPricingId = table.Column<int>(type: "int", nullable: false),
+                    ProductPricingSizeId = table.Column<int>(type: "int", nullable: false),
+                    ProductPricingProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductPricingColorId = table.Column<int>(type: "int", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserCardItems", x => new { x.UserId, x.ProductPricingId });
+                    table.ForeignKey(
+                        name: "FK_UserCardItems_ProductPricings_ProductPricingSizeId_ProductPricingProductId_ProductPricingColorId",
+                        columns: x => new { x.ProductPricingSizeId, x.ProductPricingProductId, x.ProductPricingColorId },
+                        principalTable: "ProductPricings",
+                        principalColumns: new[] { "SizeId", "ProductId", "ColorId" },
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserCardItems_Users_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "Membership",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_ParentId",
                 table: "Categories",
                 column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_ProductPricingSizeId_ProductPricingProductId_ProductPricingColorId",
+                table: "Orders",
+                columns: new[] { "ProductPricingSizeId", "ProductPricingProductId", "ProductPricingColorId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductComments_ProductId",
@@ -525,6 +595,11 @@ namespace ECommerceProjectWithMVC.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserCardItems_ProductPricingSizeId_ProductPricingProductId_ProductPricingColorId",
+                table: "UserCardItems",
+                columns: new[] { "ProductPricingSizeId", "ProductPricingProductId", "ProductPricingColorId" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
                 schema: "Membership",
                 table: "UserClaims",
@@ -563,13 +638,13 @@ namespace ECommerceProjectWithMVC.Migrations
                 name: "Contacts");
 
             migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
                 name: "ProductComments");
 
             migrationBuilder.DropTable(
                 name: "ProductImages");
-
-            migrationBuilder.DropTable(
-                name: "ProductPricings");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims",
@@ -580,6 +655,9 @@ namespace ECommerceProjectWithMVC.Migrations
 
             migrationBuilder.DropTable(
                 name: "SpecificationProductItems");
+
+            migrationBuilder.DropTable(
+                name: "UserCardItems");
 
             migrationBuilder.DropTable(
                 name: "UserClaims",
@@ -598,16 +676,10 @@ namespace ECommerceProjectWithMVC.Migrations
                 schema: "Membership");
 
             migrationBuilder.DropTable(
-                name: "Colors");
-
-            migrationBuilder.DropTable(
-                name: "Sizes");
-
-            migrationBuilder.DropTable(
-                name: "Products");
-
-            migrationBuilder.DropTable(
                 name: "Specifications");
+
+            migrationBuilder.DropTable(
+                name: "ProductPricings");
 
             migrationBuilder.DropTable(
                 name: "Roles",
@@ -616,6 +688,15 @@ namespace ECommerceProjectWithMVC.Migrations
             migrationBuilder.DropTable(
                 name: "Users",
                 schema: "Membership");
+
+            migrationBuilder.DropTable(
+                name: "Colors");
+
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Sizes");
 
             migrationBuilder.DropTable(
                 name: "Brands");
