@@ -46,14 +46,15 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
                 e.HasKey(k => new { k.SizeId, k.ProductId,k.ColorId });
             });
             modelBuilder.Entity<UserCardItem>(e =>
-            {
-                e.HasKey(k => new { k.UserId, k.ProductPricingId});
-            });
-            modelBuilder.Entity<Order>(e =>
-            {
-                e.HasKey(k => new { k.UserId, k.ProductPricingId});
-            });
 
+            {
+                e.HasKey(k => new { k.UserId, k.ProductPricingId});
+            });
+            //modelBuilder.Entity<Order>(e =>
+            //{
+            //    e.HasKey(k => new { k.UserId, k.User.Id});
+            //});
+            //, k.ProductPricingId
             #region Membership
 
 

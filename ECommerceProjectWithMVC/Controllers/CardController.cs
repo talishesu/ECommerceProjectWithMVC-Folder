@@ -30,6 +30,7 @@ namespace ECommerceProjectWithMVC.Controllers
             }
             return View(userCardListProduct);
         }
+
         public async Task<IActionResult> Delete(int colorId,int sizeId,int productId)
         {
             var productPricing = await db.ProductPricings.FirstOrDefaultAsync(pp=>pp.ColorId ==colorId && pp.ProductId ==productId && pp.SizeId == sizeId);

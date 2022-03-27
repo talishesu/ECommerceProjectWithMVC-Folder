@@ -70,7 +70,10 @@ namespace ECommerceProjectWithMVC.Controllers
                 {
 
                     string callbackUrl = Request.Query["ReturnUrl"];
-
+                    if(callbackUrl == "/product/addtocard")
+                    {
+                        callbackUrl = "/card";
+                    }
                     if (!string.IsNullOrEmpty(callbackUrl))
                     {
                         return Redirect(callbackUrl);

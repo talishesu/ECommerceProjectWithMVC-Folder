@@ -469,10 +469,10 @@ namespace ECommerceProjectWithMVC.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    ProductPricingId = table.Column<int>(type: "int", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ProductPricingId = table.Column<int>(type: "int", nullable: false),
                     ProductPricingSizeId = table.Column<int>(type: "int", nullable: false),
                     ProductPricingProductId = table.Column<int>(type: "int", nullable: false),
                     ProductPricingColorId = table.Column<int>(type: "int", nullable: false),
@@ -480,12 +480,12 @@ namespace ECommerceProjectWithMVC.Migrations
                     Count = table.Column<int>(type: "int", nullable: false),
                     CreatedByUserId = table.Column<int>(type: "int", nullable: true),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DeletedByUserId = table.Column<int>(type: "int", nullable: true),
-                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    LastUpdateByUserId = table.Column<int>(type: "int", nullable: true),
+                    LastUpdateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => new { x.UserId, x.ProductPricingId });
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Orders_ProductPricings_ProductPricingSizeId_ProductPricingProductId_ProductPricingColorId",
                         columns: x => new { x.ProductPricingSizeId, x.ProductPricingProductId, x.ProductPricingColorId },
@@ -539,6 +539,11 @@ namespace ECommerceProjectWithMVC.Migrations
                 name: "IX_Orders_ProductPricingSizeId_ProductPricingProductId_ProductPricingColorId",
                 table: "Orders",
                 columns: new[] { "ProductPricingSizeId", "ProductPricingProductId", "ProductPricingColorId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductComments_ProductId",

@@ -369,11 +369,10 @@ namespace ECommerceProjectWithMVC.Migrations
 
             modelBuilder.Entity("ECommerceProjectWithMVC.Models.Entities.Order", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductPricingId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -383,11 +382,6 @@ namespace ECommerceProjectWithMVC.Migrations
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("LastUpdateByUserId")
                         .HasColumnType("int");
@@ -401,13 +395,21 @@ namespace ECommerceProjectWithMVC.Migrations
                     b.Property<int>("ProductPricingColorId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProductPricingId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductPricingProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductPricingSizeId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "ProductPricingId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("ProductPricingSizeId", "ProductPricingProductId", "ProductPricingColorId");
 

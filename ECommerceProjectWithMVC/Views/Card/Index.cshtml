@@ -20,7 +20,7 @@
           @foreach (var item in Model)
          {
             <form asp-action="Delete" asp-route-colorId="@item.ProductPricing.Color.Id" asp-route-sizeId="@item.ProductPricing.Size.Id" asp-route-productId="@item.ProductPricing.Product.Id">
-                     <div class="item">
+             <div class="item align-items-center">
                 <div class="buttons">
                   <span class="delete-btn-card"></span>
                   <span class="like-btn-card"></span>
@@ -47,14 +47,22 @@
                   @*<button class="plus-btn-card" type="button" name="button">
                     <img src="./assets/svg/plus.svg" alt="" />
                   </button>*@
-                  <p>Count:@item.Count</p>
+                  <p id="product-count" data-product-count="@item.Count">Count:@item.Count</p>
               
               
                 </div>
 
-                <div class="total-price">$@item.ProductPricing.Price
-                <button class="minus-btn-card" type="submit">
-                    <img src="./assets/svg/minus.svg" alt="" />
+                
+
+                <div class="total-price">Product price: $@item.ProductPricing.Price
+                
+                </div>
+                <div class="total-price" id="total-price" data-product-price="@item.ProductPricing.Price"> Total Price Product: $<span class="total-amount  badge-primary dark">@(item.ProductPricing.Price*item.Count)</span>
+                </div>
+
+                <div class="">
+                    <button class="minus-btn-card" type="submit">
+                        <img src="./assets/svg/minus.svg" alt="" />
                   </button>
                 </div>
               </div>
@@ -72,3 +80,18 @@
       </section>
     
 
+      @section addjs{
+          @*<script>
+              $(document).ready(function(){
+
+                  var productPrice= $('#total-price').data('product-price');
+            
+                  var productCount= $('#product-count').data('product-count');
+                  totalAmount= productPrice * productCount;
+                  $('.total-amount').html(totalAmount);
+                        console.log(totalAmount);
+
+              });
+
+          </script>*@
+      }
