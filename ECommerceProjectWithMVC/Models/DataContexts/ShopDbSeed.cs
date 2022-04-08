@@ -1,4 +1,5 @@
-﻿using ECommerceProjectWithMVC.Models.Entities.Membership;
+﻿using ECommerceProjectWithMVC.AppCode.Providers;
+using ECommerceProjectWithMVC.Models.Entities.Membership;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,8 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
         const string adminEmail = "talishesu@gmail.com";
         const string adminPassword = "Talishesu107";
         const string superAdminName = "SuperAdmin";
+        const string sellerName = "Seller";
+        static string[] claimsForSeller = { "admin.dashboard.index", "admin.orders.index", "admin.orders.edit", "admin.products.index", "admin.products.detail", "admin.products.create", "admin.products.edit", "admin.products.delete", "admin.products.reverse" };
         static internal IApplicationBuilder SeedMemberShip(this IApplicationBuilder builder)
         {
             using (var scope = builder.ApplicationServices.CreateScope())
@@ -31,6 +34,34 @@ namespace ECommerceProjectWithMVC.Models.DataContexts
 
                     roleManager.CreateAsync(role).Wait();
                 }
+
+
+
+
+
+                var role2 = roleManager.FindByNameAsync(sellerName).Result;
+                if (role2 == null)
+                {
+                    role2 = new ShopRole
+                    {
+                        Name = sellerName
+                    };
+
+                    roleManager.CreateAsync(role2).Wait();
+
+                    foreach (var item in claimsForSeller)
+                    {
+                        var roleClaims = new ShopRoleClaim
+                        {
+                            RoleId = role2.Id,
+                            ClaimType = item,
+                            ClaimValue = "1"
+                        };
+                        db.RoleClaims.AddAsync(roleClaims);
+                    }
+                }
+
+
 
 
 

@@ -12,11 +12,6 @@
                   <p class="card-description">
                       Order List
                   </p>
-                  @if (User.HasAccess("admin.orders.create"))
-                  {
-                    <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Orders" asp-action="Create">Create Order</a>
-                                                
-                   }
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -74,7 +69,6 @@
                   <p class="card-description">
                       There Is No Order
                   </p>
-                  <a type="button" class="btn btn-info btn-rounded btn-fw" asp-area="Admin" asp-controller="Orders" asp-action="Create">Create Order</a>
                 </div>
             </div>
         }

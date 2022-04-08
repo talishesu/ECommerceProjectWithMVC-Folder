@@ -139,6 +139,7 @@
                         @if(User.HasAccess("admin.dashboard.index")){
                             <a class="btn btn-warning" asp-area="Admin" asp-action="Index" asp-controller="Dashboard" >Admin Panel</a>
                         }
+                        
                       </div>
                     </form>
                   </div>
@@ -150,8 +151,9 @@
                   aria-labelledby="tab2"
                 >
                   <div class="container">
+                      
                     <ol class="list-group list-group-numbered">
-                      @if(Model.Orders != null){
+                      @if(Model.Orders.Count() != 0){
                           @foreach (var item in Model.Orders)
                              {
                                  <li class="list-group-item d-flex justify-content-between align-items-center">

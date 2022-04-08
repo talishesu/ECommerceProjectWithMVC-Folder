@@ -1,19 +1,18 @@
-﻿using ECommerceProjectWithMVC.Models.DataContexts;
+﻿using ECommerceProjectWithMVC.AppCode.Extensions;
+using ECommerceProjectWithMVC.Models.DataContexts;
 using ECommerceProjectWithMVC.Models.Entities.Membership;
 using ECommerceProjectWithMVC.Models.FormModels;
+using ECommerceProjectWithMVC.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ECommerceProjectWithMVC.AppCode.Extensions;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using System.Net.Mail;
-using Shop.Cryptolib;
 using System;
-using System.Net;
 using System.Linq;
-using ECommerceProjectWithMVC.Models.ViewModels;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace ECommerceProjectWithMVC.Controllers
 {
@@ -431,6 +430,32 @@ namespace ECommerceProjectWithMVC.Controllers
             }
             return RedirectToAction("Signin");
             
+        }
+
+
+        public async Task<IActionResult> SetSeller()
+        {
+            var userId = User.GetPrincipalId().ToString();
+            if (userId != null)
+            {
+                var user = await userManager.FindByIdAsync(userId);
+                var IsInRole = await userManager.IsInRoleAsync(user,"Seller");
+                if(IsInRole == true)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    await userManager.AddToRoleAsync(user, "Seller");
+                    await db.SaveChangesAsync();
+                }
+                return RedirectToAction("Profile");
+            }
+            else
+            {
+                return RedirectToAction("Signin");
+            }
+
         }
 
 

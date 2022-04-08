@@ -5,7 +5,7 @@
     var categories = db.Categories.Where(c=>c.DeletedTime == null ).ToList();
     var userCardCount = db.UserCardItems.Where(uc => uc.UserId == User.GetPrincipalId()).Count();
 }
-<!DOCTYPE html>
+heightTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -138,6 +138,11 @@
             <li class="nav-item">
               <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
             </li>
+            @if(User.IsInRole("Seller") == false && User.IsInRole("SuperAdmin") == false){
+                     <li class="nav-item">       
+                        <a class="nav-link btn btn-sm btn-primary"  asp-action="SetSeller" asp-controller="Account">Become a Seller</a>
+                </li>
+             }
           </ul>
           <a
           asp-controller="Card"
@@ -220,7 +225,7 @@
       </div>
     </nav>
     <!-- Main -->
-    <main class="col-12">
+    <main class="col-12" style="min-height:700px;">
        @RenderBody()
        </main>
     <!-- footer -->

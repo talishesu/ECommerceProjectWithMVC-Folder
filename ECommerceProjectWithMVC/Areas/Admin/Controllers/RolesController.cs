@@ -140,6 +140,7 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         [Authorize(Policy = "admin.roles.delete")]
         public async Task<IActionResult> Delete(int id)
         {
+
             if (id == 0)
             {
                 return BadRequest();
@@ -147,10 +148,21 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
 
             var role = await db.Roles.FirstOrDefaultAsync(r => r.Id == id);
+
+
             if(role == null)
             {
                 return BadRequest();
             }
+            if(role.NormalizedName == "SELLER")
+            {
+                return BadRequest();
+            }
+            if (role.NormalizedName == "SUPERADMIN")
+            {
+                return BadRequest();
+            }
+
             var result = await roleManager.DeleteAsync(role);
             if (result.Succeeded)
             {

@@ -16,6 +16,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ECommerceProjectWithMVC.AppCode.Extensions;
+using ECommerceProjectWithMVC.Models.Entities.Membership;
+using Microsoft.AspNetCore.Identity;
 
 namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 {
@@ -25,11 +27,13 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
         readonly ShopDbContext db;
         readonly IWebHostEnvironment env;
         readonly IMediator mediator;
-        public ProductsController(ShopDbContext db, IWebHostEnvironment env, IMediator mediator)
+        readonly UserManager<ShopUser> userManager;
+        public ProductsController(ShopDbContext db, IWebHostEnvironment env, IMediator mediator, UserManager<ShopUser> userManager)
         {
             this.db = db;
             this.env = env;
             this.mediator = mediator;
+            this.userManager = userManager;
         }
 
         [Authorize(Policy = "admin.products.index")]
@@ -39,6 +43,15 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             var query = new ProductPagedQuery();
 
             var data = await mediator.Send(query);
+
+            var userId = User.GetPrincipalId();
+                var user = await userManager.FindByIdAsync(userId.ToString());
+                var IsInRole = await userManager.IsInRoleAsync(user, "Seller");
+                if (IsInRole == true)
+                {
+                    data = data.Where(d=>d.CreatedByUserId == userId).ToList();
+                }
+
             return View(data);
         }
 
@@ -53,6 +66,18 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
+            var userId = User.GetPrincipalId();
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            var IsInRole = await userManager.IsInRoleAsync(user, "Seller");
+            if (IsInRole == true)
+            {
+                if(data.Product.CreatedByUserId != userId)
+                {
+                    return BadRequest();
+                }
+            }
+
             return View(data);
         }
 
@@ -275,6 +300,9 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+
+
+
             var vm = new ProductCreateViewModel();
 
             var brands = await db.Brands.Where(b => b.DeletedTime == null).ToListAsync();
@@ -312,11 +340,22 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
             vm.Product = await db.Products.FirstOrDefaultAsync(pp => pp.Id == id);
 
+
+
             vm.SpecificationProductItems = await db.SpecificationProductItems.Where(SPI => SPI.ProductId == id).ToListAsync();
             vm.ProductImages = await db.ProductImages.Where(p => p.ProductId == id && p.DeletedTime == null).ToListAsync();
             vm.ProductPricings = await db.ProductPricings.Where(pp => pp.ProductId == id).ToListAsync();
 
-
+            var userId = User.GetPrincipalId();
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            var IsInRole = await userManager.IsInRoleAsync(user, "Seller");
+            if (IsInRole == true)
+            {
+                if (vm.Product.CreatedByUserId != userId)
+                {
+                    return BadRequest();
+                }
+            }
 
             return View(vm);
         }
@@ -330,7 +369,19 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
 
         public async Task<IActionResult> Edit([FromRoute] int id, ProductFormModel productFormModel)
         {
-                if (id != productFormModel.Product.Id)
+            var userId = User.GetPrincipalId();
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            var IsInRole = await userManager.IsInRoleAsync(user, "Seller");
+            if (IsInRole == true)
+            {
+                if (productFormModel.Product.CreatedByUserId != userId)
+                {
+                    return BadRequest();
+                }
+            }
+
+
+            if (id != productFormModel.Product.Id)
                 {
                     return BadRequest();
                 }
@@ -593,6 +644,17 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            var userId = User.GetPrincipalId();
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            var IsInRole = await userManager.IsInRoleAsync(user, "Seller");
+            if (IsInRole == true)
+            {
+                if (product.CreatedByUserId != userId)
+                {
+                    return BadRequest();
+                }
+            }
+
             product.DeletedTime = DateTime.Now;
             product.DeletedByUserId = User.GetPrincipalId();
             await db.SaveChangesAsync();
@@ -617,7 +679,16 @@ namespace ECommerceProjectWithMVC.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            var userId = User.GetPrincipalId();
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            var IsInRole = await userManager.IsInRoleAsync(user, "Seller");
+            if (IsInRole == true)
+            {
+                if (product.CreatedByUserId != userId)
+                {
+                    return BadRequest();
+                }
+            }
             product.DeletedTime = null;
             product.DeletedByUserId = null;
             await db.SaveChangesAsync();

@@ -49,6 +49,23 @@ namespace ECommerceProjectWithMVC.Controllers
 
 
             vm.Users = await db.Users.ToListAsync();
+            var seller = await db.Users.FirstOrDefaultAsync(u => u.Id == vm.Product.CreatedByUserId);
+            //if(seller.Id == 1)
+            //{
+            //    vm.SellerName = "LOGI";
+            //}
+            //else
+            //{
+                if (seller.UserName.IsEmail())
+                {
+                    vm.SellerName = seller.Name;
+                }
+                else
+                {
+                    vm.SellerName = seller.UserName;
+                }
+            
+            //}
             return View(vm);
         }
 

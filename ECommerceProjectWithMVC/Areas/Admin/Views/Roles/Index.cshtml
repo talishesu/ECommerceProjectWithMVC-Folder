@@ -40,9 +40,11 @@
                                       }
                                       @if (User.HasAccess("admin.roles.delete"))
                                         {
-                                            <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Roles" asp-action="Delete">Delete</a>
-
-                                      }
+                                            if (!(item.NormalizedName == "SELLER" || item.NormalizedName == "SUPERADMIN"))
+                                            {
+                                                <a type="button" class="btn btn-danger btn-rounded btn-fw" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Roles" asp-action="Delete">Delete</a>
+                                            }
+                                        }
                               </td>
                            </tr>
                        }

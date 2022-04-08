@@ -8,6 +8,7 @@
       <div class="container">
         <div class="heading-section">
           <h2>@Model.Product.Name</h2>
+          
         </div>
         <div class="row">
           <div class="col-md-6">
@@ -70,6 +71,7 @@
                   <span>3 Reviews</span>
                 </div>*@
                 <div class="product-price-discount"><span>$@Model.ProductPricings.FirstOrDefault().Price</span></div>
+                <div class="product-price-discount"><span>Seller: <p>@Model.SellerName</p></span></div>
               </div>
               <p>
                   @Model.Product.ShortDescription

@@ -12,5 +12,6 @@ namespace ECommerceProjectWithMVC.Models.ViewModels
         public List<SpecificationProductItem> SpecificationProductItems { get; set; }
         public List<ProductPricing> ProductPricings { get; set; }
         public List<ShopUser> Users { get; set; }
+        public string SellerName { get; set; }
     }
 }

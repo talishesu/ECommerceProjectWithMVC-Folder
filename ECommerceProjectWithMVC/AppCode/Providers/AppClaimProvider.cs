@@ -11,7 +11,7 @@ namespace ECommerceProjectWithMVC.AppCode.Providers
     public class AppClaimProvider : IClaimsTransformation
     {
         public static string[] policies = null;
-        readonly ShopDbContext db;
+        readonly ShopDbContext db; 
         public AppClaimProvider(ShopDbContext db)
         {
             this.db = db;
